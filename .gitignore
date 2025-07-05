@@ -2,7 +2,7 @@
 *.txt
 *.o
 *.a
-*.DStore
+*.DS_Store
 *.out
 *.identifiers
 cub3D
