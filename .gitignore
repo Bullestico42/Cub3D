@@ -1,0 +1,8 @@
+*.vscode
+*.txt
+*.o
+*.a
+*.DStore
+*.out
+*.identifiers
+cub3D
