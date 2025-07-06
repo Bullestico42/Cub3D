@@ -6,14 +6,16 @@ SRC_DIR = src
 OBJ_DIR = obj
 INC_DIR = headers
 LIBFT_DIR = libft
+GNL_DIR = get_next_line
 
 # === Fichiers sources ===
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(GNL_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # === Commandes ===
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
 
 # === OS Detection ===
 UNAME_S := $(shell uname -s)
@@ -45,11 +47,15 @@ $(NAME): $(LIBFT) $(OBJS)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
+	@make bonus -C $(LIBFT_DIR)
 
 clean:
 	$(RM) -r $(OBJ_DIR)

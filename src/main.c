@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/06 15:02:54 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 00:22:37 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 /*Fonction responsable de la fermeture du programme.
 Elle prend une string qui sera afficher sur le stderr
 et exit avec le code d'erreur donné en paramètre*/
-int	destroy_display(t_game *game, char *str, int error)
+int	destroy_display(t_game *game, char *str, int error_code)
 {
 	ft_putstr_fd(str, 2);
+	if (game->map.fd >= 0)
+		close(game->map.fd);
+	if (game->map.lines)
+		ft_clearlst(&game->map.lines);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)
@@ -28,7 +32,7 @@ int	destroy_display(t_game *game, char *str, int error)
 		mlx_destroy_display(game->data.mlx);
 		free(game->data.mlx);
 	}
-	exit(error);
+	exit(error_code);
 }
 #else
 
@@ -45,12 +49,13 @@ int	close_game(t_game *game)
 {
 	return(destroy_display(game, "", 0));
 }
-/* Le main vérifie que les pointeur mlx et win sont bien initialisés.
-Il permet aussi de fermer la fenêtre avec la croix.*/
+
 int	main(void)
 {
 	t_game	game;
 
+	init_values(&game);
+	create_map(&game, "maps/map1.cub");
 	game.data.mlx = mlx_init();
 	if (!game.data.mlx)
 		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
