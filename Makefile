@@ -2,13 +2,19 @@
 NAME = cub3D
 
 # === Dossiers ===
-SRC_DIR = src
+SRC_DIR = src/
+PAR_DIR = src/parsing/
+GNL_DIR = gnl/
 OBJ_DIR = obj
 INC_DIR = headers
 LIBFT_DIR = libft
 
 # === Fichiers sources ===
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS =	$(SRC_DIR)main.c \
+		$(PAR_DIR)init.c \
+		$(GNL_DIR)get_next_line_utils.c \
+		$(GNL_DIR)get_next_line.c
+
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # === Commandes ===
