@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 00:22:37 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 02:40:30 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	destroy_display(t_game *game, char *str, int error_code)
 	if (game->map.fd >= 0)
 		close(game->map.fd);
 	if (game->map.lines)
-		ft_clearlst(&game->map.lines);
+		free_double_ptr(game->map.lines);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)

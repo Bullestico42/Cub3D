@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:37:11 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/07 00:25:23 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 02:27:36 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void	init_values(t_game *game)
 	game->data.win = NULL;
 	game->map.lines = NULL;
 }
-
-/* Fonction servant à free les éléments d'une liste chaînée */
-void	ft_clearlst(t_list **lst)
+void	free_double_ptr(char **table)
 {
-	t_list	*new_elem;
+	int	i;
 
-	while (*lst)
+	i = 0;
+	if (!table)
+		return ;
+	while (table[i])
 	{
-		new_elem = (*lst)->next;
-		free((*lst)->content);
-		free(*lst);
-		*lst = new_elem;
+		free(table[i]);
+		table[i] = NULL;
+		i++;
 	}
-	*lst = NULL;
+	table = NULL;
 }
