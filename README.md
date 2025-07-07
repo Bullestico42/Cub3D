@@ -1,6 +1,3 @@
-# Cub3D
-![image](https://github.com/user-attachments/assets/e02c52af-4038-4e1b-b602-024165319515)
-
 
 # Parsing -> Alessio gere la totalité des fichiers .cub
 
@@ -29,3 +26,6 @@ Generation de map avec texture
 Affichage (calcul raycast) + Deplacement
 
 Bonus ?
+
+![image](https://github.com/user-attachments/assets/e02c52af-4038-4e1b-b602-024165319515)
+
