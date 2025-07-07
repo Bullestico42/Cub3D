@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/06 23:26:41 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 03:09:30 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (print_instructions(), 1);
-	init_data(&game, av[1]);
+	if (init_data(&game, av[1]))
+		return (1);
 	game.data->mlx = mlx_init();
 	if (!game.data->mlx)
 		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
