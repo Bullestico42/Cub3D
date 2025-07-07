@@ -15,7 +15,7 @@ OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # === Commandes ===
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -g
 
 # === OS Detection ===
 UNAME_S := $(shell uname -s)
@@ -36,12 +36,14 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I$(LIBFT_DIR)
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
+# === Mlx ===
+MLX = $(MLX_DIR)/libmlx.a
+
 # === Règles ===
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	@make -C $(MLX_DIR)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
@@ -52,6 +54,9 @@ $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
+
+$(MLX):
+	@make -C $(MLX_DIR)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

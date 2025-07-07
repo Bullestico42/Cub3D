@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 02:40:30 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 19:52:32 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ int	main(void)
 	t_game	game;
 
 	init_values(&game);
-	create_map(&game, "maps/map1.cub");
 	game.data.mlx = mlx_init();
 	if (!game.data.mlx)
 		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
-	game.data.win = mlx_new_window(game.data.mlx, 800, 600, "Cub3D");
+	game.data.win = mlx_new_window(game.data.mlx, game.data.win_width, game.data.win_heigth, "Cub3D");
 	if (!game.data.win)
 		destroy_display(&game, "Error\ncan't generate window\n", 1);
+	create_map(&game, "maps/map1.cub");
 	mlx_hook(game.data.win, 17, 0, close_game, &game);
 	mlx_loop(game.data.mlx);
 	return(0);

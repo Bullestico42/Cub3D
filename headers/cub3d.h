@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 02:25:15 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:30:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,23 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
+	void	*mlx;
+	void	*win;
+	int		win_width;
+	int		win_heigth;
 }				t_data;
+
+typedef struct s_player
+{
+	double	pos_x;
+	double	pos_y;
+}				t_player;
 
 typedef struct s_game
 {
-	t_data	data;
-	t_map	map;
+	t_data		data;
+	t_map		map;
+	t_player	player;
 }				t_game;
 
 int		destroy_display(t_game *game, char *str, int error);

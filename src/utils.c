@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:37:11 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/07 02:27:36 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 19:52:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	init_values(t_game *game)
 	game->data.mlx = NULL;
 	game->data.win = NULL;
 	game->map.lines = NULL;
+	game->data.win_width = 800;
+	game->data.win_heigth = 600;
 }
 void	free_double_ptr(char **table)
 {
