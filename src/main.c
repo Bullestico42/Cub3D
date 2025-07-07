@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 03:09:30 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 03:13:47 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	destroy_display(t_game *game, char *str, int error)
 }
 
 #endif
-
 // print une instruction a depl vers utils
 void	print_instructions(void)
 {

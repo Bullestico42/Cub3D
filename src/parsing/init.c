@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 03:07:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 03:27:38 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int	init_data(t_game *game, char *file)
 		return (1);
 	ft_memset(game->data, 0, (sizeof(t_data)));
 	if (init_file(game, file))
+		return (1);
+	if (extract_raw(game))
 		return (1);
 	return (0);
 }
