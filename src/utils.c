@@ -6,20 +6,17 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:37:11 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/07 19:52:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 21:45:35 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-/* Fonction servant initialiser les valeurs dans la structure game et ses sous-structurees. */
-void	init_values(t_game *game)
+int	ft_min(int i, int j)
 {
-	game->data.mlx = NULL;
-	game->data.win = NULL;
-	game->map.lines = NULL;
-	game->data.win_width = 800;
-	game->data.win_heigth = 600;
+	if (i < j)
+		return (i);
+	return (j);
 }
 void	free_double_ptr(char **table)
 {

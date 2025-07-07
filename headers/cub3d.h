@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 20:30:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/07 22:24:40 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,19 @@ typedef struct s_map
 {
 	int		fd;
 	char	**lines;
+	int		width;
+	int		heigth;
 }				t_map;
+
+typedef struct s_img
+{
+	int		bpp;
+	int		line_length;
+	int		endian;
+	void	*image;
+	char	*addr;
+}				t_img;
+
 
 typedef struct s_data
 {
@@ -31,12 +43,17 @@ typedef struct s_data
 	void	*win;
 	int		win_width;
 	int		win_heigth;
+	int		pixel_size_x;
+	int		pixel_size_y;
+	int		pixel_size;
+	t_img	img;
 }				t_data;
 
 typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
+	int		color;
 }				t_player;
 
 typedef struct s_game
@@ -50,5 +67,7 @@ int		destroy_display(t_game *game, char *str, int error);
 void	create_map(t_game *game, char *map_path);
 void	init_values(t_game *game);
 void	free_double_ptr(char **table);
+int		ft_min(int i, int j);
+void	read_map(t_game *game, char *map_path);
 
 #endif
