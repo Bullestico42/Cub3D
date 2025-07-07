@@ -12,7 +12,6 @@ LIBFT_DIR = libft
 # === Fichiers sources ===
 SRCS =	$(SRC_DIR)main.c \
 		$(PAR_DIR)init.c \
-		$(GNL_DIR)get_next_line_utils.c \
 		$(GNL_DIR)get_next_line.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

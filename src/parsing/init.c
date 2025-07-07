@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 00:27:23 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 03:07:54 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ int	count_line(int fd)
 	int		count;
 
 	count = 0;
-	while (1)
+	while ((line = get_next_line(fd)))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
 		count++;
 		free(line);
 	}
@@ -49,47 +46,71 @@ int	count_line(int fd)
 	return (count);
 }
 
-int	fill_map(int fd, int n_lines, t_game *game)
+int	fill_raw(int fd, int n_lines, t_game *game)
 {
 	char	*line;
+	char	**tmp;
 	int		i;
 
-	game->map->brut_file = (char **)malloc(sizeof(char *) * (n_lines + 1));
-	if (!game->map->brut_file)
+	tmp = (char **)malloc(sizeof(char *) * (n_lines + 1));
+	if (!tmp)
 		return (0);
 	i = 0;
-	while (i < n_lines)
+	while ((line = get_next_line(fd)))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			return (0);
-		game->map->brut_file[i] = ft_strdup(line);
+		tmp[i] = ft_strdup(line);
+		if (!tmp[i])
+			return (free_tab(tmp), 0);
 		free(line);
-		if (!game->map->brut_file[i])
-			return (free_tab(game->map->brut_file), 0);
-		printf("%s", game->map->brut_file[i]);
 		i++;
 	}
-	game->map->brut_file[i] = NULL;
+	tmp[i] = NULL;
+	game->map->brut_file = tmp;
+	i = 0;
+	while (game->map->brut_file[i])
+	{
+		write(1, game->map->brut_file[i], ft_strlen(game->map->brut_file[i]));
+		i++;
+	}
 	return (1);
 }
 
-int init_data(t_game *game, char *file)
+int init_file(t_game *game, char *file)
 {
 	int fd;
 	int n_lines;
 
 	fd = 0;
 	n_lines = 0;
-	if (!file)
-		return (printf("Error: MapFile"), 1);
 	if (!(ft_strnstr(file, ".cub", ft_strlen(file))))
 		return (printf("Error: Only map with \".cub\" extension"), 1);
 	fd = open(file, O_RDONLY);
-	if (!fd)
+	if (fd < 0)
 		return (printf("Error: Open File"), 1);
-	if (fill_map(fd, n_lines, game))
+	n_lines = count_line(fd);
+	close(fd);
+	fd = open(file, O_RDONLY);
+	printf("%d\n", n_lines);
+	if (!fill_raw(fd, n_lines, game))
 		return (1);
+	return (0);
+}
 
+int	init_data(t_game *game, char *file)
+{
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (1);
+	ft_memset(game, 0, (sizeof(t_game)));
+	game->map = malloc(sizeof(t_map));
+	if (!game->map)
+		return (1);
+	ft_memset(game->map, 0, (sizeof(t_map)));
+	game->data = malloc(sizeof(t_data));
+	if (!game->data)
+		return (1);
+	ft_memset(game->data, 0, (sizeof(t_data)));
+	if (init_file(game, file))
+		return (1);
 	return (0);
 }
