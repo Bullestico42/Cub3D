@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 00:14:16 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 08:19:54 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ typedef struct s_game
 	char		player_or;
 }	t_game;
 
-int		free_mlx(t_game *game);
 int		destroy_display(t_game *game, char *str, int error);
 
 //PARSING
 int init_data(t_game *game, char *cub_name);
+int	extract_raw(t_game *game);
+int extract_textures(t_game *game, int name, int is_okay);
 
 //GNL
 char	*get_next_line(int fd);
@@ -71,9 +72,5 @@ char	*read_file(int fd, char *res);
 char	*ft_free(char *buffer, char *buf);
 char	*ft_line(char *buffer);
 char	*ft_next(char *buffer);
-void	*gnl_calloc(size_t count, size_t size);
-char	*gnl_strchr(const char *str, int c);
-char	*gnl_strjoin(const char *s1, const char *s2);
-size_t	gnl_strlen(const char *str);
 
 #endif

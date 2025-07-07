@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 03:27:38 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/07 08:13:44 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ int	init_data(t_game *game, char *file)
 	if (!game->data)
 		return (1);
 	ft_memset(game->data, 0, (sizeof(t_data)));
+	game->textures = malloc(sizeof(t_textures));
+	if (!game->textures)
+		return (1);
+	ft_memset(game->textures, 0, (sizeof(t_textures)));
 	if (init_file(game, file))
 		return (1);
 	if (extract_raw(game))
