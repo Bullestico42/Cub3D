@@ -1,11 +1,11 @@
 
 # Parsing -> Alessio gere la totalité des fichiers .cub
 
-[V] Check du nom de la map et allocation des structs
+[O] Check du nom de la map et allocation des structs
 
-[V] Allouer la map en raw dans un **
+[O] Allouer la map en raw dans un **
 
-[V] TExtures allouer dans leurs emplacement avec leurs checks
+[O] TExtures allouer dans leurs emplacement avec leurs checks
 
 [X] Couleurs allouer
 
