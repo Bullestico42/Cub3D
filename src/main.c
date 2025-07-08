@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 03:09:30 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/08 03:34:41 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	destroy_display(t_game *game, char *str, int error)
 }
 
 #endif
-
 // print une instruction a depl vers utils
 void	print_instructions(void)
 {
@@ -62,19 +61,23 @@ int	close_game(t_game *game)
 Il permet aussi de fermer la fenêtre avec la croix.*/
 int	main(int ac, char **av)
 {
-	t_game	game;
+	t_game *game;
 
+	game = malloc(sizeof *game);
+	if (!game)
+    	return (perror("malloc game"), 1);
 	if (ac != 2)
 		return (print_instructions(), 1);
-	if (init_data(&game, av[1]))
+	if (init_data(game, av[1]))
 		return (1);
-	game.data->mlx = mlx_init();
-	if (!game.data->mlx)
-		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
-	game.data->win = mlx_new_window(game.data->mlx, 800, 600, "Cub3D");
-	if (!game.data->win)
-		destroy_display(&game, "Error\ncan't generate window\n", 1);
-	mlx_hook(game.data->win, 17, 0, close_game, &game);
-	mlx_loop(game.data->mlx);
+	printf("PARSING OKAY\n");
+	game->data->mlx = mlx_init();
+	if (!game->data->mlx)
+		destroy_display(game, "Error\nCan't initialize mlx ptr\n", 1);
+	game->data->win = mlx_new_window(game->data->mlx, 900, 600, "Cub3D");
+	if (!game->data->win)
+		destroy_display(game, "Error\ncan't generate window\n", 1);
+	mlx_hook(game->data->win, 17, 0, close_game, &game);
+	mlx_loop(game->data->mlx);
 	return (0);
 }
