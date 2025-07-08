@@ -6,11 +6,28 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/07 22:24:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/08 01:58:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+void	raycasting(t_game *game)
+{
+	int		x;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+	x = 0;
+	while (x < game->data.win_width)
+	{
+		camera_x = 2 * x / (double)game->data.win_width - 1;
+		ray_dir_x = game->player.dir_x + game->player.fov_x * camera_x;
+		ray_dir_y = game->player.dir_y + game->player.fov_y * camera_x;
+		x++;
+	}
+}
 
 void	draw_map(t_game *game)
 {
@@ -58,9 +75,7 @@ void	read_map(t_game *game, char *map_path)
 		destroy_display(game, "Error\nFile can't malloc map\n", 1);
 	while (i < 14)
 	{
-		game->map.lines[i] = ft_calloc(34, sizeof(char));
-		if (!game->map.lines[i])
-			destroy_display(game, "Error\nFile can't malloc map line\n", 1);
+
 		game->map.lines[i] = get_next_line(game->map.fd);
 		if (!game->map.lines[i])
 			destroy_display(game, "Error\nCan't read map\n", 1);
@@ -73,3 +88,4 @@ void	create_map(t_game *game, char *map_path)
 	read_map(game, map_path);
 	draw_map(game);
 }
+

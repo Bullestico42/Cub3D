@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 22:24:40 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/08 01:15:09 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ typedef struct s_player
 	double	pos_x;
 	double	pos_y;
 	int		color;
+	double		dir_x;
+	double		dir_y;
+	double	fov_x;
+	double	fov_y;
 }				t_player;
 
 typedef struct s_game
