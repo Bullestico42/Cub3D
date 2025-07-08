@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/07 08:19:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/08 03:06:50 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct s_map
+typedef struct s_dmap
 {
-	int		length;
+	int		height;
 	int		width;
-	char	**map;
 	char	**brut_file;
-}	t_map;
+}	t_dmap;
 
 typedef struct s_textures
 {
@@ -38,8 +37,8 @@ typedef struct s_textures
 	void	*t_so;
 	void	*t_we;
 	void	*t_ea;
-	int		color_c[2];
-	int		color_f[2];
+	int		color_c[3];
+	int		color_f[3];
 }	t_textures;
 
 
@@ -52,10 +51,12 @@ typedef struct s_data
 typedef struct s_game
 {
 	t_data		*data;
-	t_map		*map;
+	t_dmap		*dmap;
 	t_textures	*textures;
+	char		**map;
 	int			player_x;
 	int			player_y;
+	int			state;
 	char		player_or;
 }	t_game;
 
@@ -65,12 +66,13 @@ int		destroy_display(t_game *game, char *str, int error);
 int init_data(t_game *game, char *cub_name);
 int	extract_raw(t_game *game);
 int extract_textures(t_game *game, int name, int is_okay);
+int extract_colors(t_game *game, int i, char name);
+int	fill_map(int lines, t_game *game, char **brut_map);
 
 //GNL
 char	*get_next_line(int fd);
-char	*read_file(int fd, char *res);
-char	*ft_free(char *buffer, char *buf);
-char	*ft_line(char *buffer);
-char	*ft_next(char *buffer);
+
+//UTILS
+void	free_tab(char **tab);
 
 #endif
