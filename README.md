@@ -7,9 +7,9 @@
 
 [O] TExtures allouer dans leurs emplacement avec leurs checks
 
-[X] Couleurs allouer
+[O] Couleurs allouer
 
-[X] Map parser dans son **
+[O] Map parser dans son **
 
 [X] free les utils
 
