@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/08 01:52:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/09 03:02:47 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_player(t_game *game)
 {
 	game->player.pos_x = 29.5;
 	game->player.pos_y = 4.5;
-	game->player.color = 16711680;
+	game->player.color = 6749952;
 	game->player.dir_x = 0;
 	game->player.dir_y = -1;
 	game->player.fov_x = 0.66;
@@ -44,7 +44,7 @@ void	init_map(t_game *game)
 	game->map.lines = NULL;
 }
 
-/* Fonction servant initialiser les valeurs dans la structure game et ses sous-structurees. */
+/* Fonction servant initialiser les valeurs dans les différentes structurees. */
 void	init_values(t_game *game)
 {
 	init_map(game);

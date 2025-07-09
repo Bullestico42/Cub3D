@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/08 01:15:09 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/09 02:33:47 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,23 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+typedef struct s_ray
+{
+	double	camera;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		map_x;
+	int		map_y;
+}				t_ray;
 
 typedef struct s_map
 {
@@ -54,8 +71,8 @@ typedef struct s_player
 	double	pos_x;
 	double	pos_y;
 	int		color;
-	double		dir_x;
-	double		dir_y;
+	double	dir_x;
+	double	dir_y;
 	double	fov_x;
 	double	fov_y;
 }				t_player;
