@@ -6,12 +6,13 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/09 02:33:47 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/10 07:32:32 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
+/* ft_abs retourne la valeur absolue d'un nombre */
 double	ft_abs(double i)
 {
 	if (i < 0)
@@ -19,6 +20,9 @@ double	ft_abs(double i)
 	return (i);
 }
 
+/*
+ set_deltas calcule les paramètres principaux du raycasting. Soit la position de la camera, la direction des rayons et les distances delta (différences entre les coordonnées de deux points, en abscisse et en ordonnée)
+ */
 void	set_deltas(t_game *game, t_ray *ray, int x)
 {
 	(*ray).camera = 2 * x / (double)game->data.win_width - 1;
@@ -34,6 +38,8 @@ void	set_deltas(t_game *game, t_ray *ray, int x)
 		(*ray).delta_dist_y = ft_abs(1 / (*ray).ray_dir_y);
 }
 
+/* set_directions calcule où commence le rayon sur la carte, dans quelle direction il va,
+et à quelle distance il touchera les premiers murs sur les axes x et y */
 void	set_directions(t_game *game, t_ray *ray)
 {
 	(*ray).map_x = (int)game->player.pos_x;
@@ -59,7 +65,8 @@ void	set_directions(t_game *game, t_ray *ray)
 		(*ray).side_dist_y = ((*ray).map_y + 1.0 - game->player.pos_y) * (*ray).delta_dist_y;
 	}
 }
-
+/* draw_rays est un fonction inutile utilisé pour le debug. Elle dessine les rayons sur une carte 2D en
+partant du joueur et en avançant dans la direction du rayon jusqu’à toucher un mur*/
 void	draw_rays(t_game *game, t_ray *ray)
 {
 	double	ray_pos_x;
@@ -80,7 +87,8 @@ void	draw_rays(t_game *game, t_ray *ray)
 		ray_pos_y += (*ray).ray_dir_y * 0.05;
 	}
 }
-
+/* ft_dda utilise l’algorithme DDA pour faire avancer un rayon case par case sur la carte.
+À chaque étape, il met à jour sa position et vérifie s’il touche un mur */
 void	ft_dda(t_game *game, t_ray *ray)
 {
 	(*ray).hit = 0;
@@ -102,7 +110,8 @@ void	ft_dda(t_game *game, t_ray *ray)
 			(*ray).hit = 1;
 	}
 }
-
+/* raycasting se charge d'appeller les différentes fonctions constituant le raycasting.
+Ces fonctions sont appelé dans une boucle itérant sur la largeur de la fenêtre */
 void	raycasting(t_game *game)
 {
 	t_ray	ray;
@@ -118,7 +127,8 @@ void	raycasting(t_game *game)
 		x++;
 	}
 }
-
+/* draw_player dessine le joueur à l’écran en coloriant un petit carré autour de sa position,
+en fonction de ses coordonnées et de la taille des pixels du jeu. */
 void	draw_player(t_game *game)
 {
 	int		i;
@@ -142,7 +152,8 @@ void	draw_player(t_game *game)
 		i++;
 	}
 }
-
+/* draw_map crée une image avec la mlx, recupère son adresse et appelle les fonction se chargant
+du raycasting et de dessiner les player pour ensuite afficher l'image completé à l'écran */
 void	draw_map(t_game *game)
 {
 	game->data.img.image = mlx_new_image(game->data.mlx, game->data.win_width, game->data.win_heigth);
@@ -154,7 +165,7 @@ void	draw_map(t_game *game)
 	mlx_put_image_to_window(game->data.mlx, game->data.win, game->data.img.image, 0, 0);
 }
 
-/*Initialise la structure de la map en lisant le fichier avec get_next_line.
+/*read_map lis le fichier contenant la map avec get_next_line.
 Chaque ligne lue est stockée dans un tableau de string.*/
 void	read_map(t_game *game, char *map_path)
 {
@@ -175,7 +186,7 @@ void	read_map(t_game *game, char *map_path)
 		i++;
 	}
 }
-
+/* create_map crée la map en appelant les fonctions qui se charge de lire et de dessiner la map */
 void	create_map(t_game *game, char *map_path)
 {
 	read_map(game, map_path);
