@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/08 03:34:41 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/10 08:06:27 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@
 /*Fonction responsable de la fermeture du programme.
 Elle prend une string qui sera afficher sur le stderr
 et exit avec le code d'erreur donné en paramètre*/
-int	destroy_display(t_game *game, char *str, int error)
+int	destroy_display(t_game *game, char *str, int error_code)
 {
 	ft_putstr_fd(str, 2);
+	if (game->map.fd >= 0)
+		close(game->map.fd);
+	if (game->map.lines)
+		free_double_ptr(game->map.lines);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)
@@ -27,7 +31,7 @@ int	destroy_display(t_game *game, char *str, int error)
 		mlx_destroy_display(game->data.mlx);
 		free(game->data.mlx);
 	}
-	exit(error);
+	exit(error_code);
 }
 #else
 
@@ -50,7 +54,7 @@ void	print_instructions(void)
 }
 
 /* Responsable d'appeler la foncion qui fermera le programme.
-Nécessaire car mlx_hook exige un fonction de ce type : 
+Nécessaire car mlx_hook exige un fonction de ce type :
 int (*f)(int keycode, void *param);*/
 int	close_game(t_game *game)
 {
@@ -71,12 +75,14 @@ int	main(int ac, char **av)
 	if (init_data(game, av[1]))
 		return (1);
 	printf("PARSING OKAY\n");
+	init_values(&game);
 	game->data->mlx = mlx_init();
 	if (!game->data->mlx)
 		destroy_display(game, "Error\nCan't initialize mlx ptr\n", 1);
-	game->data->win = mlx_new_window(game->data->mlx, 900, 600, "Cub3D");
+	game->data->win = mlx_new_window(game->data->mlx, game->data.win_width, game->data.win_heigth, "Cub3D");
 	if (!game->data->win)
 		destroy_display(game, "Error\ncan't generate window\n", 1);
+	create_map(&game, av[1]);
 	mlx_hook(game->data->win, 17, 0, close_game, &game);
 	mlx_loop(game->data->mlx);
 	return (0);

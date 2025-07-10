@@ -8,6 +8,7 @@ GNL_DIR = gnl/
 OBJ_DIR = obj
 INC_DIR = headers
 LIBFT_DIR = libft
+GNL_DIR = get_next_line
 
 # === Fichiers sources ===
 SRCS =	$(SRC_DIR)main.c \
@@ -15,15 +16,16 @@ SRCS =	$(SRC_DIR)main.c \
 		$(PAR_DIR)extract_raw_file.c \
 		$(PAR_DIR)parse_map.c \
 		$(PAR_DIR)extract_data.c \
-		$(GNL_DIR)get_next_line.c 
+		$(GNL_DIR)get_next_line.c
 
 
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # === Commandes ===
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -g
 
 # === OS Detection ===
 UNAME_S := $(shell uname -s)
@@ -44,22 +46,31 @@ LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_INC = -I$(LIBFT_DIR)
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
+# === Mlx ===
+MLX = $(MLX_DIR)/libmlx.a
+
 # === Règles ===
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	@make -C $(MLX_DIR)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+$(MLX):
+	@make -C $(MLX_DIR)
+
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
+	@make bonus -C $(LIBFT_DIR)
 
 clean:
 	$(RM) -r $(OBJ_DIR)
