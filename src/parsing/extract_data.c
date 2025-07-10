@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 07:20:22 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 21:11:27 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/10 22:17:57 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ static int  parse_color(char *str, t_game *game)
 
     res = -1;
     res = get_value(&str[game->state]);
-    while ((ft_strncmp(&str[game->state], ",", 1)) != 0)
-    {
+    while ((ft_strncmp(&str[game->state], ",", 1)) != 0 &&
+        str[game->state] != '\0')
         game->state++;
-    }
     game->state += 1;
     return (res);
 }
