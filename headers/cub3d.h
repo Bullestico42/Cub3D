@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 07:58:33 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/10 21:03:02 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_textures
 typedef struct s_ray
 {
 	double	camera;
-	double	ray_dir_x;
-	double	ray_dir_y;
+	double	dir_x;
+	double	dir_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
 	int		step_x;
@@ -59,14 +59,6 @@ typedef struct s_ray
 	int		map_x;
 	int		map_y;
 }				t_ray;
-
-typedef struct s_map
-{
-	int		fd;
-	char	**lines;
-	int		width;
-	int		heigth;
-}				t_map;
 
 typedef struct s_img
 {
@@ -83,7 +75,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	int		win_width;
-	int		win_heigth;
+	int		win_height;
 	int		pixel_size_x;
 	int		pixel_size_y;
 	int		pixel_size;
@@ -103,25 +95,22 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	t_data		*data;
-	t_dmap		*dmap;
-	t_textures	*textures;
+	t_dmap		dmap;
+	t_textures	textures;
 	char		**map;
 	int			player_x;
 	int			player_y;
 	int			state;
 	char		player_or;
 	t_data		data;
-	t_map		map;
 	t_player	player;
 }				t_game;
 
 int		destroy_display(t_game *game, char *str, int error);
-void	create_map(t_game *game, char *map_path);
+void	create_map(t_game *game);
 void	init_values(t_game *game);
 void	free_double_ptr(char **table);
 int		ft_min(int i, int j);
-void	read_map(t_game *game, char *map_path);
 
 //PARSING
 int init_data(t_game *game, char *cub_name);

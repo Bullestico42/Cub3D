@@ -8,15 +8,19 @@ GNL_DIR = gnl/
 OBJ_DIR = obj
 INC_DIR = headers
 LIBFT_DIR = libft
-GNL_DIR = get_next_line
+GNL_DIR = get_next_line/
 
 # === Fichiers sources ===
 SRCS =	$(SRC_DIR)main.c \
+		$(SRC_DIR)initialisation.c \
+		$(SRC_DIR)render.c \
+		$(SRC_DIR)utils.c \
 		$(PAR_DIR)init.c \
 		$(PAR_DIR)extract_raw_file.c \
 		$(PAR_DIR)parse_map.c \
 		$(PAR_DIR)extract_data.c \
-		$(GNL_DIR)get_next_line.c
+		$(GNL_DIR)get_next_line.c \
+		$(GNL_DIR)get_next_line_utils.c
 
 
 
@@ -57,6 +61,9 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(MLX_INC) $(LIBFT_INC) $(OBJS) $(MLX_FLAGS) $(LIBFT_FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: $(PAR_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)

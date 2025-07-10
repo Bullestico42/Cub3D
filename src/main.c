@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 08:06:27 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/10 21:03:22 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ et exit avec le code d'erreur donné en paramètre*/
 int	destroy_display(t_game *game, char *str, int error_code)
 {
 	ft_putstr_fd(str, 2);
-	if (game->map.fd >= 0)
-		close(game->map.fd);
-	if (game->map.lines)
-		free_double_ptr(game->map.lines);
+/* 	if (game->dmap.fd >= 0)
+		close(game->map.fd); */
+	if (game->dmap.brut_file)
+		free_double_ptr(game->dmap.brut_file);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)
@@ -38,10 +38,10 @@ int	destroy_display(t_game *game, char *str, int error_code)
 int	destroy_display(t_game *game, char *str, int error)
 {
 	ft_putstr_fd(str, 2);
-	if (game->data->mlx)
+	if (game->data.mlx)
 	{
-		mlx_destroy_window(game->data->mlx, game->data->win);
-		free(game->data->mlx);
+		mlx_destroy_window(game->data.mlx, game->data.win);
+		free(game->data.mlx);
 	}
 	exit(error);
 }
@@ -65,25 +65,22 @@ int	close_game(t_game *game)
 Il permet aussi de fermer la fenêtre avec la croix.*/
 int	main(int ac, char **av)
 {
-	t_game *game;
+	t_game game;
 
-	game = malloc(sizeof *game);
-	if (!game)
-    	return (perror("malloc game"), 1);
 	if (ac != 2)
 		return (print_instructions(), 1);
-	if (init_data(game, av[1]))
+	if (init_data(&game, av[1]))
 		return (1);
 	printf("PARSING OKAY\n");
 	init_values(&game);
-	game->data->mlx = mlx_init();
-	if (!game->data->mlx)
-		destroy_display(game, "Error\nCan't initialize mlx ptr\n", 1);
-	game->data->win = mlx_new_window(game->data->mlx, game->data.win_width, game->data.win_heigth, "Cub3D");
-	if (!game->data->win)
-		destroy_display(game, "Error\ncan't generate window\n", 1);
-	create_map(&game, av[1]);
-	mlx_hook(game->data->win, 17, 0, close_game, &game);
-	mlx_loop(game->data->mlx);
+	game.data.mlx = mlx_init();
+	if (!game.data.mlx)
+		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
+	game.data.win = mlx_new_window(game.data.mlx, game.data.win_width, game.data.win_height, "Cub3D");
+	if (!game.data.win)
+		destroy_display(&game, "Error\ncan't generate window\n", 1);
+	create_map(&game);
+	mlx_hook(game.data.win, 17, 0, close_game, &game);
+	mlx_loop(game.data.mlx);
 	return (0);
 }

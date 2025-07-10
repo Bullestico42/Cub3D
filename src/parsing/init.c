@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/08 03:33:34 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/10 13:57:24 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 		i++;
 	}
 	tmp[i] = NULL;
-	game->dmap->brut_file = tmp;
+	game->dmap.brut_file = tmp;
 	i = 0;
-	while (game->dmap->brut_file[i])
+	while (game->dmap.brut_file[i])
 	{
-		write(1, game->dmap->brut_file[i], ft_strlen(game->dmap->brut_file[i]));
+		write(1, game->dmap.brut_file[i], ft_strlen(game->dmap.brut_file[i]));
 		i++;
 	}
 	printf("\n");
@@ -100,7 +100,7 @@ int init_file(t_game *game, char *file)
 int	init_data(t_game *game, char *file)
 {
 	ft_memset(game, 0, (sizeof(t_game)));
-	game->dmap = malloc(sizeof(t_dmap));
+	/* game->dmap = malloc(sizeof(t_dmap));
 	if (!game->dmap)
 		return (1);
 	ft_memset(game->dmap, 0, (sizeof(t_dmap)));
@@ -111,7 +111,7 @@ int	init_data(t_game *game, char *file)
 	game->textures = malloc(sizeof(t_textures));
 	if (!game->textures)
 		return (1);
-	ft_memset(game->textures, 0, (sizeof(t_textures)));
+	ft_memset(game->textures, 0, (sizeof(t_textures))); */
 	if (init_file(game, file))
 		return (1);
 	if (extract_raw(game))

@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/09 03:02:47 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/10 20:59:50 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	init_mlx(t_game *game)
 
 	game->data.mlx = NULL;
 	game->data.win = NULL;
-	game->data.win_width = 800;
-	game->data.win_heigth = 600;
-	pixel_size_x = game->data.win_width / game->map.width;
-	pixel_size_y = game->data.win_heigth / game->map.heigth;
+	game->data.win_width = 900;
+	game->data.win_height = 600;
+	pixel_size_x = game->data.win_width / game->dmap.width;
+	pixel_size_y = game->data.win_height / game->dmap.height;
 	game->data.pixel_size = ft_min(pixel_size_x, pixel_size_y);
 }
 
@@ -39,9 +39,9 @@ void	init_player(t_game *game)
 
 void	init_map(t_game *game)
 {
-	game->map.width = 34;
-	game->map.heigth = 14;
-	game->map.lines = NULL;
+	game->dmap.width = 34;
+	game->dmap.height = 14;
+	game->dmap.brut_file = NULL;
 }
 
 /* Fonction servant initialiser les valeurs dans les différentes structurees. */
