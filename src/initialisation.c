@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/10 20:59:50 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/12 18:55:09 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	init_player(t_game *game)
 
 void	init_map(t_game *game)
 {
-	game->dmap.width = 34;
-	game->dmap.height = 14;
+	game->dmap.width = 100;
+	game->dmap.height = 100;
 	game->dmap.brut_file = NULL;
 }
 

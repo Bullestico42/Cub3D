@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/08 03:27:58 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/12 18:37:56 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 	{
 		game->map[i] = ft_strdup(brut_map[i]);
 		if (!game->map[i])
-			return (free_tab(game->map), 1);
+			return (free_double_ptr(game->map), 1);
         printf("%s", game->map[i]);
 		i++;
 	}

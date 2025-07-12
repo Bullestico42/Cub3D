@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 13:57:24 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/12 18:33:18 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
-
-// a depl dans utils
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-		return ;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-	tab = NULL;
-}
 
 //permets de compter le nbr de ligne du fichier .cub
 int	count_line(int fd)
@@ -60,7 +43,7 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 	{
 		tmp[i] = ft_strdup(line);
 		if (!tmp[i])
-			return (free_tab(tmp), 0);
+			return (free_double_ptr(tmp), 0);
 		free(line);
 		i++;
 	}
@@ -100,18 +83,18 @@ int init_file(t_game *game, char *file)
 int	init_data(t_game *game, char *file)
 {
 	ft_memset(game, 0, (sizeof(t_game)));
-	/* game->dmap = malloc(sizeof(t_dmap));
-	if (!game->dmap)
+	/*game.dmap = malloc(sizeof(t_dmap));
+	if (!game.dmap)
 		return (1);
 	ft_memset(game->dmap, 0, (sizeof(t_dmap)));
 	game->data = malloc(sizeof(t_data));
 	if (!game->data)
 		return (1);
 	ft_memset(game->data, 0, (sizeof(t_data)));
-	game->textures = malloc(sizeof(t_textures));
-	if (!game->textures)
+	game.textures = malloc(sizeof(t_textures));
+	if (!game.textures)
 		return (1);
-	ft_memset(game->textures, 0, (sizeof(t_textures))); */
+	ft_memset(game.textures, 0, (sizeof(t_textures)));*/
 	if (init_file(game, file))
 		return (1);
 	if (extract_raw(game))

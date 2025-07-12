@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 03:16:02 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 22:18:58 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/12 18:32:25 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,18 @@ static int	extract_raw_colors(t_game *game)
 	game->state = 0;
 	if (game->dmap.brut_file[5][0])
 	{
-		printf("1: %d\n", game->state);
 		while (!(ft_isdigit(game->dmap.brut_file[5][game->state])))
 			game->state++;
-		printf("2: %d\n", game->state);
 		is_okay += extract_colors(game, 0, 'F');
-		printf("3: %d\n", game->state);
 	}
 	else
 		return (1);
 	game->state = 0;
 	if (game->dmap.brut_file[6][0])
 	{
-		printf("1: %d\n", game->state);
 		while (!(ft_isdigit(game->dmap.brut_file[6][game->state])))
 			game->state++;
-		printf("2: %d\n", game->state);
 		is_okay += extract_colors(game, 0, 'C');
-		printf("3: %d\n", game->state);
 	}
 	else
 		return (1);

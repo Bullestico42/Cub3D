@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 21:03:02 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/12 18:20:40 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # define BUFFER_SIZE 42
+/* Déplacements */
+#define KEY_W      13  // W
+#define KEY_A       0  // A
+#define KEY_S       1  // S
+#define KEY_D       2  // D
+
+/* Rotation */
+#define KEY_LEFT  123  // flèche gauche
+#define KEY_RIGHT 124  // flèche droite
+
+/* Quitter */
+#define KEY_ESC   53  // Échap
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include "mlx.h"
@@ -41,7 +53,6 @@ typedef struct s_textures
 	int		color_c[3];
 	int		color_f[3];
 }	t_textures;
-
 
 typedef struct s_ray
 {
