@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 09:09:41 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/13 11:04:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_ray
 	double	side_dist_y;
 	int		map_x;
 	int		map_y;
+	int		draw_start;
+	int		draw_end;
 }				t_ray;
 
 typedef struct s_img
@@ -140,12 +142,15 @@ void	free_double_ptr(char **table);
 int		ft_min(int i, int j);
 
 //PARSING
-int init_data(t_game *game, char *cub_name);
-int	extract_raw(t_game *game);
-int extract_textures(t_game *game, int name, int is_okay);
-int extract_colors(t_game *game, int i, char name);
-int	fill_map(int lines, t_game *game, char **brut_map);
+int		init_data(t_game *game, char *cub_name);
+int		extract_raw(t_game *game);
+int		extract_textures(t_game *game, int name, int is_okay);
+int		extract_colors(t_game *game, int i, char name);
+int		fill_map(int lines, t_game *game, char **brut_map);
 void	find_player_position(t_game *game, int line_index);
+void	raycasting(t_game *game);
+void	draw_player(t_game *game);
+int		handle_keypress(int keycode, t_game *game);
 
 //GNL
 char	*get_next_line(int fd);

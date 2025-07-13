@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 03:16:02 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 08:26:32 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/13 11:01:51 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static int	extract_raw_map(t_game *game)
 	int	start;
 	int	width;
 	int	i;
+	int	line_len;
 
 	height = 0;
 	width = 0;
@@ -37,7 +38,7 @@ static int	extract_raw_map(t_game *game)
 		game->dmap.height = height;
 		while (i < height)
 		{
-			int line_len = ft_strlen(game->dmap.brut_file[start + i]);
+			line_len = ft_strlen(game->dmap.brut_file[start + i]);
 			if (game->dmap.brut_file[start + i][line_len - 1] == '\n')
 				line_len--;
 			if (line_len > width)

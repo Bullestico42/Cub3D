@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 22:22:27 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 11:03:27 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	main(int ac, char **av)
 	if (!game.data.win)
 		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	create_map(&game);
-	mlx_hook(game.data.win, 17, 0, close_game, &game);
 	mlx_loop(game.data.mlx);
 	return (0);
 }
