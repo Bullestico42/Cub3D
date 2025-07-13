@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/12 18:54:34 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 10:21:45 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,73 +99,124 @@ void    ft_dda(t_game *game, t_ray *ray)
     }
 }
 
-static void    apply_movement(t_game *game, int keycode)
+static int can_move_to(t_game *game, double new_x, double new_y)
 {
-    double move_speed = 0.1;
-    double rot_speed = 0.1;
-    double new_x;
-    double new_y;
-    double old_dir_x;
-    double old_plane_x;
+	int	map_x;
+	int	map_y;
 
-    if (keycode == KEY_W)
-    {
-        new_x = game->player.pos_x + game->player.dir_x * move_speed;
-        new_y = game->player.pos_y + game->player.dir_y * move_speed;
-        if (game->map[(int)new_y][(int)new_x] == '0')
-        {
-            game->player.pos_x = new_x;
-            game->player.pos_y = new_y;
-        }
-    }
-    else if (keycode == KEY_S)
-    {
-        new_x = game->player.pos_x - game->player.dir_x * move_speed;
-        new_y = game->player.pos_y - game->player.dir_y * move_speed;
-        if (game->map[(int)new_y][(int)new_x] == '0')
-        {
-            game->player.pos_x = new_x;
-            game->player.pos_y = new_y;
-        }
-    }
-    else if (keycode == KEY_A)
-    {
-        new_x = game->player.pos_x - game->player.fov_x * move_speed;
-        new_y = game->player.pos_y - game->player.fov_y * move_speed;
-        if (game->map[(int)new_y][(int)new_x] == '0')
-        {
-            game->player.pos_x = new_x;
-            game->player.pos_y = new_y;
-        }
-    }
-    else if (keycode == KEY_D)
-    {
-        new_x = game->player.pos_x + game->player.fov_x * move_speed;
-        new_y = game->player.pos_y + game->player.fov_y * move_speed;
-        if (game->map[(int)new_y][(int)new_x] == '0')
-        {
-            game->player.pos_x = new_x;
-            game->player.pos_y = new_y;
-        }
-    }
-    else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
-    {
-        double angle = (keycode == KEY_LEFT) ? rot_speed : -rot_speed;
-        old_dir_x = game->player.dir_x;
-        game->player.dir_x = game->player.dir_x * cos(angle)
-                           - game->player.dir_y * sin(angle);
-        game->player.dir_y = old_dir_x * sin(angle)
-                           + game->player.dir_y * cos(angle);
-        old_plane_x = game->player.fov_x;
-        game->player.fov_x = game->player.fov_x * cos(angle)
-                           - game->player.fov_y * sin(angle);
-        game->player.fov_y = old_plane_x * sin(angle)
-                           + game->player.fov_y * cos(angle);
-    }
+	map_x = (int)new_x;
+	map_y = (int)new_y;
+	if (map_x < 0 || map_x >= game->dmap.width ||
+		map_y < 0 || map_y >= game->dmap.height)
+		return (0);
+	if (game->map[map_y][map_x] == '1')
+		return (0);
+	return (1);
+}
+
+static void move_forward(t_game *game)
+{
+	double	move_speed;
+	double	new_x;
+	double	new_y;
+
+	move_speed = 0.1;
+	new_x = game->player.pos_x + game->player.dir_x * move_speed;
+	new_y = game->player.pos_y + game->player.dir_y * move_speed;
+	if (can_move_to(game, new_x, new_y))
+	{
+		game->player.pos_x = new_x;
+		game->player.pos_y = new_y;
+	}
+}
+
+static void move_backward(t_game *game)
+{
+	double	move_speed;
+	double	new_x;
+	double	new_y;
+
+	move_speed = 0.1;
+	new_x = game->player.pos_x - game->player.dir_x * move_speed;
+	new_y = game->player.pos_y - game->player.dir_y * move_speed;
+	if (can_move_to(game, new_x, new_y))
+	{
+		game->player.pos_x = new_x;
+		game->player.pos_y = new_y;
+	}
+}
+
+static void move_left(t_game *game)
+{
+	double	move_speed;
+	double	new_x;
+	double	new_y;
+
+	move_speed = 0.1;
+	new_x = game->player.pos_x + game->player.dir_y * move_speed;
+	new_y = game->player.pos_y - game->player.dir_x * move_speed;
+	if (can_move_to(game, new_x, new_y))
+	{
+		game->player.pos_x = new_x;
+		game->player.pos_y = new_y;
+	}
+}
+
+static void move_right(t_game *game)
+{
+	double	move_speed;
+	double	new_x;
+	double	new_y;
+
+	move_speed = 0.1;
+	new_x = game->player.pos_x - game->player.dir_y * move_speed;
+	new_y = game->player.pos_y + game->player.dir_x * move_speed;
+	if (can_move_to(game, new_x, new_y))
+	{
+		game->player.pos_x = new_x;
+		game->player.pos_y = new_y;
+	}
+}
+
+static void rotate_player(t_game *game, int direction)
+{
+	double	rot_speed;
+	double	angle;
+	double	old_dir_x;
+	double	old_plane_x;
+
+	rot_speed = 0.1;
+	if (direction == -1)
+		angle = -rot_speed;
+	else
+		angle = rot_speed;
+	old_dir_x = game->player.dir_x;
+	old_plane_x = game->player.fov_x;
+	game->player.dir_x = game->player.dir_x * cos(angle) - game->player.dir_y * sin(angle);
+	game->player.dir_y = old_dir_x * sin(angle) + game->player.dir_y * cos(angle);
+	game->player.fov_x = game->player.fov_x * cos(angle) - game->player.fov_y * sin(angle);
+	game->player.fov_y = old_plane_x * sin(angle) + game->player.fov_y * cos(angle);
+}
+
+static void apply_movement(t_game *game, int keycode)
+{
+	if (keycode == KEY_W)
+		move_forward(game);
+	else if (keycode == KEY_S)
+		move_backward(game);
+	else if (keycode == KEY_A)
+		move_left(game);
+	else if (keycode == KEY_D)
+		move_right(game);
+	else if (keycode == KEY_LEFT)
+		rotate_player(game, -1);
+	else if (keycode == KEY_RIGHT)
+		rotate_player(game, 1);
 }
 
 int    handle_keypress(int keycode, t_game *game)
 {
+	printf("Key pressed: %d\n", keycode);
     if (keycode == KEY_ESC)
         destroy_display(game, "Exit\n", 0);
     apply_movement(game, keycode);

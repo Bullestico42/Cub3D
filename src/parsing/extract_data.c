@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 07:20:22 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/10 22:17:57 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 07:31:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,56 +16,65 @@ static int  get_value(char *str)
 {
     int res;
     int i;
+    char *num_start;
 
-    res = -1;
     i = 0;
-    while (str[i])
-    {
-        if (ft_isdigit(str[i]) || str[i] == ',' || str[i] == ' ' || str[i] == '\n')
-            i++;
-        else
-            return (-1);
-    }
-    res = ft_atoi(str);
+    while (str[i] == ' ')
+        i++;
+    num_start = &str[i];
+    if (!ft_isdigit(str[i]))
+        return (-1);
+    while (str[i] && ft_isdigit(str[i]))
+        i++;
+    res = ft_atoi(num_start);
     if (res < 0 || res > 255)
-            return (-1);
+        return (-1);
     return (res);
 }
 
-static int  parse_color(char *str, t_game *game)
+static int  parse_color(char *str, int *index)
 {
-	int res;
+    int res;
 
-    res = -1;
-    res = get_value(&str[game->state]);
-    while ((ft_strncmp(&str[game->state], ",", 1)) != 0 &&
-        str[game->state] != '\0')
-        game->state++;
-    game->state += 1;
+    while (str[*index] == ' ')
+        (*index)++;
+    res = get_value(&str[*index]);
+    while (str[*index] && ft_isdigit(str[*index]))
+        (*index)++;
+    while (str[*index] == ' ')
+        (*index)++;
+    if (str[*index] == ',')
+        (*index)++;
+
     return (res);
 }
 
 int extract_colors(t_game *game, int i, char name)
 {
+    int index;
+
     i = 0;
+    index = 2;
     if (game->dmap.brut_file[5][0] == 'F' && name == 'F')
     {
-        while (i++ < 3)
+        while (i < 3)
         {
-            game->textures.color_f[i] = parse_color(&game->dmap.brut_file[5][0], game);
+            game->textures.color_f[i] = parse_color(game->dmap.brut_file[5], &index);
             if (game->textures.color_f[i] < 0)
                 return (0);
-            printf("F =%d\n", game->textures.color_f[i]);
+            printf("F[%d] = %d\n", i, game->textures.color_f[i]);
+            i++;
         }
     }
     else if (game->dmap.brut_file[6][0] == 'C' && name == 'C')
     {
-        while (i++ < 3)
+        while (i < 3)
         {
-            game->textures.color_c[i] = parse_color(&game->dmap.brut_file[6][0], game);
+            game->textures.color_c[i] = parse_color(game->dmap.brut_file[6], &index);
             if (game->textures.color_c[i] < 0)
                 return (0);
-            printf("C =%d\n", game->textures.color_c[i]);
+            printf("C[%d] = %d\n", i, game->textures.color_c[i]);
+            i++;
         }
     }
     else

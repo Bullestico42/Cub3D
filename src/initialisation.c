@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/12 18:55:09 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 09:09:29 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,35 @@ void	init_mlx(t_game *game)
 
 void	init_player(t_game *game)
 {
-	game->player.pos_x = 29.5;
-	game->player.pos_y = 4.5;
 	game->player.color = 6749952;
-	game->player.dir_x = 0;
-	game->player.dir_y = -1;
+	if (game->player.orientation == 'N')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = -1;
+	}
+	else if (game->player.orientation == 'S')
+	{
+		game->player.dir_x = 0;
+		game->player.dir_y = 1;
+	}
+	else if (game->player.orientation == 'E')
+	{
+		game->player.dir_x = 1;
+		game->player.dir_y = 0;
+	}
+	else if (game->player.orientation == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+	}
 	game->player.fov_x = 0.66;
 	game->player.fov_y = 0;
-}
-
-void	init_map(t_game *game)
-{
-	game->dmap.width = 100;
-	game->dmap.height = 100;
-	game->dmap.brut_file = NULL;
 }
 
 /* Fonction servant initialiser les valeurs dans les différentes structurees. */
 void	init_values(t_game *game)
 {
-	init_map(game);
+	game->dmap.brut_file = NULL;
 	init_player(game);
 	init_mlx(game);
 }

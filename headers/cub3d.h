@@ -3,28 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/12 18:20:40 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 09:09:41 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # define BUFFER_SIZE 42
-/* Déplacements */
-#define KEY_W      13  // W
-#define KEY_A       0  // A
-#define KEY_S       1  // S
-#define KEY_D       2  // D
 
-/* Rotation */
-#define KEY_LEFT  123  // flèche gauche
-#define KEY_RIGHT 124  // flèche droite
+/* OS Detection */
+#ifdef __APPLE__
+# define OS_MAC 1
+#else
+# define OS_LINUX 1
+#endif
 
-/* Quitter */
-#define KEY_ESC   53  // Échap
+/* Keycodes for Mac */
+#ifdef OS_MAC
+# define KEY_W		13
+# define KEY_A		0
+# define KEY_S		1
+# define KEY_D		2
+# define KEY_LEFT	123
+# define KEY_RIGHT	124
+# define KEY_ESC	53
+#endif
+
+/* Keycodes for Linux */
+#ifdef OS_LINUX
+# define KEY_W		119
+# define KEY_A		 97
+# define KEY_S		115
+# define KEY_D		100
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
+# define KEY_ESC	65307
+#endif
+
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
 # include "mlx.h"
@@ -102,6 +120,7 @@ typedef struct s_player
 	double	dir_y;
 	double	fov_x;
 	double	fov_y;
+	char	orientation;
 }				t_player;
 
 typedef struct s_game
@@ -109,10 +128,7 @@ typedef struct s_game
 	t_dmap		dmap;
 	t_textures	textures;
 	char		**map;
-	int			player_x;
-	int			player_y;
 	int			state;
-	char		player_or;
 	t_data		data;
 	t_player	player;
 }				t_game;
@@ -129,6 +145,7 @@ int	extract_raw(t_game *game);
 int extract_textures(t_game *game, int name, int is_okay);
 int extract_colors(t_game *game, int i, char name);
 int	fill_map(int lines, t_game *game, char **brut_map);
+void	find_player_position(t_game *game, int line_index);
 
 //GNL
 char	*get_next_line(int fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/12 18:33:18 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 08:13:36 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,18 +83,6 @@ int init_file(t_game *game, char *file)
 int	init_data(t_game *game, char *file)
 {
 	ft_memset(game, 0, (sizeof(t_game)));
-	/*game.dmap = malloc(sizeof(t_dmap));
-	if (!game.dmap)
-		return (1);
-	ft_memset(game->dmap, 0, (sizeof(t_dmap)));
-	game->data = malloc(sizeof(t_data));
-	if (!game->data)
-		return (1);
-	ft_memset(game->data, 0, (sizeof(t_data)));
-	game.textures = malloc(sizeof(t_textures));
-	if (!game.textures)
-		return (1);
-	ft_memset(game.textures, 0, (sizeof(t_textures)));*/
 	if (init_file(game, file))
 		return (1);
 	if (extract_raw(game))

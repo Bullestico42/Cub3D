@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_raw_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 03:16:02 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/12 18:32:25 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/13 08:26:32 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,14 @@ static void		print_error_map_invalid(void)
 static int	extract_raw_map(t_game *game)
 {
 	int	height;
-	int start;
+	int	start;
+	int	width;
+	int	i;
 
 	height = 0;
+	width = 0;
 	start = 8;
+	i = 0;
 	if (game->dmap.brut_file[8][0])
 	{
 		while (game->dmap.brut_file[start + height])
@@ -31,6 +35,16 @@ static int	extract_raw_map(t_game *game)
 		if (height < 3)
 			return (1);
 		game->dmap.height = height;
+		while (i < height)
+		{
+			int line_len = ft_strlen(game->dmap.brut_file[start + i]);
+			if (game->dmap.brut_file[start + i][line_len - 1] == '\n')
+				line_len--;
+			if (line_len > width)
+				width = line_len;
+			i++;
+		}
+		game->dmap.width = width;
 		if (fill_map(height, game, &game->dmap.brut_file[8]))
 			return (1);
 		return (0);
