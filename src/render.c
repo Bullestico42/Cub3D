@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/15 10:25:38 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/16 20:45:09 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ void	set_deltas(t_game *game, t_ray *ray, int x)
 	ray->camera = 2 * x / (double)game->data.win_width - 1;
 	ray->dir_x = game->player.dir_x + game->player.fov_x * ray->camera;
 	ray->dir_y = game->player.dir_y + game->player.fov_y * ray->camera;
-	ray->delta_dist_x = (ray->dir_x == 0) ? 1e30 : ft_abs(1 / ray->dir_x);
-	ray->delta_dist_y = (ray->dir_y == 0) ? 1e30 : ft_abs(1 / ray->dir_y);
+	if (ray->dir_x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = ft_abs(1 / ray->dir_x);
+	if (ray->dir_y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = ft_abs(1 / ray->dir_y);
 }
 
 void	set_directions(t_player *player, t_ray *r)
@@ -103,7 +109,11 @@ void	calculate_wall_params(t_game *game, t_ray *ray)
 	else
 		perp_dist = (ray->map_y - game->player.pos_y +
 			(1 - ray->step_y) / 2) / ray->dir_y;
+	if (perp_dist <= 0.001)
+		perp_dist = 0.001;
 	line_height = (int)(game->data.win_height / perp_dist);
+	if (line_height > game->data.win_height * 2)
+		line_height = game->data.win_height * 2;
 	ray->draw_start = -line_height / 2 + game->data.win_height / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
@@ -259,7 +269,10 @@ void	raycasting(t_game *game)
 		calculate_wall_params(game, &ray);
 		for (y = 0; y < ray.draw_start; y++)
 			my_mlx_pixel_put(game, x, y, 6579400);
-		color = (ray.side) ? 6579300 / 2 : 6579300;
+		if (ray.side)
+			color = 6579300 / 2;
+		else
+			color = 6579300;
 		for (y = ray.draw_start; y <= ray.draw_end; y++)
 			my_mlx_pixel_put(game, x, y, color);
 		for (y = ray.draw_end + 1; y < game->data.win_height; y++)
