@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/13 11:03:03 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/15 10:25:38 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	ft_dda(t_game *game, t_ray *ray)
 			ray->map_y       += ray->step_y;
 			ray->side         = 1;
 		}
-		if (ray->map_x < 0 || ray->map_x >= game->dmap.width
-			|| ray->map_y < 0 || ray->map_y >= game->dmap.height)
+		if (ray->map_x < 0 || ray->map_x >= game->width
+			|| ray->map_y < 0 || ray->map_y >= game->height)
 		{
 			ray->hit = 1;
 			break;
@@ -119,8 +119,8 @@ int	can_move_to(t_game *game, double new_x, double new_y)
 
 	map_x = (int)new_x;
 	map_y = (int)new_y;
-	if (map_x < 0 || map_x >= game->dmap.width ||
-		map_y < 0 || map_y >= game->dmap.height)
+	if (map_x < 0 || map_x >= game->width ||
+		map_y < 0 || map_y >= game->height)
 		return (0);
 	if (game->map[map_y][map_x] == '1')
 		return (0);

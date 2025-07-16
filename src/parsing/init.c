@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 08:13:36 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/15 09:34:40 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 		write(1, game->dmap.brut_file[i], ft_strlen(game->dmap.brut_file[i]));
 		i++;
 	}
-	printf("\n");
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 11:04:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/15 10:54:33 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@
 
 typedef struct s_dmap
 {
-	int		height;
-	int		width;
 	char	**brut_file;
 }	t_dmap;
 
@@ -130,6 +128,8 @@ typedef struct s_game
 	t_dmap		dmap;
 	t_textures	textures;
 	char		**map;
+	int			height;
+	int			width;
 	int			state;
 	t_data		data;
 	t_player	player;
@@ -151,6 +151,9 @@ void	find_player_position(t_game *game, int line_index);
 void	raycasting(t_game *game);
 void	draw_player(t_game *game);
 int		handle_keypress(int keycode, t_game *game);
+int		check_walls_1(t_game *game);
+int		check_walls_2(t_game *game);
+int		check_walls_3(t_game *game);
 
 //GNL
 char	*get_next_line(int fd);

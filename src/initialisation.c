@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/13 09:09:29 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/15 10:24:52 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_mlx(t_game *game)
 	game->data.win = NULL;
 	game->data.win_width = 900;
 	game->data.win_height = 600;
-	pixel_size_x = game->data.win_width / game->dmap.width;
-	pixel_size_y = game->data.win_height / game->dmap.height;
+	pixel_size_x = game->data.win_width / game->width;
+	pixel_size_y = game->data.win_height / game->height;
 	game->data.pixel_size = ft_min(pixel_size_x, pixel_size_y);
 }
 
