@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/17 11:45:46 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:48:15 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_data
 	int		pixel_size_y;
 	int		pixel_size;
 	t_img	img;
+	t_img	minimap_img;
 }				t_data;
 
 typedef struct s_player
@@ -142,6 +143,7 @@ void	create_map(t_game *game);
 void	init_values(t_game *game);
 void	free_double_ptr(char **table);
 int		ft_min(int i, int j);
+void	draw_minimap(t_game *game);
 
 //PARSING
 int		init_data(t_game *game, char *cub_name);

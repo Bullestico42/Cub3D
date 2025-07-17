@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/17 12:00:12 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/17 19:20:18 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,13 @@ int	handle_keypress(int keycode, t_game *game)
 		game->data.img.image,
 		0,
 		0);
+	draw_minimap(game);
+	mlx_put_image_to_window(
+		game->data.mlx,
+		game->data.win,
+		game->data.minimap_img.image,
+		0,
+		0);
 	return (0);
 }
 
@@ -269,6 +276,13 @@ int	handle_mouse_move(int x, int y, t_game *game)
 		game->data.mlx,
 		game->data.win,
 		game->data.img.image,
+		0,
+		0);
+	draw_minimap(game);
+	mlx_put_image_to_window(
+		game->data.mlx,
+		game->data.win,
+		game->data.minimap_img.image,
 		0,
 		0);
 	game->player.mouse_x = mouse_x;
@@ -328,6 +342,61 @@ void	draw_player(t_game *game)
 	}
 }
 
+void	draw_minimap(t_game *game)
+{
+	int		i;
+	int		j;
+	int		offset;
+	int		x;
+	int		y;
+	int		scale;
+	int		center;
+
+	scale = game->data.win_width / 5 / 10;
+	center = game->data.win_width / 5 / 2;
+	i = 0;
+	while (i < game->data.win_width / 5)
+	{
+		j = 0;
+		while (j < game->data.win_width / 5)
+		{
+			x = i;
+			y = j;
+			int	map_tile_x = game->player.pos_x + (i - center) / scale;
+			int	map_tile_y = game->player.pos_y + (j - center) / scale;
+			offset = y * game->data.minimap_img.line_length + x * (game->data.minimap_img.bpp / 8);
+			if (map_tile_x >= 0 && map_tile_x < game->width &&
+				map_tile_y >= 0 && map_tile_y < game->height)
+			{
+				if (game->map[map_tile_y][map_tile_x] == '1')
+				{
+					*(unsigned int *)(game->data.minimap_img.addr + offset) = 8421504;
+				}
+				else
+					*(unsigned int *)(game->data.minimap_img.addr + offset) = 14474460;
+			}
+			else
+				*(unsigned int *)(game->data.minimap_img.addr + offset) = 16752762;
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			x = center - 2 + i;
+			y = center - 2 + j;
+			offset = y * game->data.minimap_img.line_length + x * (game->data.minimap_img.bpp / 8);
+			*(unsigned int *)(game->data.minimap_img.addr + offset) = 32768;
+			j++;
+		}
+		i++;
+	}
+}
+
 void	create_map(t_game *game)
 {
 	game->data.img.image = mlx_new_image(
@@ -343,10 +412,21 @@ void	create_map(t_game *game)
 		&game->data.img.endian);
 	raycasting(game);
 	draw_player(game);
+	game->data.minimap_img.image = mlx_new_image(game->data.mlx, game->data.win_width / 5, game->data.win_width / 5);
+	if (!game->data.img.image)
+		destroy_display(game, "Error\nCan't create minimap\n", 1);
+	game->data.minimap_img.addr = mlx_get_data_addr(game->data.minimap_img.image, &game->data.minimap_img.bpp, &game->data.minimap_img.line_length, &game->data.minimap_img.endian);
 	mlx_put_image_to_window(
 		game->data.mlx,
 		game->data.win,
 		game->data.img.image,
+		0,
+		0);
+	draw_minimap(game);
+	mlx_put_image_to_window(
+		game->data.mlx,
+		game->data.win,
+		game->data.minimap_img.image,
 		0,
 		0);
 	mlx_hook(game->data.win, 2, 1L << 0, handle_keypress, game);
