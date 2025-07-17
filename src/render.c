@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 19:17:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/16 20:45:09 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/17 12:00:12 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,14 +201,12 @@ void	move_right(t_game *game)
 	}
 }
 
-void	rotate_player(t_game *game, int direction)
+void	rotate_player(t_game *game, int direction, double rot_speed)
 {
-	double	rot_speed;
 	double	angle;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	rot_speed = 0.1;
 	if (direction == -1)
 		angle = -rot_speed;
 	else
@@ -232,9 +230,9 @@ void	apply_movement(t_game *game, int keycode)
 	else if (keycode == KEY_D)
 		move_right(game);
 	else if (keycode == KEY_LEFT)
-		rotate_player(game, -1);
+		rotate_player(game, -1, 0.1);
 	else if (keycode == KEY_RIGHT)
-		rotate_player(game, 1);
+		rotate_player(game, 1, 0.1);
 }
 
 int	handle_keypress(int keycode, t_game *game)
@@ -250,6 +248,30 @@ int	handle_keypress(int keycode, t_game *game)
 		game->data.img.image,
 		0,
 		0);
+	return (0);
+}
+
+int	handle_mouse_move(int x, int y, t_game *game)
+{
+	double	mouse_x;
+	double	deltas;
+
+	(void)y;
+	mouse_x = (double)x;
+	deltas = mouse_x - game->player.mouse_x;
+	if (deltas < 0)
+		rotate_player(game, -1,0.05);
+	if (deltas > 0)
+		rotate_player(game, 1, 0.05);
+	raycasting(game);
+	draw_player(game);
+	mlx_put_image_to_window(
+		game->data.mlx,
+		game->data.win,
+		game->data.img.image,
+		0,
+		0);
+	game->player.mouse_x = mouse_x;
 	return (0);
 }
 
@@ -328,5 +350,6 @@ void	create_map(t_game *game)
 		0,
 		0);
 	mlx_hook(game->data.win, 2, 1L << 0, handle_keypress, game);
-	mlx_hook(game->data.win, 17, 0, destroy_display, game);
+	mlx_hook(game->data.win, 6, 1L << 6, handle_mouse_move, game);
+	mlx_hook(game->data.win, 17, 0, close_game, game);
 }

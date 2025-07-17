@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/15 10:54:33 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/17 11:45:46 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_player
 	double	dir_y;
 	double	fov_x;
 	double	fov_y;
+	double	mouse_x;
 	char	orientation;
 }				t_player;
 
@@ -136,6 +137,7 @@ typedef struct s_game
 }				t_game;
 
 int		destroy_display(t_game *game, char *str, int error);
+int		close_game(t_game *game);
 void	create_map(t_game *game);
 void	init_values(t_game *game);
 void	free_double_ptr(char **table);

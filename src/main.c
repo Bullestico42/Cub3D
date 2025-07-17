@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 11:03:27 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/17 11:40:54 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ Elle prend une string qui sera afficher sur le stderr
 et exit avec le code d'erreur donné en paramètre*/
 int	destroy_display(t_game *game, char *str, int error_code)
 {
-	ft_putstr_fd(str, 2);
-/* 	if (game->dmap.fd >= 0)
-		close(game->map.fd); */
+	if (str != NULL)
+		ft_putstr_fd(str, 2);
 	if (game->dmap.brut_file)
 		free_double_ptr(game->dmap.brut_file);
 	if (game->data.mlx && game->data.win)
