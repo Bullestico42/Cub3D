@@ -6,13 +6,18 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/17 17:48:15 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/17 21:02:49 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # define BUFFER_SIZE 42
+# define BLUE 6591981
+# define LAVENDER 15792383
+# define GREEN 9419919
+# define GRAY 14474460
+# define PINK 16752762
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -143,7 +148,8 @@ void	create_map(t_game *game);
 void	init_values(t_game *game);
 void	free_double_ptr(char **table);
 int		ft_min(int i, int j);
-void	draw_minimap(t_game *game);
+void	create_minimap(t_game *game);
+void	render_images(t_game *game);
 
 //PARSING
 int		init_data(t_game *game, char *cub_name);
@@ -153,7 +159,6 @@ int		extract_colors(t_game *game, int i, char name);
 int		fill_map(int lines, t_game *game, char **brut_map);
 void	find_player_position(t_game *game, int line_index);
 void	raycasting(t_game *game);
-void	draw_player(t_game *game);
 int		handle_keypress(int keycode, t_game *game);
 int		check_walls_1(t_game *game);
 int		check_walls_2(t_game *game);
