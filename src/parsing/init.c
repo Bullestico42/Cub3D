@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/15 09:34:40 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/18 23:13:54 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	count_line(int fd)
 	return (count);
 }
 
+//rempli la totalité du fichier dans un tableau temp
 int	fill_raw(int fd, int n_lines, t_game *game)
 {
 	char	*line;
@@ -58,6 +59,7 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 	return (1);
 }
 
+//Ouvre un fd et  verifie l'extension
 int init_file(t_game *game, char *file)
 {
 	int fd;
@@ -79,6 +81,7 @@ int init_file(t_game *game, char *file)
 	return (0);
 }
 
+//Appelle les differentes logique d'extraction de fichier
 int	init_data(t_game *game, char *file)
 {
 	ft_memset(game, 0, (sizeof(t_game)));

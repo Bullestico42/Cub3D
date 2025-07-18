@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 07:20:22 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/13 07:31:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/18 23:25:18 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
+//obtient la valeurs R G B selon l'index
 static int  get_value(char *str)
 {
     int res;
@@ -32,6 +33,7 @@ static int  get_value(char *str)
     return (res);
 }
 
+//Avance l'index jusqu'à la prochaine couleur
 static int  parse_color(char *str, int *index)
 {
     int res;
@@ -49,6 +51,7 @@ static int  parse_color(char *str, int *index)
     return (res);
 }
 
+//Selon son nom la fonction va essayer de parser chacune des couleurs RGB
 int extract_colors(t_game *game, int i, char name)
 {
     int index;
@@ -57,24 +60,20 @@ int extract_colors(t_game *game, int i, char name)
     index = 2;
     if (game->dmap.brut_file[5][0] == 'F' && name == 'F')
     {
-        while (i < 3)
+        while (i++ < 3)
         {
             game->textures.color_f[i] = parse_color(game->dmap.brut_file[5], &index);
             if (game->textures.color_f[i] < 0)
                 return (0);
-            printf("F[%d] = %d\n", i, game->textures.color_f[i]);
-            i++;
         }
     }
     else if (game->dmap.brut_file[6][0] == 'C' && name == 'C')
     {
-        while (i < 3)
+        while (i++ < 3)
         {
             game->textures.color_c[i] = parse_color(game->dmap.brut_file[6], &index);
             if (game->textures.color_c[i] < 0)
                 return (0);
-            printf("C[%d] = %d\n", i, game->textures.color_c[i]);
-            i++;
         }
     }
     else
@@ -82,6 +81,7 @@ int extract_colors(t_game *game, int i, char name)
     return (1);
 }
 
+//verifie si le chemin d'accès est valide
 static int  check_name(t_game *game, int name)
 {
     int fd;
@@ -98,12 +98,10 @@ static int  check_name(t_game *game, int name)
     if (fd < 0)
         return (printf("Error: Wrong path file\n"), 0);
     else
-    {
-        close(fd);
-        return (1);
-    }
+        return (close(fd), 1);
 }
 
+//tente d'accéder au chemin d'accès et les stock en data
 int extract_textures(t_game *game, int name, int is_okay)
 {
     int x;
