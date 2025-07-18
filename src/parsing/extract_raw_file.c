@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 03:16:02 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/16 07:15:23 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/18 22:10:31 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ int	extract_raw(t_game *game)
 		return (1);
 	if (extract_raw_map(game))
 	  	return (1);
+	free_double_ptr(game->dmap.brut_file);
 	return (0);
 }

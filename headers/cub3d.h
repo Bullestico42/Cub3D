@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/17 21:02:49 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/07/18 22:07:41 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	raycasting(t_game *game);
 int		handle_keypress(int keycode, t_game *game);
 int		check_walls_1(t_game *game);
 int		check_walls_2(t_game *game);
-int		check_walls_3(t_game *game);
+int		check_char(char **map);
 
 //GNL
 char	*get_next_line(int fd);

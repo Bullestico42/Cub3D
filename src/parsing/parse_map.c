@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/16 07:44:45 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/18 22:08:28 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
     return (0);
 }
 
-static void	get_width(t_game *game)
+static int	get_width(t_game *game)
 {
 	int	y;
 	int	state;
@@ -50,10 +50,13 @@ static void	get_width(t_game *game)
 	while (game->map[y])
 	{
 		state = ft_strlen(game->map[y]);
+		if (state < 3)
+			return (1);
 		if (state > game->width)
 			game->width = state;
 		y++;
 	}
+	return (0);
 }
 
 int	white_space(char c)
@@ -69,18 +72,17 @@ int	check_walls_1(t_game *game)
 	int	x;
 
 	x = 0;
-	get_width(game);
+	if (get_width(game))
+		return (1);
 	game->height -= 1;
 	while (game->map[0][x] && game->map[game->height][x])
 	{
 		if ((game->map[0][x] == '1' || white_space(game->map[0][x]))
-			&& (game->map[game->height][x] == '1' || white_space(game->map[game->height][x])))
+			&& (game->map[game->height][x] == '1' ||
+				white_space(game->map[game->height][x])))
 			x++;
 		else
-		{
-			printf("1.1 | %d\n", x);
 			return (1);		
-		}
 	}
 	if (check_walls_2(game))
 		return (1);
@@ -93,10 +95,11 @@ int	check_walls_2(t_game *game)
 	int	y;
 
 	x = 0;
-	y = 0;
+	y = 1;
 	while (game->map[y])
 	{
-		if (game->map[y][x] == '1')
+		if (game->map[y][x] == '1' && 
+			game->map[y][(ft_strlen(game->map[y])) - 2] == '1')
 		{
 			y++;
 			x = 0;
@@ -104,27 +107,33 @@ int	check_walls_2(t_game *game)
 		else if (white_space(game->map[y][x]))
 			x++;
 		else
-		{
-			printf("1.2\n");
 			return (1);		
-		}
 	}
-	if (check_walls_3(game))
+	if (check_char(game->map))
 		return (1);
 	return (0);
 }
 
-int	check_walls_3(t_game *game)
+int	check_char(char **map)
 {
 	int	y;
+	int	x;
 
 	y = 0;
-	while (game->map[y])
+	x = 0;
+	while (map[y])
 	{
-		if (game->map[y][(ft_strlen(game->map[y])) - 2] == '1')
-			y++;
-		else
-			return (1);
+		x = 0;
+		while (map[y][x])
+		{
+			if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
+				|| map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
+					map[y][x] == 'W')
+				x++;
+			else
+				return (1);
+		}
+		y++;
 	}
 	return (0);
 }
