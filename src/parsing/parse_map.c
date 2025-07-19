@@ -6,12 +6,14 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/18 22:08:28 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/07/19 11:31:09 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
+
+// rempli un tableau possedant la map
 int	fill_map(int lines, t_game *game, char **brut_map)
 {
 	int i;
@@ -40,6 +42,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
     return (0);
 }
 
+// obtient uniquement la plus grande largeur de la map
 static int	get_width(t_game *game)
 {
 	int	y;
@@ -59,6 +62,7 @@ static int	get_width(t_game *game)
 	return (0);
 }
 
+// skip tout les white space
 int	white_space(char c)
 {
 	if (c != ' ' && c != '\t' && c != '\r'
@@ -67,6 +71,7 @@ int	white_space(char c)
 	return (1);
 }
 
+// vérifie la premiere est derniere ligne de la map
 int	check_walls_1(t_game *game)
 {
 	int	x;
@@ -89,6 +94,7 @@ int	check_walls_1(t_game *game)
 	return (0);
 }
 
+// vérifie la gauche et droite de la map
 int	check_walls_2(t_game *game)
 {
 	int x;
@@ -114,6 +120,8 @@ int	check_walls_2(t_game *game)
 	return (0);
 }
 
+
+// vérifie s'il n y a pas de char inconnu
 int	check_char(char **map)
 {
 	int	y;
