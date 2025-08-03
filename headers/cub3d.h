@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/18 22:07:41 by bullestico       ###   ########.fr       */
+/*   Updated: 2024/07/18 00:00:00 by ChatGPT          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define GREEN 9419919
 # define GRAY 14474460
 # define PINK 16752762
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.1
+# define MOUSE_ROT_SPEED 0.05
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -28,24 +31,24 @@
 
 /* Keycodes for Mac */
 #ifdef OS_MAC
-# define KEY_W		13
-# define KEY_A		0
-# define KEY_S		1
-# define KEY_D		2
-# define KEY_LEFT	123
-# define KEY_RIGHT	124
-# define KEY_ESC	53
+# define KEY_W          13
+# define KEY_A          0
+# define KEY_S          1
+# define KEY_D          2
+# define KEY_LEFT       123
+# define KEY_RIGHT      124
+# define KEY_ESC        53
 #endif
 
 /* Keycodes for Linux */
 #ifdef OS_LINUX
-# define KEY_W		119
-# define KEY_A		 97
-# define KEY_S		115
-# define KEY_D		100
-# define KEY_LEFT	65361
-# define KEY_RIGHT	65363
-# define KEY_ESC	65307
+# define KEY_W          119
+# define KEY_A           97
+# define KEY_S          115
+# define KEY_D          100
+# define KEY_LEFT       65361
+# define KEY_RIGHT      65363
+# define KEY_ESC        65307
 #endif
 
 # include "../libft/libft.h"
@@ -54,120 +57,125 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_dmap
 {
-	char	**brut_file;
-}	t_dmap;
+        char    **brut_file;
+}       t_dmap;
 
 typedef struct s_textures
 {
-	char	*path_no;
-	char	*path_so;
-	char	*path_we;
-	char	*path_ea;
-	void	*t_no;
-	void	*t_so;
-	void	*t_we;
-	void	*t_ea;
-	int		color_c[3];
-	int		color_f[3];
-}	t_textures;
+        char    *path_no;
+        char    *path_so;
+        char    *path_we;
+        char    *path_ea;
+        void    *t_no;
+        void    *t_so;
+        void    *t_we;
+        void    *t_ea;
+        int             color_c[3];
+        int             color_f[3];
+}       t_textures;
 
 typedef struct s_ray
 {
-	double	camera;
-	double	dir_x;
-	double	dir_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		map_x;
-	int		map_y;
-	int		draw_start;
-	int		draw_end;
-}				t_ray;
+        double  camera;
+        double  dir_x;
+        double  dir_y;
+        double  delta_dist_x;
+        double  delta_dist_y;
+        int             step_x;
+        int             step_y;
+        int             hit;
+        int             side;
+        double  side_dist_x;
+        double  side_dist_y;
+        int             map_x;
+        int             map_y;
+        int             draw_start;
+        int             draw_end;
+}                               t_ray;
 
 typedef struct s_img
 {
-	int		bpp;
-	int		line_length;
-	int		endian;
-	void	*image;
-	char	*addr;
-}				t_img;
-
+        int             bpp;
+        int             line_length;
+        int             endian;
+        void    *image;
+        char    *addr;
+}                               t_img;
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	int		win_width;
-	int		win_height;
-	int		pixel_size_x;
-	int		pixel_size_y;
-	int		pixel_size;
-	t_img	img;
-	t_img	minimap_img;
-}				t_data;
+        void    *mlx;
+        void    *win;
+        int             win_width;
+        int             win_height;
+        int             pixel_size_x;
+        int             pixel_size_y;
+        int             pixel_size;
+        t_img   img;
+        t_img   minimap_img;
+}                               t_data;
 
 typedef struct s_player
 {
-	double	pos_x;
-	double	pos_y;
-	int		color;
-	double	dir_x;
-	double	dir_y;
-	double	fov_x;
-	double	fov_y;
-	double	mouse_x;
-	char	orientation;
-}				t_player;
+        double  pos_x;
+        double  pos_y;
+        int             color;
+        double  dir_x;
+        double  dir_y;
+        double  fov_x;
+        double  fov_y;
+        double  mouse_x;
+        char    orientation;
+}                               t_player;
 
 typedef struct s_game
 {
-	t_dmap		dmap;
-	t_textures	textures;
-	char		**map;
-	int			height;
-	int			width;
-	int			state;
-	t_data		data;
-	t_player	player;
-}				t_game;
+        t_dmap          dmap;
+        t_textures      textures;
+        char            **map;
+        int                     height;
+        int                     width;
+        int                     state;
+        t_data          data;
+        t_player        player;
+}                               t_game;
 
-int		destroy_display(t_game *game, char *str, int error);
-int		close_game(t_game *game);
-void	create_map(t_game *game);
-void	init_values(t_game *game);
-void	free_double_ptr(char **table);
-int		ft_min(int i, int j);
-void	create_minimap(t_game *game);
-void	render_images(t_game *game);
+int             destroy_display(t_game *game, char *str, int error);
+int             close_game(t_game *game);
+void    create_map(t_game *game);
+void    init_values(t_game *game);
+void    free_double_ptr(char **table);
+int             ft_min(int i, int j);
+void    create_minimap(t_game *game);
+void    render_images(t_game *game);
+void    draw_minimap_background(t_game *game, int scale, int center);
+void    my_mlx_pixel_put(t_game *game, int x, int y, int color);
+void    move_player(t_game *game, double dx, double dy);
+void    rotate_player(t_game *game, int direction, double rot_speed);
+void    apply_movement(t_game *game, int keycode);
+int             handle_keypress(int keycode, t_game *game);
+int             handle_mouse_move(int x, int y, t_game *game);
 
-//PARSING
-int		init_data(t_game *game, char *cub_name);
-int		extract_raw(t_game *game);
-int		extract_textures(t_game *game, int name, int is_okay);
-int		extract_colors(t_game *game, int i, char name);
-int		fill_map(int lines, t_game *game, char **brut_map);
-void	find_player_position(t_game *game, int line_index);
-void	raycasting(t_game *game);
-int		handle_keypress(int keycode, t_game *game);
-int		check_walls_1(t_game *game);
-int		check_walls_2(t_game *game);
-int		check_char(char **map);
+/* PARSING */
+int             init_data(t_game *game, char *cub_name);
+int             extract_raw(t_game *game);
+int             extract_textures(t_game *game, int name, int is_okay);
+int             extract_colors(t_game *game, int i, char name);
+int             fill_map(int lines, t_game *game, char **brut_map);
+void    find_player_position(t_game *game, int line_index);
+void    raycasting(t_game *game);
+int             check_walls_1(t_game *game);
+int             check_walls_2(t_game *game);
+int             check_char(char **map);
 
-//GNL
-char	*get_next_line(int fd);
+/* GNL */
+char    *get_next_line(int fd);
 
-//UTILS
-void	free_tab(char **tab);
+/* UTILS */
+void    free_tab(char **tab);
 
 #endif
+
