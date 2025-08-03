@@ -12,69 +12,56 @@
 
 #include "libft.h"
 
-int	ft_sizetab(int n)
+int     ft_sizetab(int n)
 {
-	int	i;
+        int     i;
 
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-	{
-		i += 1;
-		if (n == -2147483648)
-			return (11);
-		n = -n;
-	}
-	while (n > 0)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
+        i = 0;
+        if (n == 0)
+                return (1);
+        if (n < 0)
+        {
+                i += 1;
+                if (n == -2147483648)
+                        return (11);
+                n = -n;
+        }
+        while (n > 0)
+        {
+                n /= 10;
+                i++;
+        }
+        return (i);
 }
 
-void	ft_itoa_recursive(int n, char *res, int *i)
+static int      ft_itoa_recursive(int n, char *res, int i)
 {
-	if (n < 0)
-	{
-		res[(*i)++] = '-';
-		if (n == -2147483648)
-		{
-			res[(*i)++] = '2';
-			n = 147483648;
-		}
-		else
-			n = -n;
-	}
-	if (n > 9)
-		ft_itoa_recursive(n / 10, res, i);
-	res[(*i)++] = (n % 10) + '0';
+        if (n > 9)
+                i = ft_itoa_recursive(n / 10, res, i);
+        res[i++] = (n % 10) + '0';
+        return (i);
 }
 
-char	*ft_itoa(int n)
+char    *ft_itoa(int n)
 {
-	char	*res;
-	int		len;
-	int		i;
+        char    *res;
+        int             len;
+        int             i;
 
-	len = ft_sizetab(n);
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (NULL);
-	i = 0;
-	if (n < 0)
-	{
-		res[i++] = '-';
-		if (n == -2147483648)
-		{
-			res[i++] = '2';
-			n = 147483648;
-		}
-		else
-			n = -n;
-	}
-	ft_itoa_recursive(n, res, &i);
-	res[i] = '\0';
-	return (res);
+        if (n == -2147483648)
+                return (ft_strdup("-2147483648"));
+        len = ft_sizetab(n);
+        res = (char *)malloc(sizeof(char) * (len + 1));
+        if (!res)
+                return (NULL);
+        i = 0;
+        if (n < 0)
+        {
+                res[i++] = '-';
+                n = -n;
+        }
+        i = ft_itoa_recursive(n, res, i);
+        res[i] = '\0';
+        return (res);
 }
+

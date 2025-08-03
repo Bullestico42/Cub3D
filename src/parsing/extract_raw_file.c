@@ -3,101 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   extract_raw_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/07 03:16:02 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/18 23:17:01 by bullestico       ###   ########.fr       */
+/*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
+/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/cub3d.h"
 
-//A modifier pour faire une instruction en printf
-static void		print_error_map_invalid(void)
+typedef struct s_flags
 {
-	printf("Error: Map Invalid\n");
+        int     tex;
+        int     col;
+}       t_flags;
+
+char    *skip_spaces(char *line);
+int     is_line_empty(char *line);
+int     parse_elements(t_game *game, t_flags *flags);
+
+static int  extract_map(t_game *game, int start)
+{
+        int     height;
+
+        height = 0;
+        while (game->dmap.brut_file[start + height])
+                height++;
+        if (height < 3)
+                return (printf("Error: Map Invalid\n"), 1);
+        if (fill_map(height, game, &game->dmap.brut_file[start]))
+                return (1);
+        return (0);
 }
 
-//prépare a l'extraction de la carte
-static int	extract_raw_map(t_game *game)
+static int  finalize_map(t_game *game, int i, t_flags *flags)
 {
-	int	start;
-
-	game->height = 0;
-	start = 8;
-	if (game->dmap.brut_file[8][0])
-	{
-		while (game->dmap.brut_file[start + game->height])
-			game->height++;
-		if (game->height < 3)
-			return (1);
-		if (fill_map(game->height, game, &game->dmap.brut_file[8]))
-			return (1);
-		return (0);
-	}
-	else
-		return (1);
+        while (game->dmap.brut_file[i] && is_line_empty(game->dmap.brut_file[i]))
+                i++;
+        if (flags->tex != 15 || flags->col != 3)
+                return (printf("Error: Map Invalid\n"), 1);
+        if (!game->dmap.brut_file[i])
+                return (printf("Error: Map Invalid\n"), 1);
+        if (extract_map(game, i))
+                return (1);
+        free_double_ptr(game->dmap.brut_file);
+        return (0);
 }
 
-//check si les lignes existe et stock les couleurs dans un int *
-static int	extract_raw_colors(t_game *game)
+int     extract_raw(t_game *game)
 {
-	int	is_okay;
+        int     index;
+        t_flags flags;
 
-	is_okay = 0;
-	game->state = 0;
-	if (game->dmap.brut_file[5][0])
-	{
-		while (!(ft_isdigit(game->dmap.brut_file[5][game->state])))
-			game->state++;
-		is_okay += extract_colors(game, 0, 'F');
-	}
-	else
-		return (1);
-	game->state = 0;
-	if (game->dmap.brut_file[6][0])
-	{
-		while (!(ft_isdigit(game->dmap.brut_file[6][game->state])))
-			game->state++;
-		is_okay += extract_colors(game, 0, 'C');
-	}
-	else
-		return (1);
-	if (is_okay == 2)
-		return (0);
-	print_error_map_invalid();
-	return (1);
+        flags.tex = 0;
+        flags.col = 0;
+        index = parse_elements(game, &flags);
+        if (index < 0)
+                return (printf("Error: Map Invalid\n"), 1);
+        return (finalize_map(game, index, &flags));
 }
 
-//vérifie si les textures sont existante et dans le bonne ordre
-static int extract_raw_textures(t_game *game)
-{
-    int is_okay_daddy;
-
-    is_okay_daddy = 0;
-	if (game->dmap.brut_file[0][0])
-		is_okay_daddy = extract_textures(game, 0, is_okay_daddy);
-	if (game->dmap.brut_file[1][0])
-		is_okay_daddy = extract_textures(game, 1, is_okay_daddy);
-	if (game->dmap.brut_file[2][0])
-		is_okay_daddy = extract_textures(game, 2, is_okay_daddy);
-	if (game->dmap.brut_file[3][0])
-		is_okay_daddy = extract_textures(game, 3, is_okay_daddy);
-	if (is_okay_daddy == 4)
-		return (0);
-	print_error_map_invalid();
-	return (1);
-}
-
-//Appelle la logique d'extraction du fichier brut
-int	extract_raw(t_game *game)
-{
-	if (extract_raw_textures(game))
-		return (1);
-	if (extract_raw_colors(game))
-		return (1);
-	if (extract_raw_map(game))
-	  	return (1);
-	free_double_ptr(game->dmap.brut_file);
-	return (0);
-}

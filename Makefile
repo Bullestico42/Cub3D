@@ -1,28 +1,28 @@
-# === Nom du programme ===
 NAME = cub3D
 
 # === Dossiers ===
 SRC_DIR = src/
 PAR_DIR = src/parsing/
-GNL_DIR = gnl/
+GNL_DIR = get_next_line/
 OBJ_DIR = obj
 INC_DIR = headers
 LIBFT_DIR = libft
-GNL_DIR = get_next_line/
 
 # === Fichiers sources ===
-SRCS =	$(SRC_DIR)main.c \
-		$(SRC_DIR)initialisation.c \
-		$(SRC_DIR)render.c \
-		$(SRC_DIR)utils.c \
-		$(PAR_DIR)init.c \
-		$(PAR_DIR)extract_raw_file.c \
-		$(PAR_DIR)parse_map.c \
-		$(PAR_DIR)extract_data.c \
-		$(GNL_DIR)get_next_line.c \
-		$(GNL_DIR)get_next_line_utils.c
-
-
+SRCS =  $(SRC_DIR)main.c \
+                $(SRC_DIR)initialisation.c \
+                $(SRC_DIR)render.c \
+                $(SRC_DIR)utils.c \
+                $(PAR_DIR)init.c \
+                $(PAR_DIR)extract_raw_file.c \
+                $(PAR_DIR)parse_map.c \
+                $(PAR_DIR)extract_data.c \
+                $(PAR_DIR)extract_colors.c \
+                $(PAR_DIR)parse_elements.c \
+                $(PAR_DIR)line_utils.c \
+                $(SRC_DIR)raycasting_utils.c \
+                $(GNL_DIR)get_next_line.c \
+                $(GNL_DIR)get_next_line_utils.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -35,14 +35,14 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -g
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
-	MLX_DIR = mlx/mlx_linux
-	MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-	MLX_INC = -I$(MLX_DIR)
+        MLX_DIR = mlx/mlx_linux
+        MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+        MLX_INC = -I$(MLX_DIR)
 else ifeq ($(UNAME_S),Darwin)
-	MLX_DIR = mlx/mlx_mac
-	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-	MLX_INC = -I$(MLX_DIR)
-	CFLAGS += -DGL_SILENCE_DEPRECATION
+        MLX_DIR = mlx/mlx_mac
+        MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+        MLX_INC = -I$(MLX_DIR)
+        CFLAGS += -DGL_SILENCE_DEPRECATION
 endif
 
 # === Libft ===
