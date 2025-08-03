@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2024/07/18 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,8 @@ int             handle_mouse_move(int x, int y, t_game *game);
 /* PARSING */
 int             init_data(t_game *game, char *cub_name);
 int             extract_raw(t_game *game);
-int             extract_textures(t_game *game, int name, int is_okay);
-int             extract_colors(t_game *game, int i, char name);
+int             extract_textures(t_game *game, char *line, int type);
+int             extract_colors(t_game *game, char *line, int type);
 int             fill_map(int lines, t_game *game, char **brut_map);
 void    find_player_position(t_game *game, int line_index);
 void    raycasting(t_game *game);
