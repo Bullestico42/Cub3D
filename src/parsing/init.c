@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/18 23:13:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 14:28:06 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 	char	**tmp;
 	int		i;
 
-	tmp = (char **)malloc(sizeof(char *) * (n_lines + 1));
+	tmp = ft_calloc(n_lines + 1, sizeof(char *));
 	if (!tmp)
 		return (0);
 	i = 0;
@@ -48,14 +48,7 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 		free(line);
 		i++;
 	}
-	tmp[i] = NULL;
 	game->dmap.brut_file = tmp;
-	i = 0;
-	while (game->dmap.brut_file[i])
-	{
-		write(1, game->dmap.brut_file[i], ft_strlen(game->dmap.brut_file[i]));
-		i++;
-	}
 	return (1);
 }
 

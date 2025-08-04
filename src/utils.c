@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:37:11 by dimatayi          #+#    #+#             */
-/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/04 14:30:16 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ void	free_double_ptr(char **table)
 {
 	int	i;
 
-	i = 0;
 	if (!table)
 		return ;
+	i = 0;
 	while (table[i])
-	{
-		free(table[i]);
-		table[i] = NULL;
-		i++;
-	}
+		free(table[i++]);
+	free(table);
 	table = NULL;
 }

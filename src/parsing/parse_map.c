@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/07/19 11:31:09 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 14:29:19 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 	int i;
 
 	printf("\n\n");
+	game->height = lines;
 	game->map = (char **)malloc(sizeof(char *) * (lines + 1));
 	if (!game->map)
 		return (0);

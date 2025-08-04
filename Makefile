@@ -21,6 +21,11 @@ SRCS =  $(SRC_DIR)main.c \
                 $(PAR_DIR)parse_elements.c \
                 $(PAR_DIR)line_utils.c \
                 $(SRC_DIR)raycasting_utils.c \
+                $(SRC_DIR)minimap_background.c \
+                $(SRC_DIR)minimap.c \
+                $(SRC_DIR)movement.c \
+                $(SRC_DIR)raycasting.c \
+                $(SRC_DIR)controls.c \
                 $(GNL_DIR)get_next_line.c \
                 $(GNL_DIR)get_next_line_utils.c
 
@@ -34,11 +39,11 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -g
 # === OS Detection ===
 UNAME_S := $(shell uname -s)
 
-ifeq ($(UNAME_S),Linux)
+ifeq ($(UNAME_S), Linux)
         MLX_DIR = mlx/mlx_linux
         MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
         MLX_INC = -I$(MLX_DIR)
-else ifeq ($(UNAME_S),Darwin)
+else ifeq ($(UNAME_S), Darwin)
         MLX_DIR = mlx/mlx_mac
         MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
         MLX_INC = -I$(MLX_DIR)

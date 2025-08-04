@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/03 22:04:15 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,9 @@ void    raycasting(t_game *game);
 int             check_walls_1(t_game *game);
 int             check_walls_2(t_game *game);
 int             check_char(char **map);
+char    *skip_spaces(char *line);
+int     is_line_empty(char *line);
+
 
 /* GNL */
 char    *get_next_line(int fd);
