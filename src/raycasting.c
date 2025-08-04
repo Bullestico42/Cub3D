@@ -22,9 +22,6 @@ typedef struct s_tex
     int     tex_y;
 }       t_tex;
 
-void    set_directions(t_player *player, t_ray *r);
-void    ft_dda(t_game *game, t_ray *ray);
-void    calculate_wall_params(t_game *game, t_ray *ray);
 void    set_deltas(t_game *game, t_ray *ray, int x);
 
 static t_img    *select_texture(t_game *game, t_ray *ray)
@@ -65,9 +62,9 @@ static void init_tex(t_game *game, t_ray *ray, t_img **tex, t_tex *t)
 {
     *tex = select_texture(game, ray);
     if (ray->side == 0)
-        t->wall_x = game->player.pos_y + ray->perp_dist * ray->dir_y;
+        t->wall_x = ray->wall_hit_y;
     else
-        t->wall_x = game->player.pos_x + ray->perp_dist * ray->dir_x;
+        t->wall_x = ray->wall_hit_x;
     t->wall_x -= floor(t->wall_x);
     t->tex_x = (int)(t->wall_x * (*tex)->width);
     if (ray->side == 0 && ray->dir_x > 0)
@@ -112,9 +109,7 @@ void    raycasting(t_game *game)
     while (++x < game->data.win_width)
     {
         set_deltas(game, &ray, x);
-        set_directions(&game->player, &ray);
-        ft_dda(game, &ray);
-        calculate_wall_params(game, &ray);
+        cast_ray(game, &ray);
         draw_wall(game, &ray, x);
     }
 }

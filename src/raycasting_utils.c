@@ -68,7 +68,7 @@ void    ft_dda(t_game *game, t_ray *ray)
         if (ray->map_x < 0 || ray->map_x >= game->width
             || ray->map_y < 0 || ray->map_y >= game->height)
             ray->hit = 1;
-        else if (game->map[ray->map_y][ray->map_x] == '1')
+        else if (game->map[ray->map_y][ray->map_x] != '0')
             ray->hit = 1;
     }
 }
