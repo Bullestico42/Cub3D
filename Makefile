@@ -20,6 +20,7 @@ SRCS =  $(SRC_DIR)main.c \
                 $(PAR_DIR)extract_colors.c \
                 $(PAR_DIR)parse_elements.c \
                 $(PAR_DIR)line_utils.c \
+                $(SRC_DIR)portals.c \
                 $(SRC_DIR)raycasting_utils.c \
                 $(SRC_DIR)minimap_background.c \
                 $(SRC_DIR)minimap.c \
