@@ -88,6 +88,20 @@ typedef struct s_textures
 	int		color_f[3];
 }       t_textures;
 
+typedef struct s_vec
+{
+        double  x;
+        double  y;
+}       t_vec;
+
+typedef struct s_portal
+{
+        t_vec   pos;
+        double  angle;
+        int             id;
+}       t_portal;
+
+
 typedef struct s_ray
 {
         double  camera;
@@ -103,10 +117,12 @@ typedef struct s_ray
         double  side_dist_y;
         int             map_x;
         int             map_y;
+        double  wall_hit_x;
+        double  wall_hit_y;
         int             draw_start;
         int             draw_end;
         double          perp_dist;
-	int             line_height;
+        int             line_height;
 }	t_ray;
 
 typedef struct s_data
@@ -145,6 +161,7 @@ typedef struct s_game
         int                     state;
         t_data          data;
         t_player        player;
+        t_portal        portals[2];
 }                               t_game;
 
 int             destroy_display(t_game *game, char *str, int error);
@@ -187,5 +204,11 @@ char    *get_next_line(int fd);
 /* UTILS */
 void    free_tab(char **tab);
 
-#endif
 
+/* PORTALS */
+void    cast_ray(t_game *game, t_ray *ray);
+void    transform_through_portal(t_vec hit_pos, double ray_dir,
+                t_portal in, t_portal out, t_vec *new_pos, double *new_dir);
+void    init_portals(t_game *game);
+
+#endif

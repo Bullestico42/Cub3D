@@ -81,7 +81,8 @@ int	main(int ac, char **av)
 	destroy_display(&game,
 	"Error\ncan't generate window\n", 1);
 	load_textures(&game);
-	create_map(&game);
-	mlx_loop(game.data.mlx);
+        create_map(&game);
+        init_portals(&game);
+        mlx_loop(game.data.mlx);
 	return (0);
 }
