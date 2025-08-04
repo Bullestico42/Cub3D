@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2024/07/18 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/04 20:44:51 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@ void    my_mlx_pixel_put(t_game *game, int x, int y, int color)
 
 void    create_new_image(t_game *game, t_img *img, int width, int height)
 {
-    img->image = mlx_new_image(game->data.mlx, width, height);
-    if (!img->image)
-        destroy_display(game, "Error\nCan't create image\n", 1);
-    img->addr = mlx_get_data_addr(img->image,
-            &img->bpp, &img->line_length, &img->endian);
+	img->width = width;
+	img->height = height;
+	img->image = mlx_new_image(game->data.mlx, width, height);
+	if (!img->image)
+		destroy_display(game, "Error\nCan't create image\n", 1);
+	img->addr = mlx_get_data_addr(img->image,
+			&img->bpp, &img->line_length, &img->endian);
 }
 
 void    render_images(t_game *game)

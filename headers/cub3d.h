@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/03 22:04:15 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 20:48:09 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,29 @@ typedef struct s_dmap
         char    **brut_file;
 }       t_dmap;
 
+typedef struct s_img
+{
+	int             bpp;
+	int             line_length;
+	int             endian;
+	int             width;
+	int             height;
+	void    *image;
+	char    *addr;
+}       t_img;
+
 typedef struct s_textures
 {
-        char    *path_no;
-        char    *path_so;
-        char    *path_we;
-        char    *path_ea;
-        void    *t_no;
-        void    *t_so;
-        void    *t_we;
-        void    *t_ea;
-        int             color_c[3];
-        int             color_f[3];
+	char    *path_no;
+	char    *path_so;
+	char    *path_we;
+	char    *path_ea;
+	t_img   img_no;
+	t_img   img_so;
+	t_img   img_we;
+	t_img   img_ea;
+	int		color_c[3];
+	int		color_f[3];
 }       t_textures;
 
 typedef struct s_ray
@@ -94,16 +105,9 @@ typedef struct s_ray
         int             map_y;
         int             draw_start;
         int             draw_end;
-}                               t_ray;
-
-typedef struct s_img
-{
-        int             bpp;
-        int             line_length;
-        int             endian;
-        void    *image;
-        char    *addr;
-}                               t_img;
+        double          perp_dist;
+	int             line_height;
+}	t_ray;
 
 typedef struct s_data
 {
@@ -158,6 +162,7 @@ void    rotate_player(t_game *game, int direction, double rot_speed);
 void    apply_movement(t_game *game, int keycode);
 int             handle_keypress(int keycode, t_game *game);
 int             handle_mouse_move(int x, int y, t_game *game);
+void	load_textures(t_game *game);
 
 /* PARSING */
 int             init_data(t_game *game, char *cub_name);

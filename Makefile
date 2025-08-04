@@ -24,6 +24,7 @@ SRCS =  $(SRC_DIR)main.c \
                 $(SRC_DIR)minimap_background.c \
                 $(SRC_DIR)minimap.c \
                 $(SRC_DIR)movement.c \
+                $(SRC_DIR)textures.c \
                 $(SRC_DIR)raycasting.c \
                 $(SRC_DIR)controls.c \
                 $(GNL_DIR)get_next_line.c \
