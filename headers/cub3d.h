@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/04 20:48:09 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 21:38:05 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ void    apply_movement(t_game *game, int keycode);
 int             handle_keypress(int keycode, t_game *game);
 int             handle_mouse_move(int x, int y, t_game *game);
 void	load_textures(t_game *game);
+unsigned int	get_texture_pixel(t_game *game, t_img *tex, int x, int y);
 
 /* PARSING */
 int             init_data(t_game *game, char *cub_name);

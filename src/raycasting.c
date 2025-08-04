@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/04 21:20:10 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 21:37:33 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ static void	draw_column(t_game *game, t_ray *ray, int x, int colors[2])
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
 		tex_pos += step;
-		color = *(unsigned int *)(tex->addr + tex_y * tex->line_length
-				+ tex_x * (tex->bpp / 8));
+		color = get_texture_pixel(game, tex, tex_x, tex_y);
 		my_mlx_pixel_put(game, x, y++, color);
 	}
 	while (y < game->data.win_height)

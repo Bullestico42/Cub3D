@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/04 20:51:37 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/04 21:38:40 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_mlx(t_game *game)
 
 	game->data.mlx = NULL;
 	game->data.win = NULL;
-	game->data.win_width = 1920;
-	game->data.win_height = 1080;
+	game->data.win_width = 800;
+	game->data.win_height = 600;
 	pixel_size_x = game->data.win_width / game->width;
 	pixel_size_y = game->data.win_height / game->height;
 	game->data.pixel_size = ft_min(pixel_size_x, pixel_size_y);
