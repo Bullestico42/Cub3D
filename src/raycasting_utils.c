@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
+/*   By: apiscopo <apiscopo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 #include <math.h>
+
+void    set_deltas(t_game *game, t_ray *ray, int x)
+{
+    ray->camera = 2 * x / (double)game->data.win_width - 1;
+    ray->dir_x = game->player.dir_x + game->player.fov_x * ray->camera;
+    ray->dir_y = game->player.dir_y + game->player.fov_y * ray->camera;
+    ray->delta_dist_x = ray->dir_x == 0 ? 1e30 : fabs(1 / ray->dir_x);
+    ray->delta_dist_y = ray->dir_y == 0 ? 1e30 : fabs(1 / ray->dir_y);
+}
 
 void    set_directions(t_player *player, t_ray *r)
 {
@@ -80,6 +89,8 @@ void    calculate_wall_params(t_game *game, t_ray *ray)
     line_height = (int)(game->data.win_height / perp_dist);
     if (line_height > game->data.win_height * 2)
         line_height = game->data.win_height * 2;
+    ray->perp_dist = perp_dist;
+    ray->line_height = line_height;
     ray->draw_start = -line_height / 2 + game->data.win_height / 2;
     if (ray->draw_start < 0)
         ray->draw_start = 0;
