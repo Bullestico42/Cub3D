@@ -28,6 +28,7 @@ static int  can_move_to(t_game *game, double x, double y)
     return (1);
 }
 
+
 static int  player_in_radius(t_portal *p, t_player *pl)
 {
     double  dx;
@@ -60,6 +61,17 @@ static void teleport_player_if_needed(t_game *game)
     char        cell;
     t_portal    *in_p;
     t_portal    *out_p;
+static void    teleport_player_if_needed(t_game *game)
+{
+    char    cell;
+    t_portal    *in_p;
+    t_portal    *out_p;
+    t_vec       new_pos;
+    double      angle;
+    double      new_dir;
+    double      dx;
+    double      dy;
+
 
     cell = game->map[(int)game->player.pos_y][(int)game->player.pos_x];
     if (cell != '2' && cell != '3')
@@ -69,6 +81,18 @@ static void teleport_player_if_needed(t_game *game)
     if (!in_p || !out_p || !player_in_radius(in_p, &game->player))
         return ;
     teleport_player(game, in_p, out_p);
+    dx = game->player.pos_x - in_p->pos.x;
+    dy = game->player.pos_y - in_p->pos.y;
+    if (dx * dx + dy * dy > PORTAL_RADIUS * PORTAL_RADIUS)
+        return ;
+    out_p = get_portal_by_id(game, cell == '2' ? 3 : 2);
+    angle = atan2(game->player.dir_y, game->player.dir_x);
+    transform_through_portal((t_vec){game->player.pos_x, game->player.pos_y},
+            angle, *in_p, *out_p, &new_pos, &new_dir);
+    game->player.pos_x = new_pos.x;
+    game->player.pos_y = new_pos.y;
+    game->player.dir_x = cos(new_dir);
+    game->player.dir_y = sin(new_dir);
 }
 
 void    move_player(t_game *game, double dx, double dy)
