@@ -25,6 +25,13 @@ static t_vec rotate(t_vec v, double angle)
     return (r);
 }
 
+/*
+** Apply the portal transformation to a hit position and direction.
+** The hit position is expressed in world coordinates; it is converted
+** to the local space of the entry portal, rotated into the exit
+** portal's space and translated back to world coordinates.
+*/
+
 void    transform_through_portal(t_vec hit_pos, double ray_dir,
                 t_portal in, t_portal out, t_vec *new_pos, double *new_dir)
 {
@@ -55,19 +62,32 @@ void    init_portals(t_game *game)
                 game->portals[0].pos.x = x + 0.5;
                 game->portals[0].pos.y = y + 0.5;
                 game->portals[0].angle = 0;
-                game->portals[0].id = 0;
+                game->portals[0].id = 2;
             }
             if (game->map[y][x] == '3')
             {
                 game->portals[1].pos.x = x + 0.5;
                 game->portals[1].pos.y = y + 0.5;
                 game->portals[1].angle = 0;
+                game->portals[1].id = 3;
                 game->portals[1].id = 1;
             }
             x++;
         }
         y++;
     }
+}
+
+/*
+** Return the portal matching the given id or NULL if not found.
+*/
+t_portal   *get_portal_by_id(t_game *game, int id)
+{
+    if (game->portals[0].id == id)
+        return (&game->portals[0]);
+    if (game->portals[1].id == id)
+        return (&game->portals[1]);
+    return (NULL);
 }
 
 void    cast_ray(t_game *game, t_ray *ray)
@@ -102,6 +122,31 @@ void    cast_ray(t_game *game, t_ray *ray)
         cell = game->map[ray->map_y][ray->map_x];
         if (cell == '2' || cell == '3')
         {
+            t_portal    *in_p;
+            t_portal    *out_p;
+            double      dx;
+            double      dy;
+            int         id;
+
+            id = cell - '0';
+            in_p = get_portal_by_id(game, id);
+            dx = ray->wall_hit_x - in_p->pos.x;
+            dy = ray->wall_hit_y - in_p->pos.y;
+            if (dx * dx + dy * dy <= PORTAL_RADIUS * PORTAL_RADIUS)
+            {
+                out_p = get_portal_by_id(game, id == 2 ? 3 : 2);
+                transform_through_portal((t_vec){ray->wall_hit_x, ray->wall_hit_y},
+                        atan2(ray->dir_y, ray->dir_x),
+                        *in_p, *out_p, &new_pos, &new_dir);
+                p.pos_x = new_pos.x;
+                p.pos_y = new_pos.y;
+                ray->dir_x = cos(new_dir);
+                ray->dir_y = sin(new_dir);
+                ray->delta_dist_x = ray->dir_x == 0 ? 1e30 : fabs(1 / ray->dir_x);
+                ray->delta_dist_y = ray->dir_y == 0 ? 1e30 : fabs(1 / ray->dir_y);
+                depth++;
+                continue ;
+            }
             transform_through_portal((t_vec){ray->wall_hit_x, ray->wall_hit_y},
                     atan2(ray->dir_y, ray->dir_x),
                     game->portals[cell == '2' ? 0 : 1],
