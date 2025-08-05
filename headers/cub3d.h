@@ -22,6 +22,7 @@
 # define ROT_SPEED 0.1
 # define MOUSE_ROT_SPEED 0.05
 # define PORTAL_RADIUS 0.3
+# define PORTAL_EPS 0.1
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -99,7 +100,7 @@ typedef struct s_portal
 {
         t_vec   pos;
         double  angle;
-        int             id;
+        int     id;
 }       t_portal;
 
 
@@ -212,6 +213,5 @@ void    transform_through_portal(t_vec hit_pos, double ray_dir,
                 t_portal in, t_portal out, t_vec *new_pos, double *new_dir);
 void    init_portals(t_game *game);
 t_portal   *get_portal_by_id(t_game *game, int id);
-
 
 #endif
