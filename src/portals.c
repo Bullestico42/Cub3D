@@ -31,6 +31,7 @@ static t_vec rotate(t_vec v, double angle)
 ** to the local space of the entry portal, rotated into the exit
 ** portal's space and translated back to world coordinates.
 */
+
 void    transform_through_portal(t_vec hit_pos, double ray_dir,
                 t_portal in, t_portal out, t_vec *new_pos, double *new_dir)
 {
@@ -69,6 +70,7 @@ void    init_portals(t_game *game)
                 game->portals[1].pos.y = y + 0.5;
                 game->portals[1].angle = 0;
                 game->portals[1].id = 3;
+                game->portals[1].id = 1;
             }
             x++;
         }
@@ -145,6 +147,19 @@ void    cast_ray(t_game *game, t_ray *ray)
                 depth++;
                 continue ;
             }
+            transform_through_portal((t_vec){ray->wall_hit_x, ray->wall_hit_y},
+                    atan2(ray->dir_y, ray->dir_x),
+                    game->portals[cell == '2' ? 0 : 1],
+                    game->portals[cell == '2' ? 1 : 0],
+                    &new_pos, &new_dir);
+            p.pos_x = new_pos.x;
+            p.pos_y = new_pos.y;
+            ray->dir_x = cos(new_dir);
+            ray->dir_y = sin(new_dir);
+            ray->delta_dist_x = ray->dir_x == 0 ? 1e30 : fabs(1 / ray->dir_x);
+            ray->delta_dist_y = ray->dir_y == 0 ? 1e30 : fabs(1 / ray->dir_y);
+            depth++;
+            continue ;
         }
         break ;
     }
