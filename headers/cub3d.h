@@ -99,6 +99,7 @@ typedef struct s_portal
 {
         t_vec   pos;
         double  angle;
+        int     id;
 }       t_portal;
 
 
@@ -210,5 +211,6 @@ void    cast_ray(t_game *game, t_ray *ray);
 void    transform_through_portal(t_vec hit_pos, double ray_dir,
                 t_portal in, t_portal out, t_vec *new_pos, double *new_dir);
 void    init_portals(t_game *game);
+t_portal   *get_portal_by_id(t_game *game, int id);
 
 #endif

@@ -42,12 +42,12 @@ static void    teleport_player_if_needed(t_game *game)
     cell = game->map[(int)game->player.pos_y][(int)game->player.pos_x];
     if (cell != '2' && cell != '3')
         return ;
-    in_p = &game->portals[cell == '2' ? 0 : 1];
+    in_p = get_portal_by_id(game, cell - '0');
     dx = game->player.pos_x - in_p->pos.x;
     dy = game->player.pos_y - in_p->pos.y;
     if (dx * dx + dy * dy > PORTAL_RADIUS * PORTAL_RADIUS)
         return ;
-    out_p = &game->portals[cell == '2' ? 1 : 0];
+    out_p = get_portal_by_id(game, cell == '2' ? 3 : 2);
     angle = atan2(game->player.dir_y, game->player.dir_x);
     transform_through_portal((t_vec){game->player.pos_x, game->player.pos_y},
             angle, *in_p, *out_p, &new_pos, &new_dir);
