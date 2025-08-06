@@ -23,6 +23,10 @@ typedef struct s_tex
 }       t_tex;
 
 void    set_deltas(t_game *game, t_ray *ray, int x);
+void    set_directions(t_player *player, t_ray *r);
+void    ft_dda(t_game *game, t_ray *ray);
+void    calculate_wall_params(t_game *game, t_ray *ray);
+static void     set_wall_hit(t_game *game, t_ray *ray);
 
 static t_img    *select_texture(t_game *game, t_ray *ray)
 {
@@ -55,6 +59,20 @@ static void draw_background(t_game *game, int colors[2])
         while (++x < game->data.win_width)
             my_mlx_pixel_put(game, x, y, colors[1]);
         y++;
+    }
+}
+
+static void     set_wall_hit(t_game *game, t_ray *ray)
+{
+    if (ray->side == 0)
+    {
+        ray->wall_hit_x = ray->map_x;
+        ray->wall_hit_y = game->player.pos_y + ray->perp_dist * ray->dir_y;
+    }
+    else
+    {
+        ray->wall_hit_x = game->player.pos_x + ray->perp_dist * ray->dir_x;
+        ray->wall_hit_y = ray->map_y;
     }
 }
 
@@ -109,6 +127,10 @@ void    raycasting(t_game *game)
     while (++x < game->data.win_width)
     {
         set_deltas(game, &ray, x);
+        set_directions(&game->player, &ray);
+        ft_dda(game, &ray);
+        calculate_wall_params(game, &ray);
+        set_wall_hit(game, &ray);
         draw_wall(game, &ray, x);
     }
 }
