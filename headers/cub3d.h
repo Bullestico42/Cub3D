@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:05 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,10 +208,5 @@ void    free_tab(char **tab);
 
 
 /* PORTALS */
-void    cast_ray(t_game *game, t_ray *ray);
-void    transform_through_portal(t_vec hit_pos, double ray_dir,
-                t_portal in, t_portal out, t_vec *new_pos, double *new_dir);
-void    init_portals(t_game *game);
-t_portal   *get_portal_by_id(t_game *game, int id);
 
 #endif

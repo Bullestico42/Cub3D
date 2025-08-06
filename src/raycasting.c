@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo <apiscopo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:02 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void    raycasting(t_game *game)
     while (++x < game->data.win_width)
     {
         set_deltas(game, &ray, x);
-        cast_ray(game, &ray);
         draw_wall(game, &ray, x);
     }
 }

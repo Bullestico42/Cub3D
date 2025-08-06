@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2024/07/18 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/06 17:03:19 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,73 +28,6 @@ static int  can_move_to(t_game *game, double x, double y)
     return (1);
 }
 
-
-static int  player_in_radius(t_portal *p, t_player *pl)
-{
-    double  dx;
-    double  dy;
-
-    dx = pl->pos_x - p->pos.x;
-    dy = pl->pos_y - p->pos.y;
-    if (dx * dx + dy * dy > PORTAL_RADIUS * PORTAL_RADIUS)
-        return (0);
-    return (1);
-}
-
-static void teleport_player(t_game *game, t_portal *in_p, t_portal *out_p)
-{
-    t_vec   new_pos;
-    double  new_dir;
-    double  angle;
-
-    angle = atan2(game->player.dir_y, game->player.dir_x);
-    transform_through_portal((t_vec){game->player.pos_x, game->player.pos_y},
-        angle, *in_p, *out_p, &new_pos, &new_dir);
-    game->player.pos_x = new_pos.x + cos(new_dir) * PORTAL_EPS;
-    game->player.pos_y = new_pos.y + sin(new_dir) * PORTAL_EPS;
-    game->player.dir_x = cos(new_dir);
-    game->player.dir_y = sin(new_dir);
-}
-
-static void teleport_player_if_needed(t_game *game)
-{
-    char        cell;
-    t_portal    *in_p;
-    t_portal    *out_p;
-static void    teleport_player_if_needed(t_game *game)
-{
-    char    cell;
-    t_portal    *in_p;
-    t_portal    *out_p;
-    t_vec       new_pos;
-    double      angle;
-    double      new_dir;
-    double      dx;
-    double      dy;
-
-
-    cell = game->map[(int)game->player.pos_y][(int)game->player.pos_x];
-    if (cell != '2' && cell != '3')
-        return ;
-    in_p = get_portal_by_id(game, cell - '0');
-    out_p = get_portal_by_id(game, cell == '2' ? 3 : 2);
-    if (!in_p || !out_p || !player_in_radius(in_p, &game->player))
-        return ;
-    teleport_player(game, in_p, out_p);
-    dx = game->player.pos_x - in_p->pos.x;
-    dy = game->player.pos_y - in_p->pos.y;
-    if (dx * dx + dy * dy > PORTAL_RADIUS * PORTAL_RADIUS)
-        return ;
-    out_p = get_portal_by_id(game, cell == '2' ? 3 : 2);
-    angle = atan2(game->player.dir_y, game->player.dir_x);
-    transform_through_portal((t_vec){game->player.pos_x, game->player.pos_y},
-            angle, *in_p, *out_p, &new_pos, &new_dir);
-    game->player.pos_x = new_pos.x;
-    game->player.pos_y = new_pos.y;
-    game->player.dir_x = cos(new_dir);
-    game->player.dir_y = sin(new_dir);
-}
-
 void    move_player(t_game *game, double dx, double dy)
 {
     double  new_x;
@@ -106,7 +39,6 @@ void    move_player(t_game *game, double dx, double dy)
     {
         game->player.pos_x = new_x;
         game->player.pos_y = new_y;
-        teleport_player_if_needed(game);
     }
 }
 

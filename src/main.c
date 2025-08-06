@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/04 20:40:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/06 17:02:57 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,9 @@ int	main(int ac, char **av)
 	game.data.win = mlx_new_window(game.data.mlx,
 		game.data.win_width, game.data.win_height, "Cub3D");
 	if (!game.data.win)
-	destroy_display(&game,
-	"Error\ncan't generate window\n", 1);
+		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	load_textures(&game);
-        create_map(&game);
-        init_portals(&game);
-        mlx_loop(game.data.mlx);
+    create_map(&game);
+    mlx_loop(game.data.mlx);
 	return (0);
 }

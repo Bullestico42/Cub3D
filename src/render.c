@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/04 20:44:51 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/06 16:57:04 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void    render_images(t_game *game)
 {
     mlx_put_image_to_window(game->data.mlx, game->data.win,
             game->data.img.image, 0, 0);
-    create_minimap(game);
-    mlx_put_image_to_window(game->data.mlx, game->data.win,
-            game->data.minimap_img.image, 0, 0);
+    //create_minimap(game);
+    //mlx_put_image_to_window(game->data.mlx, game->data.win,
+            //game->data.minimap_img.image, 0, 0);
 }
 
 void    create_map(t_game *game)
