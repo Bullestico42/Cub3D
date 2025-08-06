@@ -47,6 +47,7 @@ static int  finalize_map(t_game *game, int i, t_flags *flags)
         if (extract_map(game, i))
                 return (1);
         free_double_ptr(game->dmap.brut_file);
+        game->dmap.brut_file = NULL;
         return (0);
 }
 

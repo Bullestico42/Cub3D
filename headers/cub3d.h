@@ -6,7 +6,7 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/06 16:57:05 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/06 15:12:12 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # define MOVE_SPEED 0.1
 # define ROT_SPEED 0.1
 # define MOUSE_ROT_SPEED 0.05
-# define PORTAL_RADIUS 0.3
-# define PORTAL_EPS 0.1
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -96,14 +94,6 @@ typedef struct s_vec
         double  y;
 }       t_vec;
 
-typedef struct s_portal
-{
-        t_vec   pos;
-        double  angle;
-        int     id;
-}       t_portal;
-
-
 typedef struct s_ray
 {
         double  camera;
@@ -163,7 +153,6 @@ typedef struct s_game
         int                     state;
         t_data          data;
         t_player        player;
-        t_portal        portals[2];
 }                               t_game;
 
 int             destroy_display(t_game *game, char *str, int error);
@@ -206,7 +195,5 @@ char    *get_next_line(int fd);
 /* UTILS */
 void    free_tab(char **tab);
 
-
-/* PORTALS */
 
 #endif
