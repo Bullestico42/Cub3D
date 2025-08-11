@@ -1,7 +1,7 @@
-NO textures/simonkraft/soul_sand.xpm
-SO textures/simonkraft/soul_soil_01.xpm
-WE textures/simonkraft/soul_soil.xpm
-EA textures/simonkraft/soul_sand.xpm
+NO textures/portal_wall_no.xpm
+SO textures/portal_wall_so.xpm
+WE textures/portal_wall_we.xpm
+EA textures/portal_wall_ea.xpm
 
 C 53,41,34
 F 45,33,27

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/11 15:58:24 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@
 # define GREEN 9419919
 # define GRAY 14474460
 # define PINK 16752762
-# define MOVE_SPEED 0.1
-# define ROT_SPEED 0.1
+# define MOVE_SPEED 0.02
+# define ROT_SPEED 0.02
 # define MOUSE_ROT_SPEED 0.05
+# define MOUSE_CENTER_EPS 2
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -38,6 +39,7 @@
 # define KEY_LEFT       123
 # define KEY_RIGHT      124
 # define KEY_ESC        53
+# include "../mlx/mlx_mac/mlx.h"
 #endif
 
 /* Keycodes for Linux */
@@ -49,18 +51,28 @@
 # define KEY_LEFT       65361
 # define KEY_RIGHT      65363
 # define KEY_ESC        65307
+# include "../mlx/mlx_linux/mlx.h"
 #endif
 
 # include "../libft/libft.h"
 # include "../get_next_line/get_next_line.h"
-# include "mlx.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 
+typedef struct s_keys
+{
+        int     w;
+        int     a;
+        int     s;
+        int     d;
+        int     left;
+        int     right;
+}       t_keys;
+
 typedef struct s_dmap
 {
-        char    **brut_file;
+		char    **brut_file;
 }       t_dmap;
 
 typedef struct s_img
@@ -90,62 +102,73 @@ typedef struct s_textures
 
 typedef struct s_ray
 {
-        double  camera;
-        double  dir_x;
-        double  dir_y;
-        double  delta_dist_x;
-        double  delta_dist_y;
-        int             step_x;
-        int             step_y;
-        int             hit;
-        int             side;
-        double  side_dist_x;
-        double  side_dist_y;
-        int             map_x;
-        int             map_y;
-        int             draw_start;
-        int             draw_end;
-        double          perp_dist;
+		double  camera;
+		double  dir_x;
+		double  dir_y;
+		double  delta_dist_x;
+		double  delta_dist_y;
+		int             step_x;
+		int             step_y;
+		int             hit;
+		int             side;
+		double  side_dist_x;
+		double  side_dist_y;
+		int             map_x;
+		int             map_y;
+		int             draw_start;
+		int             draw_end;
+		double          perp_dist;
 	int             line_height;
 }	t_ray;
 
 typedef struct s_data
 {
-        void    *mlx;
-        void    *win;
-        int             win_width;
-        int             win_height;
-        int             pixel_size_x;
-        int             pixel_size_y;
-        int             pixel_size;
-        t_img   img;
-        t_img   minimap_img;
+		void    *mlx;
+		void    *win;
+		int             win_width;
+		int             win_height;
+		int             pixel_size_x;
+		int             pixel_size_y;
+		int             pixel_size;
+		t_img   img;
+		t_img   minimap_img;
 }                               t_data;
 
 typedef struct s_player
 {
-        double  pos_x;
-        double  pos_y;
-        int             color;
-        double  dir_x;
-        double  dir_y;
-        double  fov_x;
-        double  fov_y;
-        double  mouse_x;
-        char    orientation;
-}                               t_player;
+		double  pos_x;
+		double  pos_y;
+		int             color;
+		double  dir_x;
+		double  dir_y;
+		double  fov_x;
+		double  fov_y;
+		double  mouse_x;
+		char    orientation;
+}	t_player;
 
 typedef struct s_game
 {
-        t_dmap          dmap;
-        t_textures      textures;
-        char            **map;
-        int                     height;
-        int                     width;
-        int                     state;
-        t_data          data;
-        t_player        player;
-}                               t_game;
+		t_dmap		dmap;
+		t_textures	textures;
+		char		**map;
+		int			height;
+		int			width;
+		int			state;
+		int			mouse_locked;
+		t_data		data;
+		t_player	player;
+		t_keys		keys;
+}	t_game;
+
+
+
+
+//CONTROLS
+int     handle_keypress(int keycode, t_game *game);
+int     handle_keyrelease(int keycode, t_game *game);
+int     game_loop(t_game *game);
+
 
 int             destroy_display(t_game *game, char *str, int error);
 int             close_game(t_game *game);

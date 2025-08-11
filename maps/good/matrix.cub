@@ -1,7 +1,7 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO textures/portal_wall_no.xpm
+SO textures/portal_wall_so.xpm
+WE textures/portal_wall_we.xpm
+EA textures/portal_wall_ea.xpm
 
 F 0,0,0
 C 0,0,0

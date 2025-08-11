@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/04 21:38:40 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/11 14:51:49 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_mlx(t_game *game)
 
 	game->data.mlx = NULL;
 	game->data.win = NULL;
-	game->data.win_width = 800;
-	game->data.win_height = 600;
+	game->data.win_width = 900;
+	game->data.win_height = 650;
 	pixel_size_x = game->data.win_width / game->width;
 	pixel_size_y = game->data.win_height / game->height;
 	game->data.pixel_size = ft_min(pixel_size_x, pixel_size_y);
@@ -60,4 +60,5 @@ void	init_values(t_game *game)
 	game->dmap.brut_file = NULL;
 	init_player(game);
 	init_mlx(game);
+	ft_memset(&game->keys, 0, sizeof(t_keys));
 }

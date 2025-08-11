@@ -1,0 +1,404 @@
+[33mcommit 5db0cbe98d2ede3f9cc573cbca16b35efe790704[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 420a351 c16922b
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Wed Aug 6 21:19:36 2025 +0200
+
+    Merge pull request #11 from Bullestico42/codex/fix-code-and-conform-to-norm-42
+    
+    Restore raycasting pipeline to render walls
+
+[33mcommit c16922b9852ecb78aa6ddf4f997cd100b7995604[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Wed Aug 6 21:19:20 2025 +0200
+
+    Restore raycasting step pipeline
+
+[33mcommit 420a351a32cdbc44937ac2c3a8f24fd0f8b24620[m
+Author: Bullestico42 <aless@Aless.localdomain>
+Date:   Wed Aug 6 17:04:59 2025 +0200
+
+    correction de ia debile
+
+[33mcommit d0d0b0eda7879ad7c581dae6efef66e893093162[m
+Merge: 2a3b576 41f5c2c
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 14:20:46 2025 +0200
+
+    Merge pull request #10 from Bullestico42/codex/add-portal-system-to-raycaster
+    
+    fix: portal teleportation and style
+
+[33mcommit 41f5c2c81808344b3542be2ca93e2718ec55474f[m[33m ([m[1;31morigin/codex/add-portal-system-to-raycaster[m[33m)[m
+Merge: 53735ce 2a3b576
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 14:20:30 2025 +0200
+
+    Merge branch 'main' into codex/add-portal-system-to-raycaster
+
+[33mcommit 53735ce53a7f2f81f394c6ae6f94a0ffe9e69b0d[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 14:17:38 2025 +0200
+
+    feat: orient portals based on surrounding walls
+
+[33mcommit 2a3b5762d80e4bf0bfc07ee6f01989b9d383582f[m
+Merge: 94100d0 2377c6c
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 12:55:29 2025 +0200
+
+    Merge pull request #9 from Bullestico42/biere
+    
+    feat: add portal teleportation
+
+[33mcommit 2377c6c8c545c914a660795e128705b259b7fc71[m
+Merge: 546177e 94100d0
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 12:55:16 2025 +0200
+
+    Merge branch 'main' into codex/add-portal-system-to-raycaster
+
+[33mcommit 546177e5fe252a221ee6fab2d87278ea3764eded[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 12:51:58 2025 +0200
+
+    feat: track portal identifiers
+
+[33mcommit c48ca88fe758a251a5c1662b5c84b239c6beba2a[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 12:45:01 2025 +0200
+
+    feat: support bidirectional portals
+
+[33mcommit 94100d0f8db1477441f620cafa1c5262e1c65a74[m
+Merge: 2e133e5 4d41a67
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 00:17:02 2025 +0200
+
+    Merge pull request #8 from Bullestico42/codex/freestyle 2
+    
+    feat: add portal teleportation
+
+[33mcommit 4d41a671e804415f85b41faa3893a8a600040d27[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 00:16:22 2025 +0200
+
+    feat: add portal teleportation
+
+[33mcommit 2e133e58babc71a284213d8f9af187a562abadd2[m
+Merge: 6bfd41d 2ebb9be
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 00:14:53 2025 +0200
+
+    Merge pull request #7 from Bullestico42/freestule 2
+    
+    feat: add portal teleportation
+
+[33mcommit 2ebb9be00f2f25f97734bf295ed3c5aee0bff490[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Aug 5 00:14:12 2025 +0200
+
+    feat: add portal teleportation
+
+[33mcommit 6bfd41df1f28ce32d5ec63df42807d7bc5164e40[m
+Merge: ce4299f 4e75425
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Aug 4 23:11:48 2025 +0200
+
+    Merge pull request #6 from Bullestico42/caca
+    
+    fix texture orientation
+
+[33mcommit 4e7542528987c477ac5a95cfc18a28dfe2f552fc[m[33m ([m[1;31morigin/codex/fix-git-issue-and-update-textures[m[33m)[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Aug 4 23:11:27 2025 +0200
+
+    optimize raycasting
+
+[33mcommit ce4299f8ba1279ef173f3c6460211304c7de61ba[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Aug 4 22:32:51 2025 +0200
+
+    linux
+
+[33mcommit 1e378a54d29744927a3b41377e7da0051cceac6e[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Aug 4 21:21:59 2025 +0200
+
+    f
+
+[33mcommit 78de17bd4fad190994c8f472718440e48c0a9cf0[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Aug 4 14:35:33 2025 +0200
+
+    segf
+
+[33mcommit 651f84246259420c4b6a949205a671f179b2ab45[m[33m ([m[1;31morigin/wnykeq-codex/fix-segfault-and-update-makefile[m[33m, [m[1;31morigin/mtax6q-codex/fix-segfault-and-update-makefile[m[33m, [m[1;31morigin/codex/fix-segfault-and-update-makefile[m[33m, [m[1;31morigin/aypgvk-codex/fix-segfault-and-update-makefile[m[33m, [m[1;31morigin/a1zh6h-codex/fix-segfault-and-update-makefile[m[33m, [m[1;31morigin/6pugbk-codex/fix-segfault-and-update-makefile[m[33m)[m
+Merge: f4b45c2 e4720a8
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Sun Aug 3 21:25:11 2025 +0200
+
+    Merge pull request #5 from Bullestico42/
+    
+    feat: handle floor and ceiling colors
+
+[33mcommit e4720a8e3645ff9cf71b01e8c12fc61288d30af8[m[33m ([m[1;31morigin/codex/adapt-parsing-to-.cub-file-format[m[33m)[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Sun Aug 3 21:24:30 2025 +0200
+
+    refactor: enforce norme 42
+
+[33mcommit f4b45c2bf0f83d61da34f018a7ff5c2570e5c2e2[m
+Merge: 4dcb6e4 9bc019a
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Sun Aug 3 20:16:58 2025 +0200
+
+    Merge pull request #3 from Bullestico42
+    
+    Refactor render logic into modular files
+
+[33mcommit 9bc019aa03040c20fded984d21590d93706cf766[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Sun Aug 3 20:16:12 2025 +0200
+
+    Refactor rendering into modular files
+
+[33mcommit 4dcb6e400a6c72fe1a2d4edcb29f3d1077e7dc91[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Sat Jul 19 11:31:31 2025 +0200
+
+    more comments
+
+[33mcommit 5ee62178948efbc54313afd324f9b7a919a4800a[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Fri Jul 18 23:39:35 2025 +0200
+
+    Adding comment
+
+[33mcommit d07cd372dd3ba8c7da5529d7e375816788fbd646[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Fri Jul 18 22:11:11 2025 +0200
+
+    opti check walls and adding check for the chars
+
+[33mcommit f714f74330ed775587439c9fb5887d38f589cdb8[m[33m ([m[1;31morigin/minimap[m[33m)[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 17 21:17:03 2025 +0200
+
+    divisions des fonctions trop longues
+
+[33mcommit 1a57ad4f7b1750b63554788a61bd1b6bb670093b[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 17 19:21:36 2025 +0200
+
+    minimap works
+
+[33mcommit 9e0fc1854dd7e451c636057231ed448b4c40f0a3[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 17 12:04:16 2025 +0200
+
+    player rotate with mouse
+
+[33mcommit e91d338d418b44dceea2759a08978f3cbddb5794[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Wed Jul 16 20:53:18 2025 +0200
+
+    fixed sef quand perp_dist proche de 0
+
+[33mcommit 41bce1078f64a763fbe44c3798e75f3aea4e195b[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Wed Jul 16 07:48:53 2025 +0200
+
+    Parsing pour les bords de map okay
+
+[33mcommit ac9026caa7226c592e450873c743585db5e88b0f[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Sun Jul 13 11:06:51 2025 +0200
+
+    norm
+
+[33mcommit 0f88f21f37b67526cbd045d78f1cc931920d3a36[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Sun Jul 13 10:25:18 2025 +0200
+
+    plus de segf et le perso peut bouger normalement
+
+[33mcommit 33f41a16722b28cbdf6f0e2cdd5c761e807e16f0[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Sat Jul 12 18:56:54 2025 +0200
+
+    prout raycast
+
+[33mcommit 2c540c34a17f42bb6e31cef688b823aea6b11bc2[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Thu Jul 10 22:22:57 2025 +0200
+
+    ca segf mais plus au meme endroit
+
+[33mcommit b5d64787c5926504437d0aa65121c34a79e24412[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 10 21:15:53 2025 +0200
+
+    merge error fixed mais segfault
+
+[33mcommit de9a44e4860e0e808e426557942140abe7185806[m
+Merge: 6357e21 e884392
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 10 08:08:00 2025 +0200
+
+    il y a des petites merge error
+
+[33mcommit e88439289acf2e5c9e5e4f2c91e9bd5a01309b40[m[33m ([m[1;31morigin/rendering[m[33m)[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Thu Jul 10 07:32:57 2025 +0200
+
+    j'ai ajouté les definitons des fonctions
+
+[33mcommit 089e8c5db7e949bac5397374ff00aaa416408769[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Wed Jul 9 03:04:38 2025 +0200
+
+    raycasting a moitié fait
+
+[33mcommit 6357e21e84080c02676d4c16b628966a606fcc92[m
+Merge: 166cabb 15eece1
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Jul 8 03:36:32 2025 +0200
+
+    Parsing pret a l'emploi
+    
+    Parsing
+
+[33mcommit 166cabb4ce9f2ca953d76c706fa1dafbb6051854[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Tue Jul 8 03:36:04 2025 +0200
+
+    Update README.md
+
+[33mcommit 15eece1386dbe3fd3f56f0970608b042d2807dd7[m[33m ([m[1;31morigin/Parsing[m[33m)[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Tue Jul 8 03:34:57 2025 +0200
+
+    Parsing ready
+
+[33mcommit 2578f3b8532b88340a1f82e297c8c8512ba9bc39[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Tue Jul 8 02:38:33 2025 +0200
+
+    calculs raycasting commencé
+
+[33mcommit 2efaa24883c0815db45468ab23554e5c253976fa[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Mon Jul 7 22:25:59 2025 +0200
+
+    j'ai fais du rangement dans l'organisation
+
+[33mcommit d54fef6e85906d7bdaf6ccb6bfa2af0492d20f8c[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Mon Jul 7 20:45:49 2025 +0200
+
+    le player est sur la map (c'est un pixel rouge)
+
+[33mcommit b5031483b0cf757feea55a5dea876cacf5a5dc8c[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Jul 7 08:51:06 2025 +0200
+
+    Update README.md
+
+[33mcommit b77b5d942dd25da36158035cc37c8e950adc1540[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Jul 7 08:50:25 2025 +0200
+
+    Update README.md
+
+[33mcommit cb633168364801bd0325a473759d8bae84754b37[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Jul 7 08:49:59 2025 +0200
+
+    Update README.md
+
+[33mcommit 07b81a894a80ad57302739e71e1bbc854c0183ba[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Jul 7 08:45:39 2025 +0200
+
+    extracting textures name terminated
+
+[33mcommit 6fe01f5b04ac100acf771f259139d0f3789c6509[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Jul 7 04:40:46 2025 +0200
+
+    caca
+
+[33mcommit 53163f5fdfc5fbc0c8f132b9dbbd669303775f65[m
+Merge: f35dcc0 30f99b0
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Mon Jul 7 03:12:32 2025 +0200
+
+    Stocker le fichier dans la struc
+    
+    Stocker le fichier dans la struc
+
+[33mcommit 30f99b033a7c27cd3c3d055d85aabdbc8b7e4e9e[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Jul 7 03:10:05 2025 +0200
+
+    Stocker le fichier dans la struc
+
+[33mcommit ab33f0ced89f82d6ea56db0c3de52890ffec5342[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Mon Jul 7 02:41:30 2025 +0200
+
+    map: abandon de la liste chaînée pour le tableau de string
+
+[33mcommit f35dcc089d444e3f108f10d73eaf248af8d8237a[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Mon Jul 7 00:30:13 2025 +0200
+
+    Begin parsing
+
+[33mcommit 8179e5fc95b122b6f1f1a23fdf8ec55aefa149b1[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Mon Jul 7 00:30:12 2025 +0200
+
+    initialisation de la map
+
+[33mcommit 117c668678d4551577c1af07e1ed651133f85356[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Sun Jul 6 15:03:26 2025 +0200
+
+    ajout d'explication des fonctions
+
+[33mcommit 911f7cbf7fc8c5bf9451719b8989df559e560f12[m
+Author: Yokio9 <dmatayi@gmail.com>
+Date:   Sun Jul 6 14:50:12 2025 +0200
+
+    verifications de l'initialisation des ptr et fermeture de la fenetre
+
+[33mcommit 4d4d6f4a95da1a172753bbc900deadc5078ada72[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Sat Jul 5 22:02:22 2025 +0200
+
+    test de destruction de fenetre macOS
+
+[33mcommit 0e73ba2f7729f33218affc9b2cea5e1ab9f7f017[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Sat Jul 5 21:35:53 2025 +0200
+
+    Je pose les base
+
+[33mcommit 9baea11ee8148e344d4d5569e869bebf16cb9dd3[m
+Author: Alessio Piscopo <bullestico@macbook-air-de-alessio.home>
+Date:   Sat Jul 5 21:34:23 2025 +0200
+
+    Je pose les bases
+
+[33mcommit 23392cc6956f41bee39fb05d4cd7d7ef50260e2c[m[33m ([m[1;31morigin/yoyoyoyoyo[m[33m)[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Sat Jul 5 14:16:20 2025 +0200
+
+    Update README.md
+
+[33mcommit 94cc949177489793d0858ce755066f430c6483fd[m
+Author: Bullestico <alessiopiscopo0@outlook.com>
+Date:   Thu Jul 3 00:54:25 2025 +0200
+
+    Create README.md

@@ -1,7 +1,7 @@
-NO textures/simonkraft/wet_sponge.xpm
-SO textures/simonkraft/wet_sponge.xpm
-WE textures/simonkraft/wet_sponge.xpm
-EA textures/simonkraft/wet_sponge.xpm
+NO textures/portal_wall_no.xpm
+SO textures/portal_wall_so.xpm
+WE textures/portal_wall_we.xpm
+EA textures/portal_wall_ea.xpm
 
 F 164,169,20
 C 153,204,255
@@ -26,5 +26,4 @@ C 153,204,255
 100010000000000010001
 101010111011111111101
 1N1000001000000000001
-111111111111111111111
-
+11111111111111111111

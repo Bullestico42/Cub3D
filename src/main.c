@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/04 20:40:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/11 15:36:04 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ Elle prend une string qui sera afficher sur le stderr
 et exit avec le code d'erreur donné en paramètre*/
 int	destroy_display(t_game *game, char *str, int error_code)
 {
+	mlx_mouse_show(game->data.mlx, game->data.win);
+	game->mouse_locked = 0;
 	if (str != NULL)
 		ft_putstr_fd(str, 2);
 	if (game->dmap.brut_file)
@@ -36,7 +38,11 @@ int	destroy_display(t_game *game, char *str, int error_code)
 
 int	destroy_display(t_game *game, char *str, int error)
 {
+	mlx_mouse_show();
+    game->mouse_locked = 0;
 	ft_putstr_fd(str, 2);
+	if (game->dmap.brut_file)
+		free_double_ptr(game->dmap.brut_file);
 	if (game->data.mlx)
 	{
 		mlx_destroy_window(game->data.mlx, game->data.win);
@@ -74,14 +80,13 @@ int	main(int ac, char **av)
 	init_values(&game);
 	game.data.mlx = mlx_init();
 	if (!game.data.mlx)
-	destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
+		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
 	game.data.win = mlx_new_window(game.data.mlx,
-		game.data.win_width, game.data.win_height, "Cub3D");
+	game.data.win_width, game.data.win_height, "Cub3D");
 	if (!game.data.win)
-	destroy_display(&game,
-	"Error\ncan't generate window\n", 1);
+		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	load_textures(&game);
-	create_map(&game);
-	mlx_loop(game.data.mlx);
+    create_map(&game);
+    mlx_loop(game.data.mlx);
 	return (0);
 }

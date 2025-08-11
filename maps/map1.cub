@@ -3,8 +3,8 @@ SO textures/portal_wall_so.xpm
 WE textures/portal_wall_we.xpm
 EA textures/portal_wall_ea.xpm
 
-F 44,70,0
-C 20,20,20
+F 82,78,69
+C 35,47,66
 
         1111111111111111111111111
         1000000000110000000000001

@@ -1,10 +1,10 @@
 F 76,76,76
 C 99,99,99
 
-NO textures/simonkraft/cobblestone.xpm
-SO textures/simonkraft/cobblestone_01.xpm
-WE textures/simonkraft/mossy_cobblestone1.xpm
-EA textures/simonkraft/cobblestone_02.xpm
+NO textures/portal_wall_no.xpm
+SO textures/portal_wall_so.xpm
+WE textures/portal_wall_we.xpm
+EA textures/portal_wall_ea.xpm
 
 1111111111111111111
 10W1001001001000001
