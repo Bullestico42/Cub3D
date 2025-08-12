@@ -3,63 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   extract_raw_file.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/12 16:15:04 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
-
-typedef struct s_flags
-{
-        int     tex;
-        int     col;
-}       t_flags;
-
-char    *skip_spaces(char *line);
-int     is_line_empty(char *line);
-int     parse_elements(t_game *game, t_flags *flags);
+#include "parsing.h"
 
 static int  extract_map(t_game *game, int start)
 {
-        int     height;
+		int     height;
 
-        height = 0;
-        while (game->dmap.brut_file[start + height])
-                height++;
-        if (height < 3)
-                return (printf("Error: Map Invalid\n"), 1);
-        if (fill_map(height, game, &game->dmap.brut_file[start]))
-                return (1);
-        return (0);
+		height = 0;
+		while (game->parsing.brut_file[start + height])
+				height++;
+		if (height < 3)
+				return (printf("Error: Map Invalid\n"), 1);
+		if (fill_map(height, game, &game->parsing.brut_file[start]))
+				return (1);
+		return (0);
 }
 
-static int  finalize_map(t_game *game, int i, t_flags *flags)
+static int  finalize_map(t_game *game, int i)
 {
-        while (game->dmap.brut_file[i] && is_line_empty(game->dmap.brut_file[i]))
-                i++;
-        if (flags->tex != 15 || flags->col != 3)
-                return (printf("Error: Map Invalid\n"), 1);
-        if (!game->dmap.brut_file[i])
-                return (printf("Error: Map Invalid\n"), 1);
-        if (extract_map(game, i))
-                return (1);
-        free_double_ptr(game->dmap.brut_file);
-        return (0);
+		while (game->parsing.brut_file[i] && is_line_empty(game->parsing.brut_file[i]))
+				i++;
+		if (game->parsing.tex != 15 || game->parsing.col != 3)
+				return (printf("Error: Map Invalid\n"), 1);
+		if (!game->parsing.brut_file[i])
+				return (printf("Error: Map Invalid\n"), 1);
+		if (extract_map(game, i))
+				return (1);
+		free_double_ptr(game->parsing.brut_file);
+		return (0);
 }
 
-int     extract_raw(t_game *game)
+int	extract_raw(t_game *game)
 {
-        int     index;
-        t_flags flags;
+		int     index;
 
-        flags.tex = 0;
-        flags.col = 0;
-        index = parse_elements(game, &flags);
-        if (index < 0)
-                return (printf("Error: Map Invalid\n"), 1);
-        return (finalize_map(game, index, &flags));
+		game->parsing.tex = 0;
+		game->parsing.col = 0;
+		index = parse_elements(game);
+		if (index < 0)
+				return (printf("Error: Map Invalid\n"), 1);
+		return (finalize_map(game, index));
 }
-

@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/11 19:06:34 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:02:22 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	destroy_display(t_game *game, char *str, int error_code)
 	game->mouse_locked = 0;
 	if (str != NULL)
 		ft_putstr_fd(str, 2);
-	if (game->dmap.brut_file)
-		free_double_ptr(game->dmap.brut_file);
+	if (game->parsing.brut_file)
+		free_double_ptr(game->parsing.brut_file);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)
@@ -59,8 +59,8 @@ int	destroy_display(t_game *game, char *str, int error)
 	mlx_mouse_show();
     game->mouse_locked = 0;
 	ft_putstr_fd(str, 2);
-	if (game->dmap.brut_file)
-		free_double_ptr(game->dmap.brut_file);
+	if (game->parsing.brut_file)
+		free_double_ptr(game->parsing.brut_file);
 	if (game->data.mlx)
 	{
 		mlx_destroy_window(game->data.mlx, game->data.win);
@@ -94,7 +94,6 @@ int	main(int ac, char **av)
 		return (print_instructions(), 1);
 	if (init_data(&game, av[1]))
 		return (1);
-	printf("PARSING OKAY\n");
 	init_values(&game);
 	game.data.mlx = mlx_init();
 	if (!game.data.mlx)

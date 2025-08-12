@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/11 19:40:05 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:10:54 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_mlx(t_game *game)
 
 	game->data.mlx = NULL;
 	game->data.win = NULL;
-	game->data.win_width = 900;
-	game->data.win_height = 650;
+	game->data.win_width = 1440;
+	game->data.win_height = 900;
 	pixel_size_x = game->data.win_width / game->width;
 	pixel_size_y = game->data.win_height / game->height;
 	game->data.pixel_size = ft_min(pixel_size_x, pixel_size_y);
@@ -49,14 +49,14 @@ void	init_player(t_game *game)
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
 	}
-    game->player.fov_x = -game->player.dir_y * 0.66;
-    game->player.fov_y =  game->player.dir_x * 0.66;
+    game->player.fov_x = -game->player.dir_y * FOV_K;
+    game->player.fov_y =  game->player.dir_x * FOV_K;
 }
 
 /* Fonction servant initialiser les valeurs dans les différentes structurees. */
 void	init_values(t_game *game)
 {
-	game->dmap.brut_file = NULL;
+	game->parsing.brut_file = NULL;
 	init_player(game);
 	init_mlx(game);
 	ft_memset(&game->keys, 0, sizeof(t_keys));

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   line_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@student.42.ai>            +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2024/07/19 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/12 15:42:29 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "parsing.h"
 
 char    *skip_spaces(char *line)
 {

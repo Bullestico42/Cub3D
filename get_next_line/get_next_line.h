@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 15:26:36 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/07/06 19:54:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 15:52:58 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,11 +6,11 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/04 14:28:06 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 15:42:50 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "parsing.h"
 
 //permets de compter le nbr de ligne du fichier .cub
 int	count_line(int fd)
@@ -48,7 +48,7 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 		free(line);
 		i++;
 	}
-	game->dmap.brut_file = tmp;
+	game->parsing.brut_file = tmp;
 	return (1);
 }
 

@@ -6,13 +6,12 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/11 19:31:44 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:10:38 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define BUFFER_SIZE 42
 # define BLUE 6591981
 # define LAVENDER 15792383
 # define GREEN 9419919
@@ -22,6 +21,7 @@
 # define ROT_SPEED 0.02
 # define MOUSE_ROT_SPEED 0.03
 # define MOUSE_CENTER_EPS 0.3
+# define FOV_K 0.66
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -54,11 +54,18 @@
 # include "../mlx/mlx_linux/mlx.h"
 #endif
 
-# include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+
+typedef struct s_parsing
+{
+	char	**brut_file;
+    int     tex;
+    int     col;
+    int     value;
+    int     index;
+}	t_parsing;
 
 typedef struct s_keys
 {
@@ -70,21 +77,16 @@ typedef struct s_keys
         int     right;
 }       t_keys;
 
-typedef struct s_dmap
-{
-		char    **brut_file;
-}       t_dmap;
-
 typedef struct s_img
 {
-	int             bpp;
-	int             line_length;
-	int             endian;
-	int             width;
-	int             height;
-	void    *image;
-	char    *addr;
-}       t_img;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+	void	*image;
+	char	*addr;
+}	t_img;
 
 typedef struct s_textures
 {
@@ -148,21 +150,20 @@ typedef struct s_player
 
 typedef struct s_game
 {
-		t_dmap		dmap;
-		t_textures	textures;
 		char		**map;
 		int			height;
 		int			width;
 		int			state;
 		int			mouse_locked;
 		double		mouse_dx_acc;
+		t_textures	textures;
+		t_parsing	parsing;
 		t_data		data;
 		t_player	player;
 		t_keys		keys;
 }	t_game;
 
-
-
+# include "../src/parsing/parsing.h"
 
 //CONTROLS
 int     handle_keypress(int keycode, t_game *game);
@@ -189,23 +190,7 @@ void	load_textures(t_game *game);
 unsigned int	get_texture_pixel(t_game *game, t_img *tex, int x, int y);
 int				rgb_to_hex(int r, int g, int b);
 
-/* PARSING */
-int             init_data(t_game *game, char *cub_name);
-int             extract_raw(t_game *game);
-int             extract_textures(t_game *game, char *line, int type);
-int             extract_colors(t_game *game, char *line, int type);
-int             fill_map(int lines, t_game *game, char **brut_map);
-void    find_player_position(t_game *game, int line_index);
-void    raycasting(t_game *game);
-int             check_walls_1(t_game *game);
-int             check_walls_2(t_game *game);
-int             check_char(char **map);
-char    *skip_spaces(char *line);
-int     is_line_empty(char *line);
 
-
-/* GNL */
-char    *get_next_line(int fd);
 
 /* UTILS */
 void    free_tab(char **tab);

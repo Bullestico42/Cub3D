@@ -6,11 +6,11 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/04 14:29:19 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 15:42:12 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "parsing.h"
 
 
 // rempli un tableau possedant la map
@@ -18,7 +18,6 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 {
 	int i;
 
-	printf("\n\n");
 	game->height = lines;
 	game->map = (char **)malloc(sizeof(char *) * (lines + 1));
 	if (!game->map)
@@ -30,14 +29,12 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 		if (!game->map[i])
 			return (free_double_ptr(game->map), 1);
 		find_player_position(game, i);
-		printf("%s", game->map[i]);
 		i++;
 	}
-	printf("\n\n");
 	game->map[i] = NULL;
 	if (check_walls_1(game))
 	{
-		printf("ERROR WALLS\n");
+		printf("ERROR: WALLS\n");
 		return (1);
 	}
     return (0);
