@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo <apiscopo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:45:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:40:16 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "graphics.h"
 
 static void	load_texture(t_game *game, t_img *img, char *path)
 {

@@ -6,12 +6,11 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:23 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/11 19:30:13 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:37:19 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
-#include <math.h>
+#include "controls.h"
 
 void    rotate_player(t_game *game, int direction, double rot_speed)
 {

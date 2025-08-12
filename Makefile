@@ -3,6 +3,8 @@ NAME = cub3D
 # === Dossiers ===
 SRC_DIR = src/
 PAR_DIR = src/parsing/
+GRA_DIR = src/graphics/
+MOV_DIR = src/controls/
 GNL_DIR = get_next_line/
 OBJ_DIR = obj
 INC_DIR = headers
@@ -10,8 +12,8 @@ LIBFT_DIR = libft
 
 # === Fichiers sources ===
 SRCS =  $(SRC_DIR)main.c \
-                $(SRC_DIR)initialisation.c \
-                $(SRC_DIR)render.c \
+                $(PAR_DIR)initialisation.c \
+                $(GRA_DIR)render.c \
                 $(SRC_DIR)utils.c \
                 $(PAR_DIR)init.c \
                 $(PAR_DIR)extract_raw_file.c \
@@ -20,13 +22,13 @@ SRCS =  $(SRC_DIR)main.c \
                 $(PAR_DIR)extract_colors.c \
                 $(PAR_DIR)parse_elements.c \
                 $(PAR_DIR)line_utils.c \
-                $(SRC_DIR)raycasting_utils.c \
-                $(SRC_DIR)minimap_background.c \
-                $(SRC_DIR)minimap.c \
-                $(SRC_DIR)movement.c \
-                $(SRC_DIR)textures.c \
-                $(SRC_DIR)raycasting.c \
-                $(SRC_DIR)controls.c \
+                $(GRA_DIR)raycasting_utils.c \
+                $(GRA_DIR)minimap_background.c \
+                $(GRA_DIR)minimap.c \
+                $(MOV_DIR)movement.c \
+                $(GRA_DIR)textures.c \
+                $(GRA_DIR)raycasting.c \
+                $(MOV_DIR)controls.c \
                 $(GNL_DIR)get_next_line.c \
                 $(GNL_DIR)get_next_line_utils.c
 

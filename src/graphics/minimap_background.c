@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_background.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:40 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/11 14:49:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:39:52 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "graphics.h"
 
 static void set_minimap_pixel(t_game *game, int offset, int x, int y)
 {

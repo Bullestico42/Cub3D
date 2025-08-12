@@ -6,11 +6,11 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/12 16:10:54 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:26:48 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "parsing.h"
 
 void	init_mlx(t_game *game)
 {

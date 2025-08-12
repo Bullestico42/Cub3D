@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/11 14:48:58 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/12 16:37:26 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "controls.h"
 
 static int  can_move_to(t_game *game, double x, double y)
 {

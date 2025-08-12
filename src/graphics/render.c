@@ -6,11 +6,11 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/11 19:29:49 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:40:13 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "graphics.h"
 
 void    my_mlx_pixel_put(t_game *game, int x, int y, int color)
 {

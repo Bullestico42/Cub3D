@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 16:10:38 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 16:39:25 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 
 typedef struct s_parsing
 {
@@ -163,37 +164,19 @@ typedef struct s_game
 		t_keys		keys;
 }	t_game;
 
+// PARSING
 # include "../src/parsing/parsing.h"
+// GRAPHICS
+# include "../src/graphics/graphics.h"
+// CONTROLS
+# include "../src/controls/controls.h"
 
-//CONTROLS
-int     handle_keypress(int keycode, t_game *game);
-int     handle_keyrelease(int keycode, t_game *game);
-int     game_loop(t_game *game);
-
-
-int             destroy_display(t_game *game, char *str, int error);
-int             close_game(t_game *game);
-void    create_map(t_game *game);
-void    init_values(t_game *game);
-void    free_double_ptr(char **table);
-int             ft_min(int i, int j);
-void    create_minimap(t_game *game);
-void    render_images(t_game *game);
-void    draw_minimap_background(t_game *game, int scale, int center);
-void    my_mlx_pixel_put(t_game *game, int x, int y, int color);
-void    move_player(t_game *game, double dx, double dy);
-void    rotate_player(t_game *game, int direction, double rot_speed);
-void    apply_movement(t_game *game, int keycode);
-int             handle_keypress(int keycode, t_game *game);
-int             handle_mouse_move(int x, int y, t_game *game);
-void	load_textures(t_game *game);
-unsigned int	get_texture_pixel(t_game *game, t_img *tex, int x, int y);
-int				rgb_to_hex(int r, int g, int b);
-
-
-
-/* UTILS */
-void    free_tab(char **tab);
+// UTILS
+int		destroy_display(t_game *game, char *str, int error);
+int		close_game(t_game *game);
+void	init_values(t_game *game);
+void	free_double_ptr(char **table);
+void	free_tab(char **tab);
 
 #endif
 
