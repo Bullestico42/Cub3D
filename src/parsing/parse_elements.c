@@ -6,11 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:29:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 19:06:06 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../../headers/cub3d.h"
 
 static int	handle_tex(t_game *game, char *line, int idx)
 {

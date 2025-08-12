@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:26:01 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 19:08:05 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:19:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define PARSING_H
 # include "../../libft/libft.h"
 # include "../../get_next_line/get_next_line.h"
-# include "../../headers/cub3d.h"
+
+typedef struct s_game	t_game;
 
 int		parse_elements(t_game *game);
 int		init_data(t_game *game, char *cub_name);

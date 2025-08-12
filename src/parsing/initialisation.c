@@ -6,11 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/12 19:01:55 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../../headers/cub3d.h"
 
 void	init_mlx(t_game *game)
 {

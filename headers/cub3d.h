@@ -6,20 +6,12 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 19:22:35 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:22:31 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-// PARSING
-#include "../src/parsing/parsing.h"
-// GRAPHICS
-#include "../src/graphics/graphics.h"
-// CONTROLS
-
-#include "../src/controls/controls.h"
 # define BLUE 6591981
 # define LAVENDER 15792383
 # define GREEN 9419919
@@ -172,11 +164,18 @@ typedef struct s_game
 	t_keys		keys;
 }	t_game;
 
+// PARSING
+# include "../src/parsing/parsing.h"
+// GRAPHICS
+# include "../src/graphics/graphics.h"
+// CONTROLS
+# include "../src/controls/controls.h"
+
 // UTILS
 int		destroy_display(t_game *game, char *str, int error);
 int		close_game(t_game *game);
 void	init_values(t_game *game);
-void	free_double(char **table);
+void	free_double_ptr(char **table);
 void	free_tab(char **tab);
 
 #endif

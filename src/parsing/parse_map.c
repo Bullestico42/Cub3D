@@ -6,11 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 19:07:22 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "../../headers/cub3d.h"
 
 // rempli un tableau possedant la map
 int	fill_map(int lines, t_game *game, char **brut_map)
