@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo <apiscopo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 23:37:11 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/05 00:00:00 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/12 18:26:19 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	find_player_position(t_game *game, int line_index)
 	j = 0;
 	while (game->map[line_index][j])
 	{
-		if (game->map[line_index][j] == 'N' || game->map[line_index][j] == 'S' ||
-			game->map[line_index][j] == 'E' || game->map[line_index][j] == 'W')
+		if (game->map[line_index][j] == 'N'
+			|| game->map[line_index][j] == 'S'
+			|| game->map[line_index][j] == 'E'
+			|| game->map[line_index][j] == 'W')
 		{
 			game->player.pos_x = j + 0.5;
 			game->player.pos_y = line_index + 0.5;
@@ -37,6 +39,7 @@ int	ft_min(int i, int j)
 		return (i);
 	return (j);
 }
+
 void	free_double_ptr(char **table)
 {
 	int	i;

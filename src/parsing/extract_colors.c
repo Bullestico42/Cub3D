@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   extract_colors.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/12 15:51:36 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 18:54:44 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int  get_value(char *str)
+static int	get_value(char *str)
 {
 	char	*num_start;
 	int		res;
@@ -49,7 +49,7 @@ static t_parsing	parse_color(char *str, int index)
 	return (res);
 }
 
-static int  set_color(t_game *game, t_parsing res, int i, int type)
+static int	set_color(t_game *game, t_parsing res, int i, int type)
 {
 	if (res.value < 0)
 		return (0);
@@ -60,18 +60,18 @@ static int  set_color(t_game *game, t_parsing res, int i, int type)
 	return (1);
 }
 
-static int  check_tail(char *line, int index)
+static int	check_tail(char *line, int index)
 {
 	while (line[index] && line[index] != '\n')
 	{
 		if (line[index] != ' ' && line[index] != '\t')
 			return (0);
-			index++;
+		index++;
 	}
 	return (1);
 }
 
-int     extract_colors(t_game *game, char *line, int type)
+int	extract_colors(t_game *game, char *line, int type)
 {
 	int			i;
 	int			index;
@@ -89,4 +89,3 @@ int     extract_colors(t_game *game, char *line, int type)
 	}
 	return (check_tail(line, index));
 }
-

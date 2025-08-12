@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:26:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 16:30:24 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 19:09:25 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 # include "../../headers/cub3d.h"
+
+typedef struct s_tex
+{
+	double	wall_x;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+	int		tex_y;
+}		t_tex;
 
 void			create_map(t_game *game);
 int				ft_min(int i, int j);
@@ -24,5 +33,9 @@ void			rotate_player(t_game *game, int direction, double rot_speed);
 void			load_textures(t_game *game);
 unsigned int	get_texture_pixel(t_game *game, t_img *tex, int x, int y);
 int				rgb_to_hex(int r, int g, int b);
+void			set_directions(t_player *player, t_ray *r);
+void			ft_dda(t_game *game, t_ray *ray);
+void			calculate_wall_params(t_game *game, t_ray *ray);
+void			set_deltas(t_game *game, t_ray *ray, int x);
 
 #endif

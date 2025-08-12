@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 15:42:50 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 19:00:50 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ int	count_line(int fd)
 	int		count;
 
 	count = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		count++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	if (count <= 2)
 		return (0);
@@ -40,23 +42,25 @@ int	fill_raw(int fd, int n_lines, t_game *game)
 	if (!tmp)
 		return (0);
 	i = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		tmp[i] = ft_strdup(line);
 		if (!tmp[i])
 			return (free_double_ptr(tmp), 0);
 		free(line);
 		i++;
+		line = get_next_line(fd);
 	}
 	game->parsing.brut_file = tmp;
 	return (1);
 }
 
 //Ouvre un fd et  verifie l'extension
-int init_file(t_game *game, char *file)
+int	init_file(t_game *game, char *file)
 {
-	int fd;
-	int n_lines;
+	int	fd;
+	int	n_lines;
 
 	fd = 0;
 	n_lines = 0;

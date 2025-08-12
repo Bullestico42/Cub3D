@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:26:01 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 16:15:42 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 19:08:05 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include "../../get_next_line/get_next_line.h"
 # include "../../headers/cub3d.h"
 
-
-int     parse_elements(t_game *game);
+int		parse_elements(t_game *game);
 int		init_data(t_game *game, char *cub_name);
 int		extract_raw(t_game *game);
 int		extract_textures(t_game *game, char *line, int type);

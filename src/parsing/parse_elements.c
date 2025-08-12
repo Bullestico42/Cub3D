@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:29:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 16:16:06 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 19:06:06 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int  handle_tex(t_game *game, char *line, int idx)
+static int	handle_tex(t_game *game, char *line, int idx)
 {
-		int     mask;
+	int	mask;
 
-		mask = 1 << idx;
-		if ((game->parsing.tex & mask) || !extract_textures(game, line, idx))
-				return (-1);
-		game->parsing.tex |= mask;
-		return (1);
+	mask = 1 << idx;
+	if ((game->parsing.tex & mask) || !extract_textures(game, line, idx))
+		return (-1);
+	game->parsing.tex |= mask;
+	return (1);
 }
 
-static int  parse_texture_line(t_game *game, char *line)
+static int	parse_texture_line(t_game *game, char *line)
 {
 	if (!ft_strncmp(line, "NO", 2))
 		return (handle_tex(game, line, 0));
@@ -36,7 +36,7 @@ static int  parse_texture_line(t_game *game, char *line)
 	return (0);
 }
 
-static int  parse_color_line(t_game *game, char *line)
+static int	parse_color_line(t_game *game, char *line)
 {
 	if (line[0] == 'F')
 	{
@@ -57,26 +57,26 @@ static int  parse_color_line(t_game *game, char *line)
 
 static int	parse_element(t_game *game, char *line)
 {
-		int     state;
+	int	state;
 
-		state = parse_texture_line(game, line);
-		if (state == -1)
-				return (1);
-		if (state == 1)
-				return (0);
-		state = parse_color_line(game, line);
-		if (state == -1)
-				return (1);
-		if (state == 1)
-				return (0);
+	state = parse_texture_line(game, line);
+	if (state == -1)
 		return (1);
+	if (state == 1)
+		return (0);
+	state = parse_color_line(game, line);
+	if (state == -1)
+		return (1);
+	if (state == 1)
+		return (0);
+	return (1);
 }
 
-int     parse_elements(t_game *game)
+int	parse_elements(t_game *game)
 {
-		int     i;
+	int	i;
 
-		i = 0;
+	i = 0;
 	while (game->parsing.brut_file[i])
 	{
 		if (is_line_empty(game->parsing.brut_file[i]))
@@ -92,4 +92,3 @@ int     parse_elements(t_game *game)
 	}
 	return (i);
 }
-

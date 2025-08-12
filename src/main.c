@@ -3,31 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 16:02:22 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 18:25:01 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
 
-static void lock_mouse(t_game *game)
-{
-    int cx;
-    int cy;
+#if defined(__APPLE__)
 
-    cx = game->data.win_width / 2;
-    cy = game->data.win_height / 2;
-# if defined(__APPLE__)
-    mlx_mouse_hide();
-    mlx_mouse_move(game->data.win, cx, cy);
-# else
-    mlx_mouse_hide(game->data.mlx, game->data.win);
-    mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
-# endif
-    game->mouse_locked = 1;
-    printf("mouselocked\n");
+static void	hide_and_move_mouse(t_game *game, int cx, int cy)
+{
+	mlx_mouse_hide();
+	mlx_mouse_move(game->data.win, cx, cy);
+}
+
+#else
+
+static void	hide_and_move_mouse(t_game *game, int cx, int cy)
+{
+	mlx_mouse_hide(game->data.mlx, game->data.win);
+	mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
+}
+
+#endif
+
+static void	lock_mouse(t_game *game)
+{
+	int	cx;
+	int	cy;
+
+	cx = game->data.win_width / 2;
+	cy = game->data.win_height / 2;
+	hide_and_move_mouse(game, cx, cy);
+	game->mouse_locked = 1;
+	printf("mouselocked\n");
 }
 
 #ifdef __linux__
@@ -57,7 +69,7 @@ int	destroy_display(t_game *game, char *str, int error_code)
 int	destroy_display(t_game *game, char *str, int error)
 {
 	mlx_mouse_show();
-    game->mouse_locked = 0;
+	game->mouse_locked = 0;
 	ft_putstr_fd(str, 2);
 	if (game->parsing.brut_file)
 		free_double_ptr(game->parsing.brut_file);
@@ -88,7 +100,7 @@ int	close_game(t_game *game)
 Il permet aussi de fermer la fenêtre avec la croix.*/
 int	main(int ac, char **av)
 {
-	t_game game;
+	t_game	game;
 
 	if (ac != 2)
 		return (print_instructions(), 1);
@@ -99,12 +111,12 @@ int	main(int ac, char **av)
 	if (!game.data.mlx)
 		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
 	game.data.win = mlx_new_window(game.data.mlx,
-	game.data.win_width, game.data.win_height, "Cub3D");
+			game.data.win_width, game.data.win_height, "Cub3D");
 	lock_mouse(&game);
 	if (!game.data.win)
 		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	load_textures(&game);
-    create_map(&game);
-    mlx_loop(game.data.mlx);
+	create_map(&game);
+	mlx_loop(game.data.mlx);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:45:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 16:40:16 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 18:53:33 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	load_texture(t_game *game, t_img *img, char *path)
 
 void	load_textures(t_game *game)
 {
-		load_texture(game, &game->textures.img_no, game->textures.path_no);
-		load_texture(game, &game->textures.img_so, game->textures.path_so);
-		load_texture(game, &game->textures.img_we, game->textures.path_we);
-		load_texture(game, &game->textures.img_ea, game->textures.path_ea);
+	load_texture(game, &game->textures.img_no, game->textures.path_no);
+	load_texture(game, &game->textures.img_so, game->textures.path_so);
+	load_texture(game, &game->textures.img_we, game->textures.path_we);
+	load_texture(game, &game->textures.img_ea, game->textures.path_ea);
 }
 
 unsigned int	get_texture_pixel(t_game *game, t_img *tex, int x, int y)

@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 15:42:12 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/12 19:07:22 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-
 // rempli un tableau possedant la map
 int	fill_map(int lines, t_game *game, char **brut_map)
 {
-	int i;
+	int	i;
 
 	game->height = lines;
 	game->map = (char **)malloc(sizeof(char *) * (lines + 1));
@@ -37,7 +36,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 		printf("ERROR: WALLS\n");
 		return (1);
 	}
-    return (0);
+	return (0);
 }
 
 // obtient uniquement la plus grande largeur de la map
@@ -85,7 +84,7 @@ int	check_walls_1(t_game *game)
 				white_space(game->map[game->height][x])))
 			x++;
 		else
-			return (1);		
+			return (1);
 	}
 	if (check_walls_2(game))
 		return (1);
@@ -95,14 +94,14 @@ int	check_walls_1(t_game *game)
 // vérifie la gauche et droite de la map
 int	check_walls_2(t_game *game)
 {
-	int x;
+	int	x;
 	int	y;
 
 	x = 0;
 	y = 1;
 	while (game->map[y])
 	{
-		if (game->map[y][x] == '1' && 
+		if (game->map[y][x] == '1' &&
 			game->map[y][(ft_strlen(game->map[y])) - 2] == '1')
 		{
 			y++;
@@ -111,13 +110,12 @@ int	check_walls_2(t_game *game)
 		else if (white_space(game->map[y][x]))
 			x++;
 		else
-			return (1);		
+			return (1);
 	}
 	if (check_char(game->map))
 		return (1);
 	return (0);
 }
-
 
 // vérifie s'il n y a pas de char inconnu
 int	check_char(char **map)
