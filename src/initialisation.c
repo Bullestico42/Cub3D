@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/11 14:51:49 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/11 19:40:05 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void	init_player(t_game *game)
 		game->player.dir_x = -1;
 		game->player.dir_y = 0;
 	}
-	game->player.fov_x = 0.66;
-	game->player.fov_y = 0;
-	game->player.mouse_x = (double)game->data.win_width / 2;
+    game->player.fov_x = -game->player.dir_y * 0.66;
+    game->player.fov_y =  game->player.dir_x * 0.66;
 }
 
 /* Fonction servant initialiser les valeurs dans les différentes structurees. */

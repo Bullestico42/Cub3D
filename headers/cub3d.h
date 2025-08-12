@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/11 15:58:24 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/11 19:31:44 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define PINK 16752762
 # define MOVE_SPEED 0.02
 # define ROT_SPEED 0.02
-# define MOUSE_ROT_SPEED 0.05
-# define MOUSE_CENTER_EPS 2
+# define MOUSE_ROT_SPEED 0.03
+# define MOUSE_CENTER_EPS 0.3
 
 /* OS Detection */
 #ifdef __APPLE__
@@ -143,7 +143,6 @@ typedef struct s_player
 		double  dir_y;
 		double  fov_x;
 		double  fov_y;
-		double  mouse_x;
 		char    orientation;
 }	t_player;
 
@@ -156,6 +155,7 @@ typedef struct s_game
 		int			width;
 		int			state;
 		int			mouse_locked;
+		double		mouse_dx_acc;
 		t_data		data;
 		t_player	player;
 		t_keys		keys;

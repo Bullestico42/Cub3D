@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/11 15:36:04 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/11 19:06:34 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/cub3d.h"
+
+static void lock_mouse(t_game *game)
+{
+    int cx;
+    int cy;
+
+    cx = game->data.win_width / 2;
+    cy = game->data.win_height / 2;
+# if defined(__APPLE__)
+    mlx_mouse_hide();
+    mlx_mouse_move(game->data.win, cx, cy);
+# else
+    mlx_mouse_hide(game->data.mlx, game->data.win);
+    mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
+# endif
+    game->mouse_locked = 1;
+    printf("mouselocked\n");
+}
 
 #ifdef __linux__
 
@@ -83,6 +101,7 @@ int	main(int ac, char **av)
 		destroy_display(&game, "Error\nCan't initialize mlx ptr\n", 1);
 	game.data.win = mlx_new_window(game.data.mlx,
 	game.data.win_width, game.data.win_height, "Cub3D");
+	lock_mouse(&game);
 	if (!game.data.win)
 		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	load_textures(&game);

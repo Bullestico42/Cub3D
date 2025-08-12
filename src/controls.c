@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:23 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/11 16:05:07 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/11 19:30:13 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,32 +34,35 @@ void    rotate_player(t_game *game, int direction, double rot_speed)
 		+ game->player.fov_y * cos(angle);
 }
 
+static int  check_mouse_centered(int x, int y, t_game *game)
+{
+	int cx;
+	int cy;
+
+	cx = game->data.win_width / 2;
+	cy = game->data.win_height / 2;
+	if (abs(x - cx) <= MOUSE_CENTER_EPS && abs(y - cy) <= MOUSE_CENTER_EPS)
+		return (1);
+	return (0);
+}
+
+
 int     handle_mouse_move(int x, int y, t_game *game)
 {
-	double  mouse_x;
-	double  deltas;
 	int		cx;
 	int		cy;
 
 	if (!game || !game->mouse_locked)
-        return (0);
+		return (0);
 	cx = game->data.win_width / 2;
 	cy = game->data.win_height / 2;
-	(void)y;
-	mouse_x = (double)x;
-	deltas = mouse_x - game->player.mouse_x;
-    if (abs(x - cx) <= MOUSE_CENTER_EPS && abs(y - cy) <= MOUSE_CENTER_EPS)
-        return (0);
-	else if (deltas < 0)
-		rotate_player(game, -1, MOUSE_ROT_SPEED);
-	else if (deltas > 0)
-		rotate_player(game, 1, MOUSE_ROT_SPEED);
-	game->player.mouse_x = mouse_x;
-# if defined(__APPLE__)
-    mlx_mouse_move(game->data.win, cx, cy);
+	if (check_mouse_centered(x, y, game))
+		return (0);
+	game->mouse_dx_acc += (x -cx);
+# if defined (__APPLE__)
+	mlx_mouse_move(game->data.win, cx, cy);
 # else
-    mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
-	printf("mousecentered\n");
+	mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
 # endif
 	return (0);
 }
@@ -102,19 +105,29 @@ int     handle_keyrelease(int keycode, t_game *game)
 
 int     game_loop(t_game *game)
 {
-    if (game->keys.w)
-        move_player(game, game->player.dir_x, game->player.dir_y);
-    if (game->keys.s)
-        move_player(game, -game->player.dir_x, -game->player.dir_y);
-    if (game->keys.a)
-        move_player(game, game->player.dir_y, -game->player.dir_x);
-    if (game->keys.d)
-        move_player(game, -game->player.dir_y, game->player.dir_x);
-    if (game->keys.left)
-        rotate_player(game, -1, ROT_SPEED);
-    if (game->keys.right)
-        rotate_player(game, 1, ROT_SPEED);
-    raycasting(game);
-    render_images(game);
-    return (0);
+	double delta;
+	
+	delta = 0.0;
+	if (game->keys.w)
+		move_player(game, game->player.dir_x, game->player.dir_y);
+	if (game->keys.s)
+		move_player(game, -game->player.dir_x, -game->player.dir_y);
+	if (game->keys.a)
+		move_player(game, game->player.dir_y, -game->player.dir_x);
+	if (game->keys.d)
+		move_player(game, -game->player.dir_y, game->player.dir_x);
+	if (game->keys.left)
+		rotate_player(game, -1, ROT_SPEED);
+	if (game->keys.right)
+		rotate_player(game, 1, ROT_SPEED);
+	if (game->mouse_locked && game->mouse_dx_acc != 0.0)
+	{
+		delta = game->mouse_dx_acc * MOUSE_ROT_SPEED;
+		if (delta < 0) 
+			rotate_player(game, -1, -delta);
+		else
+			rotate_player(game,  1, delta);
+		game->mouse_dx_acc = 0.0;
+	}
+	return (raycasting(game), render_images(game), 0);
 }
