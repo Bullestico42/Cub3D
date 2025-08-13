@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:11 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 18:39:27 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:15:31 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,15 @@ void	draw_player(t_game *game, int center)
 		j = 0;
 		while (j < 8)
 		{
-			x = center - 2 + i;
-			y = center - 2 + j;
-			offset = y * game->data.minimap_img.line_length
-				+ x * (game->data.minimap_img.bpp / 8);
-			*(unsigned int *)(game->data.minimap_img.addr + offset) = BLUE;
+			x = center - 4 + i;
+			y = center - 4 + j;
+			if (x >= 0 && x < game->data.win_width / 5
+				&& y >= 0 && y < game->data.win_width / 5)
+			{
+				offset = y * game->data.minimap_img.line_length
+					+ x * (game->data.minimap_img.bpp / 8);
+				*(unsigned int *)(game->data.minimap_img.addr + offset) = BLUE;
+			}
 			j++;
 		}
 		i++;
@@ -70,11 +74,11 @@ void	direction_line(t_game *game, int center)
 	int	dir_y;
 
 	step = 1;
-	line_length = 10;
+	line_length = 15;
 	while (step <= line_length)
 	{
-		dir_x = center + 2 + (int)(game->player.dir_x * step);
-		dir_y = center + 2 + (int)(game->player.dir_y * step);
+		dir_x = center + (int)(game->player.dir_x * step);
+		dir_y = center + (int)(game->player.dir_y * step);
 		plot_dir_thick(game, dir_x, dir_y);
 		step++;
 	}
@@ -82,11 +86,13 @@ void	direction_line(t_game *game, int center)
 
 void	create_minimap(t_game *game)
 {
-	int	scale;
-	int	center;
+	float	scale;
+	int		center;
+	int		minimap_size;
 
-	scale = game->data.win_width / 5 / 10;
-	center = game->data.win_width / 5 / 2;
+	minimap_size = game->data.win_width / 5;
+	center = minimap_size / 2;
+	scale = minimap_size / 12.0f;
 	draw_minimap_background(game, scale, center);
 	draw_player(game, center);
 	direction_line(game, center);

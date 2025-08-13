@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:26:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 19:09:25 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/13 13:03:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			create_map(t_game *game);
 int				ft_min(int i, int j);
 void			create_minimap(t_game *game);
 void			render_images(t_game *game);
-void			draw_minimap_background(t_game *game, int scale, int center);
+void			draw_minimap_background(t_game *game, float scale, int center);
 void			my_mlx_pixel_put(t_game *game, int x, int y, int color);
 void			rotate_player(t_game *game, int direction, double rot_speed);
 void			load_textures(t_game *game);

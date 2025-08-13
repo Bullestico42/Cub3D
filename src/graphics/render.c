@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 18:53:19 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:15:46 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	render_images(t_game *game)
 {
 	mlx_put_image_to_window(game->data.mlx, game->data.win,
 		game->data.img.image, 0, 0);
-	//create_minimap(game);
-	//mlx_put_image_to_window(game->data.mlx, game->data.win,
-			//game->data.minimap_img.image, 0, 0);
+	create_minimap(game);
+	mlx_put_image_to_window(game->data.mlx, game->data.win,
+		game->data.minimap_img.image, 0, 0);
 }
 
 void	create_map(t_game *game)

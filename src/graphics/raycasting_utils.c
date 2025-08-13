@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/12 18:41:52 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/13 15:17:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,48 @@ void	set_deltas(t_game *game, t_ray *ray, int x)
 		ray->delta_dist_y = fabs(1 / ray->dir_y);
 }
 
-void	set_directions(t_player *player, t_ray *r)
+void	set_x_direction(t_player *player, t_ray *r)
 {
-	r->map_x = (int)player->pos_x;
-	r->map_y = (int)player->pos_y;
 	if (r->dir_x < 0)
 	{
 		r->step_x = -1;
 		r->side_dist_x = (player->pos_x - r->map_x) * r->delta_dist_x;
+		if (r->side_dist_x == 0)
+			r->side_dist_x = r->delta_dist_x;
 	}
 	else
 	{
 		r->step_x = 1;
 		r->side_dist_x = (r->map_x + 1.0 - player->pos_x) * r->delta_dist_x;
+		if (r->side_dist_x == 0)
+			r->side_dist_x = r->delta_dist_x;
 	}
+}
+
+void	set_y_direction(t_player *player, t_ray *r)
+{
 	if (r->dir_y < 0)
 	{
 		r->step_y = -1;
 		r->side_dist_y = (player->pos_y - r->map_y) * r->delta_dist_y;
+		if (r->side_dist_y == 0)
+			r->side_dist_y = r->delta_dist_y;
 	}
 	else
 	{
 		r->step_y = 1;
 		r->side_dist_y = (r->map_y + 1.0 - player->pos_y) * r->delta_dist_y;
+		if (r->side_dist_y == 0)
+			r->side_dist_y = r->delta_dist_y;
 	}
+}
+
+void	set_directions(t_player *player, t_ray *r)
+{
+	r->map_x = (int)player->pos_x;
+	r->map_y = (int)player->pos_y;
+	set_x_direction(player, r);
+	set_y_direction(player, r);
 }
 
 void	ft_dda(t_game *game, t_ray *ray)
