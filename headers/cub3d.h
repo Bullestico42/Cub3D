@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 16:18:22 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/14 18:17:40 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define KEY_A          0
 # define KEY_S          1
 # define KEY_D          2
+# define KEY_M          109
 # define KEY_LEFT       123
 # define KEY_RIGHT      124
 # define KEY_ESC        53
@@ -48,6 +49,7 @@
 # define KEY_A           97
 # define KEY_S          115
 # define KEY_D          100
+# define KEY_M          109
 # define KEY_LEFT       65361
 # define KEY_RIGHT      65363
 # define KEY_ESC        65307
@@ -159,6 +161,7 @@ typedef struct s_game
 	int			state;
 	int			mouse_locked;
 	double		mouse_dx_acc;
+	int			minimap_switch;
 	t_enemy		enemy;
 	t_textures	textures;
 	t_parsing	parsing;
