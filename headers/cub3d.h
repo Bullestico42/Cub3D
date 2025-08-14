@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 18:17:40 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:28:51 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define KEY_A          0
 # define KEY_S          1
 # define KEY_D          2
-# define KEY_M          109
+# define KEY_M          46
 # define KEY_LEFT       123
 # define KEY_RIGHT      124
 # define KEY_ESC        53
