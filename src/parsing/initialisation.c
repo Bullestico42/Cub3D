@@ -6,7 +6,7 @@
 /*   By: apiscopo <apiscopo@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/14 16:20:15 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:50:51 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	init_player(t_game *game)
 void	init_values(t_game *game)
 {
 	game->parsing.brut_file = NULL;
+	game->minimap_switch = 0;
 	init_player(game);
 	init_mlx(game);
     ft_memset(&game->keys, 0, sizeof(t_keys));
