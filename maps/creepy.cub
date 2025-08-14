@@ -1,7 +1,7 @@
-NO textures/portal_wall_no.xpm
-SO textures/portal_wall_so.xpm
-WE textures/portal_wall_we.xpm
-EA textures/portal_wall_ea.xpm
+NO textures/shrek/NO_shrek.xpm
+SO textures/shrek/SO_shrek.xpm
+WE textures/shrek/WE_shrek.xpm
+EA textures/shrek/EA_shrek.xpm
 
 C 35,19,73
 F 15,6,40

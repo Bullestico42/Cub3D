@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:20:15 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,9 @@ void	init_values(t_game *game)
 	init_player(game);
 	init_mlx(game);
 	ft_memset(&game->keys, 0, sizeof(t_keys));
+	if (enemy_init(&game->enemy, 12.5, 6.5, 2.0, 0.25) < 0)
+    	return (destroy_display(&game, "enemy init fail", 1));
+	if (enemy_load_texture(&game, &game->enemy, "../../textures/enemy/enemy.xpm") < 0)
+    	return (destroy_display(&game, "enemy texture fail", 1));
+
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:22:31 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 16:18:22 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,29 @@ typedef struct s_player
 	char	orientation;
 }	t_player;
 
+typedef struct s_img_e
+{
+	void *img;
+	char *addr;
+	int bpp;
+	int line_len;
+	int endian;
+	int w; 
+	int h;
+}	t_img_e;
+
+typedef struct s_enemy
+{
+	double x;
+	double y;
+	double vx;
+	double vy;
+	double speed;
+	double radius;
+	int alive;
+	t_img_e tex;
+}	t_enemy;
+
 typedef struct s_game
 {
 	char		**map;
@@ -157,6 +180,7 @@ typedef struct s_game
 	int			state;
 	int			mouse_locked;
 	double		mouse_dx_acc;
+	t_enemy		enemy;
 	t_textures	textures;
 	t_parsing	parsing;
 	t_data		data;
@@ -170,6 +194,8 @@ typedef struct s_game
 # include "../src/graphics/graphics.h"
 // CONTROLS
 # include "../src/controls/controls.h"
+// ENEMY
+# include "../src/enemy/enemy.h"
 
 // UTILS
 int		destroy_display(t_game *game, char *str, int error);
