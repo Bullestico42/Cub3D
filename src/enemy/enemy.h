@@ -12,10 +12,8 @@
 
 #ifndef ENEMY_H
 # define ENEMY_H
-
 # define ENEMY_COLOR_KEY 000000
-
-typedef struct s_game                               t_game;
+# include "../../headers/cub3d.h"
 
 typedef struct s_img_e
 {

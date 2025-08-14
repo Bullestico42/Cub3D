@@ -6,7 +6,7 @@
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 20:11:25 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/14 20:39:25 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	init_enemy(t_game *game)
 {
 	if (enemy_init(&game->enemy, 12.5, 6.5, 0.5, 0.25) < 0)
         destroy_display(game, "enemy init fail\n", 1);
-	if (enemy_load_texture(game, &game->enemy, "textures/enemy/enemy_1.xpm") < 0)
+	if (enemy_load_texture(game, &game->enemy, "textures/enemy/zied.xpm") < 0)
 		destroy_display(game, "enemy texture fail\n", 1);
 }
 

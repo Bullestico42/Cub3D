@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/cub3d.h"
+#include "enemy.h"
 
 static int      is_wall_cell(t_game *g, int mx, int my)
 {
