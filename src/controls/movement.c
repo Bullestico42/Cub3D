@@ -32,8 +32,8 @@ void	move_player(t_game *game, double dx, double dy)
 	double	new_x;
 	double	new_y;
 
-	new_x = game->player.pos_x + dx * MOVE_SPEED;
-	new_y = game->player.pos_y + dy * MOVE_SPEED;
+    new_x = game->player.pos_x + dx * game->player.speed;
+    new_y = game->player.pos_y + dy * game->player.speed;
 	if (can_move_to(game, new_x, new_y))
 	{
 		game->player.pos_x = new_x;

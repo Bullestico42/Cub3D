@@ -27,15 +27,18 @@ SRCS =  $(SRC_DIR)main.c \
 	        $(GRA_DIR)minimap.c \
 	        $(MOV_DIR)movement.c \
 	        $(GRA_DIR)textures.c \
-	        $(GRA_DIR)raycasting.c \
-	       $(SRC_DIR)enemy/enemy_init.c \
-	       $(SRC_DIR)enemy/enemy_tex.c \
-	       $(SRC_DIR)enemy/enemy_update.c \
-	       $(SRC_DIR)enemy/enemy_collision.c \
-	       $(SRC_DIR)enemy/enemy_draw.c \
-	        $(MOV_DIR)controls.c \
-	        $(GNL_DIR)get_next_line.c \
-	        $(GNL_DIR)get_next_line_utils.c
+               $(GRA_DIR)raycasting.c \
+              $(SRC_DIR)enemy/enemy_init.c \
+              $(SRC_DIR)enemy/enemy_tex.c \
+              $(SRC_DIR)enemy/enemy_update.c \
+              $(SRC_DIR)enemy/enemy_collision.c \
+              $(SRC_DIR)enemy/enemy_draw.c \
+              $(SRC_DIR)coins/coin_init.c \
+              $(SRC_DIR)coins/coin_update.c \
+              $(SRC_DIR)coins/coin_draw.c \
+               $(MOV_DIR)controls.c \
+               $(GNL_DIR)get_next_line.c \
+               $(GNL_DIR)get_next_line_utils.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -83,7 +86,7 @@ $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/enemy
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/enemy $(OBJ_DIR)/coins
 
 $(MLX):
 	@make -C $(MLX_DIR)

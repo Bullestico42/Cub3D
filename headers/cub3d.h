@@ -148,9 +148,11 @@ typedef struct s_player
 	double	dir_y;
 	double	fov_x;
 	double	fov_y;
-	char	orientation;
+	char    orientation;
+		double	speed;
 }	t_player;
 # include "../src/enemy/enemy.h"
+# include "../src/coins/coin.h"
 
 
 typedef struct s_game
@@ -162,7 +164,8 @@ typedef struct s_game
 	int			mouse_locked;
 	double		mouse_dx_acc;
 	int			minimap_switch;
-	t_enemy		enemy;
+	t_enemy         enemy;
+        t_coins        coins;
 	t_textures	textures;
 	t_parsing	parsing;
 	t_data		data;
