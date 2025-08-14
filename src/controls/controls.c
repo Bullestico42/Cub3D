@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:23 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 18:34:59 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:54:18 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,13 @@ int	handle_keypress(int keycode, t_game *game)
 		game->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		game->keys.right = 1;
+	else if (keycode == KEY_M)
+	{
+		if (!game->minimap_switch)
+			game->minimap_switch = 1;
+		else
+			game->minimap_switch = 0;
+	}
 	return (0);
 }
 

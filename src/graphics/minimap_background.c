@@ -6,28 +6,27 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:40 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/13 15:20:04 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 17:32:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-static void	set_minimap_pixel(t_game *game, int offset, int x, int y)
+void	set_minimap_pixel(t_game *game, int offset, int x, int y)
 {
 	unsigned int	color;
 
-	if (x < 0)
-		x = 0;
-	if (y < 0)
-		y = 0;
-	if (x >= game->width)
-		x = game->width - 1;
-	if (y >= game->height)
-		y = game->height - 1;
-	if (game->map[y][x] == '1')
-		color = PINK;
+	if (x >= 0 && x < game->width && y >= 0 && y < game->height)
+	{
+		if (game->map[y][x] != '0' && game->map[y][x] != 'E'
+			&& game->map[y][x] != 'W' && game->map[y][x] != 'N'
+			&& game->map[y][x] != 'S')
+			color = PINK;
+		else
+			color = LAVENDER;
+	}
 	else
-		color = LAVENDER;
+		color = PINK;
 	*(unsigned int *)(game->data.minimap_img.addr + offset) = color;
 }
 
