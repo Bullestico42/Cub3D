@@ -130,14 +130,15 @@ int	game_loop(t_game *game)
 		rotate_player(game, -1, ROT_SPEED);
 	if (game->keys.right)
 		rotate_player(game, 1, ROT_SPEED);
-	if (game->mouse_locked && game->mouse_dx_acc != 0.0)
-	{
-		delta = game->mouse_dx_acc * MOUSE_ROT_SPEED;
-		if (delta < 0)
-			rotate_player(game, -1, -delta);
-		else
-			rotate_player(game, 1, delta);
-		game->mouse_dx_acc = 0.0;
-	}
-	return (raycasting(game), render_images(game), 0);
+        if (game->mouse_locked && game->mouse_dx_acc != 0.0)
+        {
+                delta = game->mouse_dx_acc * MOUSE_ROT_SPEED;
+                if (delta < 0)
+                        rotate_player(game, -1, -delta);
+                else
+                        rotate_player(game, 1, delta);
+                game->mouse_dx_acc = 0.0;
+        }
+        enemy_update(game, 1.0 / 60.0);
+        return (raycasting(game), render_images(game), 0);
 }
