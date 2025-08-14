@@ -12,25 +12,30 @@ LIBFT_DIR = libft
 
 # === Fichiers sources ===
 SRCS =  $(SRC_DIR)main.c \
-                $(PAR_DIR)initialisation.c \
-                $(GRA_DIR)render.c \
-                $(SRC_DIR)utils.c \
-                $(PAR_DIR)init.c \
-                $(PAR_DIR)extract_raw_file.c \
-                $(PAR_DIR)parse_map.c \
-                $(PAR_DIR)extract_data.c \
-                $(PAR_DIR)extract_colors.c \
-                $(PAR_DIR)parse_elements.c \
-                $(PAR_DIR)line_utils.c \
-                $(GRA_DIR)raycasting_utils.c \
-                $(GRA_DIR)minimap_background.c \
-                $(GRA_DIR)minimap.c \
-                $(MOV_DIR)movement.c \
-                $(GRA_DIR)textures.c \
-                $(GRA_DIR)raycasting.c \
-                $(MOV_DIR)controls.c \
-                $(GNL_DIR)get_next_line.c \
-                $(GNL_DIR)get_next_line_utils.c
+	        $(PAR_DIR)initialisation.c \
+	        $(GRA_DIR)render.c \
+	        $(SRC_DIR)utils.c \
+	        $(PAR_DIR)init.c \
+	        $(PAR_DIR)extract_raw_file.c \
+	        $(PAR_DIR)parse_map.c \
+	        $(PAR_DIR)extract_data.c \
+	        $(PAR_DIR)extract_colors.c \
+	        $(PAR_DIR)parse_elements.c \
+	        $(PAR_DIR)line_utils.c \
+	        $(GRA_DIR)raycasting_utils.c \
+	        $(GRA_DIR)minimap_background.c \
+	        $(GRA_DIR)minimap.c \
+	        $(MOV_DIR)movement.c \
+	        $(GRA_DIR)textures.c \
+	        $(GRA_DIR)raycasting.c \
+	       $(SRC_DIR)enemy/enemy_init.c \
+	       $(SRC_DIR)enemy/enemy_tex.c \
+	       $(SRC_DIR)enemy/enemy_update.c \
+	       $(SRC_DIR)enemy/enemy_collision.c \
+	       $(SRC_DIR)enemy/enemy_draw.c \
+	        $(MOV_DIR)controls.c \
+	        $(GNL_DIR)get_next_line.c \
+	        $(GNL_DIR)get_next_line_utils.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)
@@ -43,14 +48,14 @@ CFLAGS = -Wall -Wextra -Werror -I$(INC_DIR) -I$(MLX_DIR) -I$(GNL_DIR) -g
 UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S), Linux)
-        MLX_DIR = mlx/mlx_linux
-        MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
-        MLX_INC = -I$(MLX_DIR)
+	MLX_DIR = mlx/mlx_linux
+	MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
+	MLX_INC = -I$(MLX_DIR)
 else ifeq ($(UNAME_S), Darwin)
-        MLX_DIR = mlx/mlx_mac
-        MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-        MLX_INC = -I$(MLX_DIR)
-        CFLAGS += -DGL_SILENCE_DEPRECATION
+	MLX_DIR = mlx/mlx_mac
+	MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+	MLX_INC = -I$(MLX_DIR)
+	CFLAGS += -DGL_SILENCE_DEPRECATION
 endif
 
 # === Libft ===
@@ -78,7 +83,7 @@ $(OBJ_DIR)/%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR) $(OBJ_DIR)/enemy
 
 $(MLX):
 	@make -C $(MLX_DIR)

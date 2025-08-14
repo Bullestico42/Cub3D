@@ -148,29 +148,8 @@ typedef struct s_player
 	double	fov_y;
 	char	orientation;
 }	t_player;
+# include "../src/enemy/enemy.h"
 
-typedef struct s_img_e
-{
-	void *img;
-	char *addr;
-	int bpp;
-	int line_len;
-	int endian;
-	int w; 
-	int h;
-}	t_img_e;
-
-typedef struct s_enemy
-{
-	double x;
-	double y;
-	double vx;
-	double vy;
-	double speed;
-	double radius;
-	int alive;
-	t_img_e tex;
-}	t_enemy;
 
 typedef struct s_game
 {
@@ -194,8 +173,6 @@ typedef struct s_game
 # include "../src/graphics/graphics.h"
 // CONTROLS
 # include "../src/controls/controls.h"
-// ENEMY
-# include "../src/enemy/enemy.h"
 
 // UTILS
 int		destroy_display(t_game *game, char *str, int error);
