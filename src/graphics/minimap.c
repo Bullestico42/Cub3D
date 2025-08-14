@@ -6,13 +6,13 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:11 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/13 18:08:39 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 22:01:52 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
 
-void	draw_player(t_game *game, int center)
+void	draw_person(t_game *game, int person_map_x, int person_map_y, int color)
 {
 	int	i;
 	int	j;
@@ -26,14 +26,14 @@ void	draw_player(t_game *game, int center)
 		j = 0;
 		while (j < 8)
 		{
-			x = center - 4 + i;
-			y = center - 4 + j;
+			x = person_map_x - 4 + i;
+			y = person_map_y - 4 + j;
 			if (x >= 0 && x < game->data.win_width / 5
 				&& y >= 0 && y < game->data.win_width / 5)
 			{
 				offset = y * game->data.minimap_img.line_length
 					+ x * (game->data.minimap_img.bpp / 8);
-				*(unsigned int *)(game->data.minimap_img.addr + offset) = BLUE;
+				*(unsigned int *)(game->data.minimap_img.addr + offset) = color;
 			}
 			j++;
 		}
@@ -89,11 +89,16 @@ void	create_minimap(t_game *game)
 	float	scale;
 	int		center;
 	int		minimap_size;
+	int		enemy_map_x;
+	int		enemy_map_y;
 
 	minimap_size = game->data.win_width / 5;
 	center = minimap_size / 2;
 	scale = minimap_size / 12.0f;
+	enemy_map_x = center + (int)((game->enemy.x - game->player.pos_x) * scale);
+	enemy_map_y = center + (int)((game->enemy.y - game->player.pos_y) * scale);
 	draw_minimap_background(game, scale, center);
-	draw_player(game, center);
+	draw_person(game, center, center, BLUE);
 	direction_line(game, center);
+	draw_person(game, enemy_map_x, enemy_map_y, RED);
 }

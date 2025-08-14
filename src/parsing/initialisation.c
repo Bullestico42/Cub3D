@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo <apiscopo@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/14 17:50:51 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 19:13:13 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void	init_values(t_game *game)
 	game->minimap_switch = 0;
 	init_player(game);
 	init_mlx(game);
-    ft_memset(&game->keys, 0, sizeof(t_keys));
+	ft_memset(&game->keys, 0, sizeof(t_keys));
 }

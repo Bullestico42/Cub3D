@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 20:28:51 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/14 23:05:57 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+// PARSING
+# include "../src/parsing/parsing.h"
+// GRAPHICS
+# include "../src/graphics/graphics.h"
+// CONTROLS
+# include "../src/controls/controls.h"
+# include "../src/enemy/enemy.h"
+
+# define RED 16711680
 # define BLUE 6591981
 # define LAVENDER 15792383
 # define GREEN 9419919
@@ -24,11 +33,11 @@
 # define FOV_K 0.66
 
 /* OS Detection */
-#ifdef __APPLE__
-# define OS_MAC 1
-#else
-# define OS_LINUX 1
-#endif
+# ifdef __APPLE__
+#  define OS_MAC 1
+# else
+#  define OS_LINUX 1
+# endif
 
 /* Keycodes for Mac */
 #ifdef OS_MAC
@@ -44,17 +53,17 @@
 #endif
 
 /* Keycodes for Linux */
-#ifdef OS_LINUX
-# define KEY_W          119
-# define KEY_A           97
-# define KEY_S          115
-# define KEY_D          100
-# define KEY_M          109
-# define KEY_LEFT       65361
-# define KEY_RIGHT      65363
-# define KEY_ESC        65307
-# include "../mlx/mlx_linux/mlx.h"
-#endif
+# ifdef OS_LINUX
+#  define KEY_W          119
+#  define KEY_A           97
+#  define KEY_S          115
+#  define KEY_D          100
+#  define KEY_M          109
+#  define KEY_LEFT       65361
+#  define KEY_RIGHT      65363
+#  define KEY_ESC        65307
+#  include "../mlx/mlx_linux/mlx.h"
+# endif
 
 # include <fcntl.h>
 # include <stdio.h>
@@ -172,13 +181,6 @@ typedef struct s_game
 	t_player	player;
 	t_keys		keys;
 }	t_game;
-
-// PARSING
-# include "../src/parsing/parsing.h"
-// GRAPHICS
-# include "../src/graphics/graphics.h"
-// CONTROLS
-# include "../src/controls/controls.h"
 
 // UTILS
 int		destroy_display(t_game *game, char *str, int error);

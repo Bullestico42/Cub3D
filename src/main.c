@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
 /*   Updated: 2025/08/14 20:39:25 by bullestico       ###   ########.fr       */
+=======
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
+/*   Updated: 2025/08/14 19:12:25 by dimatayi         ###   ########.fr       */
+>>>>>>> enemy-on-minimap
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +140,7 @@ int	main(int ac, char **av)
 	if (av[2])
 	{
 		if ((ft_strncmp(av[2], "bonus", ft_strlen(av[2]))) == 0)
-			init_enemy(&game);	
+			init_enemy(&game);
 	}
 	create_map(&game);
 	mlx_loop(game.data.mlx);
