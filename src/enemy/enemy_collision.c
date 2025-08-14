@@ -6,11 +6,12 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:14:56 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 19:20:28 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 23:10:28 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "enemy.h"
+#include "../headers/cub3d.h"
 
 static int	is_wall_cell(t_game *g, int mx, int my)
 {

@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 20:39:25 by bullestico       ###   ########.fr       */
-=======
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 19:12:25 by dimatayi         ###   ########.fr       */
->>>>>>> enemy-on-minimap
+/*   Updated: 2025/08/14 23:09:00 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
