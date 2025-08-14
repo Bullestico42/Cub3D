@@ -6,11 +6,7 @@
 /*   By: apiscopo <apiscopo@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/08/14 16:20:15 by apiscopo         ###   ########.fr       */
-=======
 /*   Updated: 2025/08/14 17:50:51 by dimatayi         ###   ########.fr       */
->>>>>>> origin/minimap-changes
 /*                                                                            */
 /* ************************************************************************** */
 
