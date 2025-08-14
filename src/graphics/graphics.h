@@ -6,13 +6,18 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:26:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/13 13:03:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/14 19:26:13 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
 # include "../../headers/cub3d.h"
+
+typedef struct s_game	t_game;
+typedef struct s_player	t_player;
+typedef struct s_ray	t_ray;
+typedef struct s_img	t_img;
 
 typedef struct s_tex
 {
