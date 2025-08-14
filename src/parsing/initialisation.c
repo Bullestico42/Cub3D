@@ -59,10 +59,5 @@ void	init_values(t_game *game)
 	game->parsing.brut_file = NULL;
 	init_player(game);
 	init_mlx(game);
-        ft_memset(&game->keys, 0, sizeof(t_keys));
-        if (enemy_init(&game->enemy, 12.5, 6.5, 2.0, 0.25) < 0)
-                destroy_display(game, "enemy init fail\n", 1);
-        if (enemy_load_texture(game, &game->enemy,
-                        "textures/enemy/enemy_1.xpm") < 0)
-                destroy_display(game, "enemy texture fail\n", 1);
+    ft_memset(&game->keys, 0, sizeof(t_keys));
 }

@@ -23,8 +23,8 @@ int     enemy_init(t_enemy *e, double x, double y, double speed, double radius)
     e->speed = speed;
     e->radius = radius;
     e->alive = 1;
-    e->tex.img = NULL;
-    e->tex.addr = NULL;
+    e->tex.img = 0;
+    e->tex.addr = 0;
     e->tex.bpp = 0;
     e->tex.line_len = 0;
     e->tex.endian = 0;

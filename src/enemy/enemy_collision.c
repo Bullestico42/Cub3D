@@ -14,9 +14,13 @@
 
 static int      is_wall_cell(t_game *g, int mx, int my)
 {
+    int     row_len;
     char    c;
 
-    if (mx < 0 || my < 0 || mx >= g->width || my >= g->height)
+    if (mx < 0 || my < 0 || my >= g->height)
+        return (1);
+    row_len = ft_strlen(g->map[my]);
+    if (mx >= row_len)
         return (1);
     c = g->map[my][mx];
     if (c == '1' || c == ' ')
