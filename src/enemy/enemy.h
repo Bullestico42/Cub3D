@@ -13,7 +13,7 @@
 #ifndef ENEMY_H
 # define ENEMY_H
 
-# define ENEMY_COLOR_KEY 0x00FF00FF
+# define ENEMY_COLOR_KEY 000000
 
 typedef struct s_game                               t_game;
 

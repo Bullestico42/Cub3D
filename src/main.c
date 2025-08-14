@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 16:58:18 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/14 20:11:25 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,21 @@ int	close_game(t_game *game)
 	return (destroy_display(game, "", 0));
 }
 
+void	init_enemy(t_game *game)
+{
+	if (enemy_init(&game->enemy, 12.5, 6.5, 0.5, 0.25) < 0)
+        destroy_display(game, "enemy init fail\n", 1);
+	if (enemy_load_texture(game, &game->enemy, "textures/enemy/enemy_1.xpm") < 0)
+		destroy_display(game, "enemy texture fail\n", 1);
+}
+
 /* Le main vérifie que les pointeur mlx et win sont bien initialisés.
 Il permet aussi de fermer la fenêtre avec la croix.*/
 int	main(int ac, char **av)
 {
 	t_game	game;
 
-	if (ac != 2)
+	if (!(ac >= 2) && !(ac > 3))
 		return (print_instructions(), 1);
 	if (init_data(&game, av[1]))
 		return (1);
@@ -116,11 +124,10 @@ int	main(int ac, char **av)
 	if (!game.data.win)
 		destroy_display(&game, "Error\ncan't generate window\n", 1);
 	load_textures(&game);
-	if (enemy_init(&game.enemy, 12.5, 6.5, 1, 0.25) < 0)
-        destroy_display(&game, "enemy init fail\n", 1);
-	if (enemy_load_texture(&game, &game.enemy, "textures/enemy/enemy_1.xpm") < 0)
+	if (av[2])
 	{
-		destroy_display(&game, "enemy texture fail\n", 1);
+		if ((ft_strncmp(av[2], "bonus", ft_strlen(av[2]))) == 0)
+			init_enemy(&game);	
 	}
 	create_map(&game);
 	mlx_loop(game.data.mlx);
