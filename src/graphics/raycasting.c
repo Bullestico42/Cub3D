@@ -104,5 +104,6 @@ void    raycasting(t_game *game)
         draw_wall(game, &ray, x);
         zbuf[x] = ray.perp_dist;
     }
+    coins_draw(game, zbuf);
     enemy_draw(game, zbuf);
 }

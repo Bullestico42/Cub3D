@@ -146,6 +146,7 @@ int	game_loop(t_game *game)
                         rotate_player(game, 1, delta);
                 game->mouse_dx_acc = 0.0;
         }
+        coins_update(game);
         enemy_update(game, 1.0 / 60.0);
         return (raycasting(game), render_images(game), 0);
 }

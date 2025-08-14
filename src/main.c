@@ -53,6 +53,8 @@ int	destroy_display(t_game *game, char *str, int error_code)
 	game->mouse_locked = 0;
 	if (str != NULL)
 		ft_putstr_fd(str, 2);
+        coins_destroy(game);
+        enemy_destroy(game, &game->enemy);
 	if (game->parsing.brut_file)
 		free_double_ptr(game->parsing.brut_file);
 	if (game->data.mlx && game->data.win)
@@ -71,6 +73,8 @@ int	destroy_display(t_game *game, char *str, int error)
 	mlx_mouse_show();
 	game->mouse_locked = 0;
 	ft_putstr_fd(str, 2);
+        coins_destroy(game);
+        enemy_destroy(game, &game->enemy);
 	if (game->parsing.brut_file)
 		free_double_ptr(game->parsing.brut_file);
 	if (game->data.mlx)
@@ -102,6 +106,8 @@ void	init_enemy(t_game *game)
         destroy_display(game, "enemy init fail\n", 1);
 	if (enemy_load_texture(game, &game->enemy, "textures/enemy/zied.xpm") < 0)
 		destroy_display(game, "enemy texture fail\n", 1);
+        if (coins_init(game, "textures/coins/coin.xpm") < 0)
+                destroy_display(game, "coin texture fail\n", 1);
 }
 
 /* Le main vérifie que les pointeur mlx et win sont bien initialisés.

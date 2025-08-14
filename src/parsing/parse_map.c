@@ -130,10 +130,10 @@ int	check_char(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-			if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
-				|| map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
-					map[y][x] == 'W')
-				x++;
+                        if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
+                                || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
+                                        map[y][x] == 'W' || map[y][x] == 'C')
+                                x++;
 			else
 				return (1);
 		}
