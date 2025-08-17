@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/13 15:17:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/16 16:35:19 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,6 @@ void	calculate_wall_params(t_game *game, t_ray *ray)
 	if (perp_dist <= 0.001)
 		perp_dist = 0.001;
 	line_height = (int)(game->data.win_height / perp_dist);
-	if (line_height > game->data.win_height * 2)
-		line_height = game->data.win_height * 2;
 	ray->perp_dist = perp_dist;
 	ray->line_height = line_height;
 	ray->draw_start = -line_height / 2 + game->data.win_height / 2;

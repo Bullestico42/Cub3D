@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coin_update.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ChatGPT <chatgpt@example.com>              +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/15 00:00:00 by ChatGPT          ###   ########.fr       */
+/*   Updated: 2025/08/15 22:56:53 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void    coins_update(t_game *g)
             if (dx * dx + dy * dy < 0.25)
             {
                 g->coins.arr[i].collected = 1;
-                g->player.speed += 0.2;
+                g->player.speed += 0.02;
             }
         }
         i++;
