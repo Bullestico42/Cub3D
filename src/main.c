@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 23:09:00 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:28:23 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,34 @@ static void	lock_mouse(t_game *game)
 
 #ifdef __linux__
 
+void	clean_texture(t_game *game)
+{
+	if (game->textures.path_no)
+		free(game->textures.path_no);
+	if (game->textures.path_so)
+		free(game->textures.path_so);
+	if (game->textures.path_we)
+		free(game->textures.path_we);
+	if (game->textures.path_ea)
+		free(game->textures.path_ea);
+}
+
+void	clean_images(t_game *game)
+{
+	if (game->data.img.image)
+		mlx_destroy_image(game->data.mlx, game->data.img.image);
+	if (game->data.minimap_img.image)
+		mlx_destroy_image(game->data.mlx, game->data.minimap_img.image);
+	if (game->textures.img_no.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_no.image);
+	if (game->textures.img_so.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_so.image);
+	if (game->textures.img_we.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_we.image);
+	if (game->textures.img_ea.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_ea.image);
+}
+
 /*Fonction responsable de la fermeture du programme.
 Elle prend une string qui sera afficher sur le stderr
 et exit avec le code d'erreur donné en paramètre*/
@@ -53,10 +81,15 @@ int	destroy_display(t_game *game, char *str, int error_code)
 	game->mouse_locked = 0;
 	if (str != NULL)
 		ft_putstr_fd(str, 2);
-        coins_destroy(game);
-        enemy_destroy(game, &game->enemy);
+	coins_destroy(game);
+	enemy_destroy(game, &game->enemy);
 	if (game->parsing.brut_file)
 		free_double_ptr(game->parsing.brut_file);
+	if (game->map)
+		free_double_ptr(game->map);
+	clean_texture(game);
+	if (game->data.mlx)
+		clean_images(game);
 	if (game->data.mlx && game->data.win)
 		mlx_destroy_window(game->data.mlx, game->data.win);
 	if (game->data.mlx)
@@ -68,17 +101,49 @@ int	destroy_display(t_game *game, char *str, int error_code)
 }
 #else
 
+void	clean_texture_mac(t_game *game)
+{
+	if (game->textures.path_no)
+		free(game->textures.path_no);
+	if (game->textures.path_so)
+		free(game->textures.path_so);
+	if (game->textures.path_we)
+		free(game->textures.path_we);
+	if (game->textures.path_ea)
+		free(game->textures.path_ea);
+}
+
+void	clean_images_mac(t_game *game)
+{
+	if (game->data.img.image)
+		mlx_destroy_image(game->data.mlx, game->data.img.image);
+	if (game->data.minimap_img.image)
+		mlx_destroy_image(game->data.mlx, game->data.minimap_img.image);
+	if (game->textures.img_no.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_no.image);
+	if (game->textures.img_so.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_so.image);
+	if (game->textures.img_we.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_we.image);
+	if (game->textures.img_ea.image)
+		mlx_destroy_image(game->data.mlx, game->textures.img_ea.image);
+}
+
 int	destroy_display(t_game *game, char *str, int error)
 {
 	mlx_mouse_show();
 	game->mouse_locked = 0;
 	ft_putstr_fd(str, 2);
-        coins_destroy(game);
-        enemy_destroy(game, &game->enemy);
+	coins_destroy(game);
+	enemy_destroy(game, &game->enemy);
 	if (game->parsing.brut_file)
 		free_double_ptr(game->parsing.brut_file);
+	if (game->map)
+		free_double_ptr(game->map);
+	clean_texture_mac(game);
 	if (game->data.mlx)
 	{
+		clean_images_mac(game);
 		mlx_destroy_window(game->data.mlx, game->data.win);
 		free(game->data.mlx);
 	}
@@ -103,11 +168,11 @@ int	close_game(t_game *game)
 void	init_enemy(t_game *game)
 {
 	if (enemy_init(&game->enemy, 12.5, 6.5, 0.5, 0.25) < 0)
-        destroy_display(game, "enemy init fail\n", 1);
+		destroy_display(game, "enemy init fail\n", 1);
 	if (enemy_load_texture(game, &game->enemy, "textures/enemy/zied.xpm") < 0)
 		destroy_display(game, "enemy texture fail\n", 1);
-        if (coins_init(game, "textures/coins/coin.xpm") < 0)
-                destroy_display(game, "coin texture fail\n", 1);
+	if (coins_init(game, "textures/coins/coin.xpm") < 0)
+		destroy_display(game, "coin texture fail\n", 1);
 }
 
 /* Le main vérifie que les pointeur mlx et win sont bien initialisés.
