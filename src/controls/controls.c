@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:23 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 23:06:57 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:50:39 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int	game_loop(t_game *game)
 	{
 		delta = game->mouse_dx_acc * MOUSE_ROT_SPEED;
 		if (delta < 0)
-				rotate_player(game, -1, -delta);
+			rotate_player(game, -1, -delta);
 		else
 			rotate_player(game, 1, delta);
 		game->mouse_dx_acc = 0.0;

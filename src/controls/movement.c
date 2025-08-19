@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 18:36:14 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:50:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	move_player(t_game *game, double dx, double dy)
 	double	new_x;
 	double	new_y;
 
-    new_x = game->player.pos_x + dx * game->player.speed;
-    new_y = game->player.pos_y + dy * game->player.speed;
+	new_x = game->player.pos_x + dx * game->player.speed;
+	new_y = game->player.pos_y + dy * game->player.speed;
 	if (can_move_to(game, new_x, new_y))
 	{
 		game->player.pos_x = new_x;

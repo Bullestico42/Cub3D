@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo <apiscopo@student.42lausanne.ch>    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:08:57 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 16:12:58 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:18:41 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENEMY_H
 # define ENEMY_H
 # define ENEMY_COLOR_KEY 000000
+
 typedef struct s_game	t_game;
 
 typedef struct s_img_e

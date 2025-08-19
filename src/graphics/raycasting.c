@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/16 15:59:27 by apiscopo         ###   ########.fr       */
+/*   Created: 2025/08/19 22:08:58 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/08/19 22:15:46 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,15 @@ static void	draw_wall(t_game *game, t_ray *ray, int x)
 
 	init_tex(game, ray, &tex, &t);
 	y = ray->draw_start;
-    while (y <= ray->draw_end)
-    {
-        t.tex_y = (int)t.tex_pos % tex->height;
-        if (t.tex_y < 0)
-            t.tex_y += tex->height * 5;
-        t.tex_pos += t.step;
-        color = get_texture_pixel(game, tex, t.tex_x, t.tex_y);
-        my_mlx_pixel_put(game, x, y++, color);
-    }
+	while (y <= ray->draw_end)
+	{
+		t.tex_y = (int)t.tex_pos % tex->height;
+		if (t.tex_y < 0)
+			t.tex_y += tex->height * 5;
+		t.tex_pos += t.step;
+		color = get_texture_pixel(game, tex, t.tex_x, t.tex_y);
+		my_mlx_pixel_put(game, x, y++, color);
+	}
 }
 
 void	raycasting(t_game *game)

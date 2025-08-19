@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/14 19:13:13 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 21:40:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	init_player(t_game *game)
 		game->player.dir_x = 1;
 		game->player.dir_y = 0;
 	}
-        else if (game->player.orientation == 'W')
-        {
-                game->player.dir_x = -1;
-                game->player.dir_y = 0;
-        }
-        game->player.fov_x = -game->player.dir_y * FOV_K;
-        game->player.fov_y = game->player.dir_x * FOV_K;
-        game->player.speed = MOVE_SPEED;
+	else if (game->player.orientation == 'W')
+	{
+		game->player.dir_x = -1;
+		game->player.dir_y = 0;
+	}
+	game->player.fov_x = -game->player.dir_y * FOV_K;
+	game->player.fov_y = game->player.dir_x * FOV_K;
+	game->player.speed = MOVE_SPEED;
 }
 
 /* Fonction servant initialiser les valeurs dans les différentes structurees. */

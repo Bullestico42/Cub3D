@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/16 16:35:19 by apiscopo         ###   ########.fr       */
+/*   Created: 2025/08/19 22:10:10 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/08/19 22:10:11 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

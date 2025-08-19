@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:10:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,10 @@ int	check_char(char **map)
 		x = 0;
 		while (map[y][x])
 		{
-                        if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
-                                || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
-                                        map[y][x] == 'W' || map[y][x] == 'C')
-                                x++;
+			if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
+					|| map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
+							map[y][x] == 'W' || map[y][x] == 'C')
+				x++;
 			else
 				return (1);
 		}

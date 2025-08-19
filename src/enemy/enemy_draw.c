@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:16:18 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 19:23:25 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 23:21:20 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	put_px(t_img *f, int x, int y, unsigned int c)
 
 static unsigned int	texel_e(t_img_e *t, int x, int y)
 {
-	char    *src;
-	int	off;
+	char	*src;
+	int		off;
 
 	if (x < 0 || y < 0 || x >= t->w || y >= t->h)
 		return (ENEMY_COLOR_KEY);
@@ -62,15 +62,18 @@ static int	screen_x_from_cam(int sw, double tx, double ty, int *sprite_h)
 
 void	enemy_draw(t_game *g, double *zbuf)
 {
-	double	inv;
-	double	tx;
-	double	ty;
-	int		scx;
-	int		h;
-	int		x;
-	int		y;
-	int		ds;
-	int		de;
+	double			inv;
+	double			tx;
+	double			ty;
+	int				scx;
+	int				h;
+	int				x;
+	int				y;
+	int				ds;
+	int				de;
+	int				txx;
+	int				tyy;
+	unsigned int	c;
 
 	if (!g->enemy.alive || !g->enemy.tex.img)
 		return ;
@@ -90,13 +93,13 @@ void	enemy_draw(t_game *g, double *zbuf)
 	{
 		if (x >= 0 && x < g->data.win_width && ty < zbuf[x])
 		{
-			int txx = (int)((double)(x - (scx - h / 2)) * g->enemy.tex.w
+			txx = (int)((double)(x - (scx - h / 2)) * g->enemy.tex.w
 					/ (double)h);
 			y = (ds < 0) ? 0 : ds;
 			while (y <= ((de >= g->data.win_height) ? g->data.win_height - 1 : de))
 			{
-				int tyy = (int)((double)(y - ds) * g->enemy.tex.h / (double)h);
-				unsigned int c = texel_e(&g->enemy.tex, txx, tyy);
+				tyy = (int)((double)(y - ds) * g->enemy.tex.h / (double)h);
+				c = texel_e(&g->enemy.tex, txx, tyy);
 				if ((c & 0x00FFFFFF) != ENEMY_COLOR_KEY)
 					put_px(&g->data.img, x, y, c);
 				y++;
