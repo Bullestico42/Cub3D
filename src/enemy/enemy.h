@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:08:57 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/19 23:18:41 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:42:35 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	enemy_destroy(t_game *g, t_enemy *e);
 void	enemy_update(t_game *g, double dt);
 void	enemy_resolve_collision(t_game *g);
 void	enemy_draw(t_game *g, double *zbuf);
+void	init_enemy(t_game *game);
 
 #endif
-

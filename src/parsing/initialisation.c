@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/19 21:40:59 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:03:55 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,14 @@ void	init_values(t_game *game)
 	init_player(game);
 	init_mlx(game);
 	ft_memset(&game->keys, 0, sizeof(t_keys));
+}
+
+void	init_enemy(t_game *game)
+{
+	if (enemy_init(&game->enemy, 12.5, 6.5, 0.5, 0.25) < 0)
+		destroy_display(game, "enemy init fail\n", 1);
+	if (enemy_load_texture(game, &game->enemy, "textures/enemy/zied.xpm") < 0)
+		destroy_display(game, "enemy texture fail\n", 1);
+	if (coins_init(game, "textures/coins/coin.xpm") < 0)
+		destroy_display(game, "coin texture fail\n", 1);
 }

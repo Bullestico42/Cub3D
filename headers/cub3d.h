@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 23:05:57 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:42:15 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 // CONTROLS
 # include "../src/controls/controls.h"
 # include "../src/enemy/enemy.h"
+# include "../src/coins/coin.h"
 
 # define RED 16711680
 # define BLUE 6591981
@@ -40,17 +41,17 @@
 # endif
 
 /* Keycodes for Mac */
-#ifdef OS_MAC
-# define KEY_W          13
-# define KEY_A          0
-# define KEY_S          1
-# define KEY_D          2
-# define KEY_M          46
-# define KEY_LEFT       123
-# define KEY_RIGHT      124
-# define KEY_ESC        53
-# include "../mlx/mlx_mac/mlx.h"
-#endif
+# ifdef OS_MAC
+#  define KEY_W          13
+#  define KEY_A          0
+#  define KEY_S          1
+#  define KEY_D          2
+#  define KEY_M          46
+#  define KEY_LEFT       123
+#  define KEY_RIGHT      124
+#  define KEY_ESC        53
+#  include "../mlx/mlx_mac/mlx.h"
+# endif
 
 /* Keycodes for Linux */
 # ifdef OS_LINUX
@@ -157,12 +158,9 @@ typedef struct s_player
 	double	dir_y;
 	double	fov_x;
 	double	fov_y;
-	char    orientation;
-		double	speed;
+	char	orientation;
+	double	speed;
 }	t_player;
-# include "../src/enemy/enemy.h"
-# include "../src/coins/coin.h"
-
 
 typedef struct s_game
 {
@@ -173,8 +171,8 @@ typedef struct s_game
 	int			mouse_locked;
 	double		mouse_dx_acc;
 	int			minimap_switch;
-	t_enemy         enemy;
-        t_coins        coins;
+	t_enemy		enemy;
+	t_coins		coins;
 	t_textures	textures;
 	t_parsing	parsing;
 	t_data		data;
@@ -183,10 +181,10 @@ typedef struct s_game
 }	t_game;
 
 // UTILS
-int		destroy_display(t_game *game, char *str, int error);
-int		close_game(t_game *game);
-void	init_values(t_game *game);
-void	free_double_ptr(char **table);
-void	free_tab(char **tab);
+int			destroy_display(t_game *game, char *str, int error);
+int			close_game(t_game *game);
+void		init_values(t_game *game);
+void		free_double_ptr(char **table);
+void		free_tab(char **tab);
 
 #endif
