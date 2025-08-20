@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/19 23:10:43 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 00:36:22 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 		return (1);
 	}
 	return (0);
-}
-
-// obtient uniquement la plus grande largeur de la map
-static int	get_width(t_game *game)
-{
-	int	y;
-	int	state;
-
-	y = 0;
-	state = 0;
-	while (game->map[y])
-	{
-		state = ft_strlen(game->map[y]);
-		if (state < 3)
-			return (1);
-		if (state > game->width)
-			game->width = state;
-		y++;
-	}
-	return (0);
-}
-
-// skip tout les white space
-int	white_space(char c)
-{
-	if (c != ' ' && c != '\t' && c != '\r'
-		&& c != '\n' && c != '\v' && c != '\f')
-		return (0);
-	return (1);
 }
 
 // vérifie la premiere est derniere ligne de la map
@@ -131,8 +102,8 @@ int	check_char(char **map)
 		while (map[y][x])
 		{
 			if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
-					|| map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
-							map[y][x] == 'W' || map[y][x] == 'C')
+					|| map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S'
+					|| map[y][x] == 'W' || map[y][x] == 'C')
 				x++;
 			else
 				return (1);

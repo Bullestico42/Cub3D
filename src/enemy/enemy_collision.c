@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:14:56 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 23:10:28 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/20 23:16:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ static int	is_wall_cell(t_game *g, int mx, int my)
 	return (0);
 }
 
+static double	nearest_point(double point, double cell_min, double cell_max)
+{
+	if (point < cell_min)
+		return (cell_min);
+	if (point > cell_max)
+		return (cell_max);
+	return (point);
+}
+
 static void	push_from_cell(t_enemy *e, int mx, int my)
 {
 	double	nx;
@@ -36,28 +45,18 @@ static void	push_from_cell(t_enemy *e, int mx, int my)
 	double	dx;
 	double	dy;
 	double	d;
-	double	need;
 
-	nx = e->x;
-	if (nx < (double)mx)
-		nx = (double)mx;
-	if (nx > (double)mx + 1.0)
-		nx = (double)mx + 1.0;
-	ny = e->y;
-	if (ny < (double)my)
-		ny = (double)my;
-	if (ny > (double)my + 1.0)
-		ny = (double)my + 1.0;
+	nx = nearest_point(e->x, (double)mx, (double)mx + 1.0);
+	ny = nearest_point(e->y, (double)my, (double)my + 1.0);
 	dx = e->x - nx;
 	dy = e->y - ny;
 	d = sqrt(dx * dx + dy * dy);
-	need = e->radius - d;
-	if (need > 0.0)
+	if (e->radius - d > 0.0)
 	{
 		if (d < 1e-12)
 			d = 1.0;
-		e->x += dx / d * need;
-		e->y += dy / d * need;
+		e->x += dx / d * (e->radius - d);
+		e->y += dy / d * (e->radius - d);
 	}
 }
 

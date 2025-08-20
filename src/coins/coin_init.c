@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:09:38 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/19 23:17:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/20 22:19:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,12 @@ static int	count_char(const char *s, char c)
 	return (n);
 }
 
-int	coins_init(t_game *g, const char *path)
+void	fill_coins_array(t_game *g)
 {
 	int	y;
 	int	x;
 	int	i;
 
-	g->coins.arr = NULL;
-	g->coins.count = 0;
-	if (!g || !g->map)
-		return (-1);
-	y = -1;
-	while (g->map[++y])
-		g->coins.count += count_char(g->map[y], 'C');
-	if (g->coins.count <= 0)
-		return (0);
-	g->coins.arr = malloc(sizeof(t_coin) * g->coins.count);
-	if (!g->coins.arr)
-		return (-1);
 	y = -1;
 	i = 0;
 	while (g->map[++y])
@@ -75,6 +63,25 @@ int	coins_init(t_game *g, const char *path)
 			}
 		}
 	}
+}
+
+int	coins_init(t_game *g, const char *path)
+{
+	int	y;
+
+	g->coins.arr = NULL;
+	g->coins.count = 0;
+	if (!g || !g->map)
+		return (-1);
+	y = -1;
+	while (g->map[++y])
+		g->coins.count += count_char(g->map[y], 'C');
+	if (g->coins.count <= 0)
+		return (0);
+	g->coins.arr = malloc(sizeof(t_coin) * g->coins.count);
+	if (!g->coins.arr)
+		return (-1);
+	fill_coins_array(g);
 	if (coin_load_texture(g, &g->coins.tex, path) < 0)
 		return (-1);
 	return (0);

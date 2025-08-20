@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:26:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/14 19:26:13 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 00:28:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ void			set_directions(t_player *player, t_ray *r);
 void			ft_dda(t_game *game, t_ray *ray);
 void			calculate_wall_params(t_game *game, t_ray *ray);
 void			set_deltas(t_game *game, t_ray *ray, int x);
-
+void			draw_wall(t_game *game, t_ray *ray, int x);
+void			colors_and_background(t_game *game, int colors[2]);
+void			init_tex(t_game *game, t_ray *ray, t_img **tex, t_tex *t);
 #endif

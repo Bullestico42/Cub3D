@@ -1,43 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.c                                            :+:      :+:    :+:   */
+/*   mouse_movement.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/20 18:33:18 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/20 18:41:19 by dimatayi         ###   ########.fr       */
+/*   Created: 2025/08/20 22:43:39 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/08/20 22:45:44 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/cub3d.h"
+#include "controls.h"
 
-#if defined(__APPLE__)
-
-static void	hide_and_move_mouse(t_game *game, int cx, int cy)
-{
-	mlx_mouse_hide();
-	mlx_mouse_move(game->data.win, cx, cy);
-}
-
-#else
-
-static void	hide_and_move_mouse(t_game *game, int cx, int cy)
-{
-	mlx_mouse_hide(game->data.mlx, game->data.win);
-	mlx_mouse_move(game->data.mlx, game->data.win, cx, cy);
-}
-
-#endif
-
-void	lock_mouse(t_game *game)
+static int	check_mouse_centered(int x, int y, t_game *game)
 {
 	int	cx;
 	int	cy;
 
 	cx = game->data.win_width / 2;
 	cy = game->data.win_height / 2;
-	hide_and_move_mouse(game, cx, cy);
-	game->mouse_locked = 1;
-	printf("mouselocked\n");
+	if (abs(x - cx) <= MOUSE_CENTER_EPS && abs(y - cy) <= MOUSE_CENTER_EPS)
+		return (1);
+	return (0);
+}
+
+int	handle_mouse_move(int x, int y, t_game *game)
+{
+	int	cx;
+	int	cy;
+
+	if (!game || !game->mouse_locked)
+		return (0);
+	cx = game->data.win_width / 2;
+	cy = game->data.win_height / 2;
+	if (check_mouse_centered(x, y, game))
+		return (0);
+	game->mouse_dx_acc += (x - cx);
+	center_mouse(game, cx, cy);
+	return (0);
 }

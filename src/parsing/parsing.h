@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:26:01 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:19:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 00:37:20 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int		check_char(char **map);
 char	*skip_spaces(char *line);
 int		is_line_empty(char *line);
 char	*get_next_line(int fd);
+int		get_width(t_game *game);
+int		white_space(char c);
 
 #endif

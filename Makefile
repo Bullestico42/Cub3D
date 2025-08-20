@@ -19,6 +19,7 @@ SRCS =  $(SRC_DIR)main.c \
 			$(PAR_DIR)init.c \
 			$(PAR_DIR)extract_raw_file.c \
 			$(PAR_DIR)parse_map.c \
+			$(PAR_DIR)parse_map_utils.c \
 			$(PAR_DIR)extract_data.c \
 			$(PAR_DIR)extract_colors.c \
 			$(PAR_DIR)parse_elements.c \
@@ -29,16 +30,20 @@ SRCS =  $(SRC_DIR)main.c \
 			$(MOV_DIR)movement.c \
 			$(GRA_DIR)textures.c \
 			$(GRA_DIR)raycasting.c \
+			$(GRA_DIR)draw_raycasting.c \
 			$(SRC_DIR)enemy/enemy_init.c \
 			$(SRC_DIR)enemy/enemy_tex.c \
 			$(SRC_DIR)enemy/enemy_update.c \
 			$(SRC_DIR)enemy/enemy_collision.c \
 			$(SRC_DIR)enemy/enemy_draw.c \
+			$(SRC_DIR)enemy/enemy_utils.c \
 			$(SRC_DIR)coins/coin_init.c \
 			$(SRC_DIR)coins/coin_update.c \
 			$(SRC_DIR)coins/coin_draw.c \
+			$(SRC_DIR)coins/coin_transform.c \
 			$(MOV_DIR)controls.c \
-			$(MOV_DIR)mouse.c \
+			$(MOV_DIR)mouse_config.c \
+			$(MOV_DIR)mouse_movement.c \
 			$(CLO_DIR)cleanup.c \
 			$(CLO_DIR)end_game.c \
 			$(GNL_DIR)get_next_line.c \
