@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 00:45:36 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	init_file(t_game *game, char *file)
 	n_lines = count_line(fd);
 	close(fd);
 	fd = open(file, O_RDONLY);
-	printf("%d\n", n_lines);
 	if (!fill_raw(fd, n_lines, game))
 		return (1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:33:18 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/20 22:43:53 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 00:44:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,4 @@ void	lock_mouse(t_game *game)
 	cy = game->data.win_height / 2;
 	hide_and_move_mouse(game, cx, cy);
 	game->mouse_locked = 1;
-	printf("mouselocked\n");
 }
