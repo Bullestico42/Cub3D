@@ -6,7 +6,7 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 22:58:25 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/19 15:35:56 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:25:40 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	init_file(t_game *game, char *file)
 	fd = 0;
 	n_lines = 0;
 	if (!(ft_strnstr(file, ".cub", ft_strlen(file))))
-		return (printf("Error: Only map with \".cub\" extension"), 1);
+		return (printf("Error: Only map with \".cub\" extension\n"), 1);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (printf("Error: Open File"), 1);

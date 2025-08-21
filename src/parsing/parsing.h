@@ -6,14 +6,14 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:26:01 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/19 15:57:25 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:19:33 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
-# include "../../libft/libft.h"
 # include "../../get_next_line/get_next_line.h"
+# include "../../headers/cub3d.h"
 
 typedef struct s_game	t_game;
 
@@ -32,5 +32,7 @@ int		check_char(char **map);
 char	*skip_spaces(char *line);
 int		is_line_empty(char *line);
 char	*get_next_line(int fd);
+int		get_width(t_game *game);
+int		white_space(char c);
 
 #endif

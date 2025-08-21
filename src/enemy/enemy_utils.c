@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   enemy_init.c                                       :+:      :+:    :+:   */
+/*   enemy_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/14 16:12:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/21 00:03:20 by dimatayi         ###   ########.fr       */
+/*   Created: 2025/08/20 23:48:46 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/08/20 23:58:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "enemy.h"
+#include "../../headers/cub3d.h"
 
-void	init_enemy_textures(t_enemy *e)
+int	in_frame_e(t_img *f, int x, int y)
 {
-	e->tex.img = 0;
-	e->tex.addr = 0;
-	e->tex.bpp = 0;
-	e->tex.line_len = 0;
-	e->tex.endian = 0;
-	e->tex.w = 0;
-	e->tex.h = 0;
+	if (x < 0 || y < 0)
+		return (0);
+	if (x >= f->width || y >= f->height)
+		return (0);
+	return (1);
 }
 
-int	enemy_init(t_enemy *e, double x, double y)
+unsigned int	texel_e(t_img_e *t, int x, int y)
 {
-	if (!e)
-		return (-1);
-	e->x = x;
-	e->y = y;
-	e->vx = 0.0;
-	e->vy = 0.0;
-	e->speed = 0.5;
-	e->radius = 0.25;
-	e->alive = 1;
-	init_enemy_textures(e);
-	return (0);
+	char	*src;
+	int		off;
+
+	if (x < 0 || y < 0 || x >= t->w || y >= t->h)
+		return (ENEMY_COLOR_KEY);
+	off = y * t->line_len + x * (t->bpp / 8);
+	src = t->addr + off;
+	return (*(unsigned int *)src);
 }

@@ -5,6 +5,7 @@ SRC_DIR = src/
 PAR_DIR = src/parsing/
 GRA_DIR = src/graphics/
 MOV_DIR = src/controls/
+CLO_DIR = src/close_game/
 GNL_DIR = get_next_line/
 OBJ_DIR = obj
 INC_DIR = headers
@@ -12,31 +13,37 @@ LIBFT_DIR = libft
 
 # === Fichiers sources ===
 SRCS =  $(SRC_DIR)main.c \
-	        $(PAR_DIR)initialisation.c \
-	        $(GRA_DIR)render.c \
-	        $(SRC_DIR)utils.c \
-			$(SRC_DIR)utils2.c \
-	        $(PAR_DIR)init.c \
-	        $(PAR_DIR)extract_raw_file.c \
-	        $(PAR_DIR)parse_map.c \
-	        $(PAR_DIR)extract_data.c \
-	        $(PAR_DIR)extract_colors.c \
-	        $(PAR_DIR)parse_elements.c \
-	        $(PAR_DIR)line_utils.c \
-	        $(GRA_DIR)raycasting_utils.c \
-	        $(GRA_DIR)minimap_background.c \
-	        $(GRA_DIR)minimap.c \
-	        $(MOV_DIR)movement.c \
-	        $(GRA_DIR)textures.c \
-            $(GRA_DIR)raycasting.c \
-            $(SRC_DIR)enemy/enemy_init.c \
-            $(SRC_DIR)enemy/enemy_tex.c \
-            $(SRC_DIR)enemy/enemy_update.c \
-            $(SRC_DIR)enemy/enemy_collision.c \
-            $(SRC_DIR)enemy/enemy_draw.c \
-            $(MOV_DIR)controls.c \
-            $(GNL_DIR)get_next_line.c \
-            $(GNL_DIR)get_next_line_utils.c
+			$(PAR_DIR)initialisation.c \
+			$(GRA_DIR)render.c \
+			$(SRC_DIR)utils.c \
+			$(PAR_DIR)init.c \
+			$(PAR_DIR)extract_raw_file.c \
+			$(PAR_DIR)parse_map.c \
+			$(PAR_DIR)parse_map_utils.c \
+			$(PAR_DIR)extract_data.c \
+			$(PAR_DIR)extract_colors.c \
+			$(PAR_DIR)parse_elements.c \
+			$(PAR_DIR)line_utils.c \
+			$(GRA_DIR)raycasting_utils.c \
+			$(GRA_DIR)minimap_background.c \
+			$(GRA_DIR)minimap.c \
+			$(MOV_DIR)movement.c \
+			$(GRA_DIR)textures.c \
+			$(GRA_DIR)raycasting.c \
+			$(GRA_DIR)draw_raycasting.c \
+			$(SRC_DIR)enemy/enemy_init.c \
+			$(SRC_DIR)enemy/enemy_tex.c \
+			$(SRC_DIR)enemy/enemy_update.c \
+			$(SRC_DIR)enemy/enemy_collision.c \
+			$(SRC_DIR)enemy/enemy_draw.c \
+			$(SRC_DIR)enemy/enemy_utils.c \
+			$(MOV_DIR)controls.c \
+			$(MOV_DIR)mouse_config.c \
+			$(MOV_DIR)mouse_movement.c \
+			$(CLO_DIR)cleanup.c \
+			$(CLO_DIR)end_game.c \
+			$(GNL_DIR)get_next_line.c \
+			$(GNL_DIR)get_next_line_utils.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 OBJS := $(OBJS:$(GNL_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/19 15:58:14 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:21:35 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include "../libft/libft.h"
 
 typedef struct s_parsing
 {
@@ -182,11 +183,10 @@ typedef struct s_game
 }	t_game;
 
 // UTILS
-int		close_game(t_game *game);
-void	init_values(t_game *game);
-void	free_double_ptr(char **table);
-void	free_tab(char **tab);
-void	lock_mouse(t_game *game);
-int		destroy_display(t_game *game, char *str, int error_code);
+int			destroy_display(t_game *game, char *str, int error);
+int			close_game(t_game *game);
+void		init_values(t_game *game);
+void		free_double_ptr(char **table);
+void		free_tab(char **tab);
 
 #endif

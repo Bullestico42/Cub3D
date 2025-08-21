@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/19 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/16 16:35:19 by apiscopo         ###   ########.fr       */
+/*   Created: 2025/08/19 22:10:10 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/08/21 00:26:23 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
-
-void	set_deltas(t_game *game, t_ray *ray, int x)
-{
-	ray->camera = 2 * x / (double)game->data.win_width - 1;
-	ray->dir_x = game->player.dir_x + game->player.fov_x * ray->camera;
-	ray->dir_y = game->player.dir_y + game->player.fov_y * ray->camera;
-	if (ray->dir_x == 0)
-		ray->delta_dist_x = 1e30;
-	else
-		ray->delta_dist_x = fabs(1 / ray->dir_x);
-	if (ray->dir_y == 0)
-		ray->delta_dist_y = 1e30;
-	else
-		ray->delta_dist_y = fabs(1 / ray->dir_y);
-}
 
 void	set_x_direction(t_player *player, t_ray *r)
 {

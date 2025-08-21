@@ -6,11 +6,26 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:33:09 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/19 16:33:12 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:25:12 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "graphics.h"
+
+void	set_deltas(t_game *game, t_ray *ray, int x)
+{
+	ray->camera = 2 * x / (double)game->data.win_width - 1;
+	ray->dir_x = game->player.dir_x + game->player.fov_x * ray->camera;
+	ray->dir_y = game->player.dir_y + game->player.fov_y * ray->camera;
+	if (ray->dir_x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1 / ray->dir_x);
+	if (ray->dir_y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1 / ray->dir_y);
+}
 
 static t_img	*select_texture(t_game *game, t_ray *ray)
 {
@@ -25,28 +40,7 @@ static t_img	*select_texture(t_game *game, t_ray *ray)
 	return (&game->textures.img_no);
 }
 
-static void	draw_background(t_game *game, int colors[2])
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < game->data.win_height / 2)
-	{
-		x = -1;
-		while (++x < game->data.win_width)
-			my_mlx_pixel_put(game, x, y, colors[0]);
-	}
-	while (y < game->data.win_height)
-	{
-		x = -1;
-		while (++x < game->data.win_width)
-			my_mlx_pixel_put(game, x, y, colors[1]);
-		y++;
-	}
-}
-
-static void	init_tex(t_game *game, t_ray *ray, t_img **tex, t_tex *t)
+void	init_tex(t_game *game, t_ray *ray, t_img **tex, t_tex *t)
 {
 	*tex = select_texture(game, ray);
 	if (ray->side == 0)
@@ -64,38 +58,11 @@ static void	init_tex(t_game *game, t_ray *ray, t_img **tex, t_tex *t)
 			+ ray->line_height / 2.0) * t->step;
 }
 
-static void	draw_wall(t_game *game, t_ray *ray, int x)
-{
-	t_img			*tex;
-	t_tex			t;
-	int				y;
-	unsigned int	color;
-
-	init_tex(game, ray, &tex, &t);
-	y = ray->draw_start;
-	while (y <= ray->draw_end)
-	{
-		t.tex_y = (int)t.tex_pos % tex->height;
-		if (t.tex_y < 0)
-			t.tex_y += tex->height * 5;
-		t.tex_pos += t.step;
-		color = get_texture_pixel(game, tex, t.tex_x, t.tex_y);
-		my_mlx_pixel_put(game, x, y++, color);
-	}
-}
-
-void	raycasting(t_game *game)
+void	raycasting_loop(t_game *game, double *zbuf)
 {
 	t_ray	ray;
 	int		x;
-	int		colors[2];
 
-	game->zbuf = malloc(sizeof(double) * game->data.win_width);
-	colors[0] = rgb_to_hex(game->textures.color_c[0],
-			game->textures.color_c[1], game->textures.color_c[2]);
-	colors[1] = rgb_to_hex(game->textures.color_f[0],
-			game->textures.color_f[1], game->textures.color_f[2]);
-	draw_background(game, colors);
 	x = -1;
 	while (++x < game->data.win_width)
 	{
@@ -104,7 +71,20 @@ void	raycasting(t_game *game)
 		ft_dda(game, &ray);
 		calculate_wall_params(game, &ray);
 		draw_wall(game, &ray, x);
-		game->zbuf[x] = ray.perp_dist;
+		zbuf[x] = ray.perp_dist;
 	}
-	enemy_draw(game, game->zbuf);
+}
+
+void	raycasting(t_game *game)
+{
+	int		colors[2];
+	double	*zbuf;
+
+	zbuf = malloc(sizeof(double) * game->data.win_width);
+	if (!zbuf)
+		return ;
+	colors_and_background(game, colors);
+	raycasting_loop(game, zbuf);
+	enemy_draw(game, zbuf);
+	free(zbuf);
 }

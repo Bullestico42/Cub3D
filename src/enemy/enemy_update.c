@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_update.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 16:15:24 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 19:23:05 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/21 15:16:18 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ static void	seek_velocity(t_enemy *e, double px, double py, double dt)
 	double	dx;
 	double	dy;
 	double	len;
-	double	ax;
-	double	ay;
 	double	acc;
 
 	dx = px - e->x;
@@ -29,11 +27,9 @@ static void	seek_velocity(t_enemy *e, double px, double py, double dt)
 		dx /= len;
 		dy /= len;
 	}
-	ax = dx * e->speed - e->vx;
-	ay = dy * e->speed - e->vy;
 	acc = 8.0;
-	e->vx += ax * acc * dt;
-	e->vy += ay * acc * dt;
+	e->vx += (dx * e->speed - e->vx) * acc * dt;
+	e->vy += (dy * e->speed - e->vy) * acc * dt;
 }
 
 void	enemy_update(t_game *g, double dt)

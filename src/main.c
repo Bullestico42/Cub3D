@@ -6,7 +6,7 @@
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/19 15:26:03 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/21 14:45:07 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 void	print_instructions(void)
 {
 	printf("Usage: ./cub3D \"Map name\"\n");
-}
-
-void	init_enemy(t_game *game)
-{
-	if (enemy_init(&game->enemy, 12.5, 6.5, 0.8, 0.7) < 0)
-		destroy_display(game, "Error: enemy init fail\n", 1);
-	if (enemy_load_texture(game, &game->enemy, "textures/enemy/shrek.xpm") < 0)
-		destroy_display(game, "Error: enemy texture fail\n", 1);
 }
 
 /* Le main vérifie que les pointeur mlx et win sont bien initialisés.
