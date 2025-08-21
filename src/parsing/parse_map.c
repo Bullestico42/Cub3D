@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:34:42 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 	game->map[i] = NULL;
 	if (check_walls_1(game))
 	{
-		printf("ERROR: WALLS\n");
+		printf("Error: walls\n");
 		return (1);
 	}
 	return (0);
@@ -114,30 +114,5 @@ int	check_walls_2(t_game *game)
 	}
 	if (check_char(game->map))
 		return (1);
-	return (0);
-}
-
-// vérifie s'il n y a pas de char inconnu
-int	check_char(char **map)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	x = 0;
-	while (map[y])
-	{
-		x = 0;
-		while (map[y][x])
-		{
-                        if (white_space(map[y][x]) || map[y][x] == '0' || map[y][x] == '1'
-                                || map[y][x] == 'E' || map[y][x] == 'N' || map[y][x] == 'S' ||
-                                        map[y][x] == 'W' || map[y][x] == 'C')
-                                x++;
-			else
-				return (1);
-		}
-		y++;
-	}
 	return (0);
 }

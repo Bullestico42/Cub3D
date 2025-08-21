@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:23 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 23:06:57 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:13:16 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,5 @@ int	game_loop(t_game *game)
 			rotate_player(game, 1, delta);
 		game->mouse_dx_acc = 0.0;
 	}
-	coins_update(game);
-	enemy_update(game, 1.0 / 60.0);
-	return (raycasting(game), render_images(game), 0);
+	return (enemy_update(game, 1.0 / 60.0), raycasting(game), render_images(game), 0);
 }

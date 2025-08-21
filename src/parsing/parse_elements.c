@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:29:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/12 20:24:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:34:37 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

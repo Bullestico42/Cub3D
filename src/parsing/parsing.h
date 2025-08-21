@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 15:26:01 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 20:19:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:57:25 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_game	t_game;
 
+int		white_space(char c);
 int		parse_elements(t_game *game);
 int		init_data(t_game *game, char *cub_name);
 int		extract_raw(t_game *game);

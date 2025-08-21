@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:45:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/12 18:53:33 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 15:41:20 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static void	load_texture(t_game *game, t_img *img, char *path)
 	img->addr = mlx_get_data_addr(img->image, &img->bpp,
 			&img->line_length, &img->endian);
 	if (img->bpp != 32)
-		destroy_display(game,
-			"Error\nUnsupported texture format\n", 1);
+		destroy_display(game, "Error: Unsupported texture format\n", 1);
 }
 
 void	load_textures(t_game *game)

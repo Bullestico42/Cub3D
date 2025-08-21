@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 00:00:00 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 17:55:53 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/19 16:00:22 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	create_map(t_game *game)
 	create_new_image(game, &game->data.minimap_img,
 		game->data.win_width / 5, game->data.win_width / 5);
 	render_images(game);
-	mlx_hook(game->data.win, 17, 0, close_game, game);
+	mlx_hook(game->data.win, 17, 0, destroy_display, game);
 	mlx_hook(game->data.win, 6, 1L << 6, handle_mouse_move, game);
 	mlx_hook(game->data.win, 2, 1L << 0, handle_keypress, game);
 	mlx_hook(game->data.win, 3, 1L << 1, handle_keyrelease, game);

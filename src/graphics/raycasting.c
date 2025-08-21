@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 00:00:00 by ChatGPT           #+#    #+#             */
-/*   Updated: 2025/08/16 15:59:27 by apiscopo         ###   ########.fr       */
+/*   Created: 2025/08/19 16:33:09 by apiscopo          #+#    #+#             */
+/*   Updated: 2025/08/19 16:33:12 by apiscopo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,15 @@ static void	draw_wall(t_game *game, t_ray *ray, int x)
 
 	init_tex(game, ray, &tex, &t);
 	y = ray->draw_start;
-    while (y <= ray->draw_end)
-    {
-        t.tex_y = (int)t.tex_pos % tex->height;
-        if (t.tex_y < 0)
-            t.tex_y += tex->height * 5;
-        t.tex_pos += t.step;
-        color = get_texture_pixel(game, tex, t.tex_x, t.tex_y);
-        my_mlx_pixel_put(game, x, y++, color);
-    }
+	while (y <= ray->draw_end)
+	{
+		t.tex_y = (int)t.tex_pos % tex->height;
+		if (t.tex_y < 0)
+			t.tex_y += tex->height * 5;
+		t.tex_pos += t.step;
+		color = get_texture_pixel(game, tex, t.tex_x, t.tex_y);
+		my_mlx_pixel_put(game, x, y++, color);
+	}
 }
 
 void	raycasting(t_game *game)
@@ -89,8 +89,8 @@ void	raycasting(t_game *game)
 	t_ray	ray;
 	int		x;
 	int		colors[2];
-	double	zbuf[game->data.win_width];
 
+	game->zbuf = malloc(sizeof(double) * game->data.win_width);
 	colors[0] = rgb_to_hex(game->textures.color_c[0],
 			game->textures.color_c[1], game->textures.color_c[2]);
 	colors[1] = rgb_to_hex(game->textures.color_f[0],
@@ -104,8 +104,7 @@ void	raycasting(t_game *game)
 		ft_dda(game, &ray);
 		calculate_wall_params(game, &ray);
 		draw_wall(game, &ray, x);
-		zbuf[x] = ray.perp_dist;
+		game->zbuf[x] = ray.perp_dist;
 	}
-	coins_draw(game, zbuf);
-	enemy_draw(game, zbuf);
+	enemy_draw(game, game->zbuf);
 }
