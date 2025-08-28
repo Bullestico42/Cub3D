@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_background.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:40 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/27 17:55:30 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/28 17:21:00 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	set_minimap_pixel(t_game *game, int offset, int x, int y)
 		if (game->map[y][x] != '0' && game->map[y][x] != 'E'
 			&& game->map[y][x] != 'W' && game->map[y][x] != 'N'
 			&& game->map[y][x] != 'S')
-			color = 00000000;
+			color = PINK;
 		else
 			color = GRAY;
 	}
 	else
-		color = 00000000;
+		color = PINK;
 	*(unsigned int *)(game->data.minimap_img.addr + offset) = color;
 }
 

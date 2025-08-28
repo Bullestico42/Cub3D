@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/27 21:15:29 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/28 17:19:32 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # define LAVENDER 15792383
 # define GREEN 9419919
 # define GRAY 4605510
-# define PINK 16752762
+# define PINK 16714410
 # define MOVE_SPEED 0.02
 # define ROT_SPEED 0.02
-# define MOUSE_ROT_SPEED 0.03
+# define MOUSE_ROT_SPEED 0.005
 # define MOUSE_CENTER_EPS 0.3
 # define FOV_K 0.66
 
