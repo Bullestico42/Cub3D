@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/28 17:19:32 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:45:19 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "../src/enemy/enemy.h"
 
 # define RED 16711680
-# define BLUE 6591981
+# define BLUE 4251856
 # define LAVENDER 15792383
 # define GREEN 9419919
 # define GRAY 4605510

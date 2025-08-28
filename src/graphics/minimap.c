@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:11 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/27 17:45:35 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/28 17:45:51 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	create_minimap(t_game *game)
 	enemy_map_x = center + (int)((game->enemy.x - game->player.pos_x) * scale);
 	enemy_map_y = center + (int)((game->enemy.y - game->player.pos_y) * scale);
 	draw_minimap_background(game, scale, center);
-	draw_person(game, center, center, GREEN);
+	draw_person(game, center, center, BLUE);
 	direction_line(game, center);
 	if (game->enemy.x)
 		draw_person(game, enemy_map_x, enemy_map_y, RED);
