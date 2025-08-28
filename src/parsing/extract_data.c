@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 22:10:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/21 14:55:23 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:50:55 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	check_path(char *path)
 	if (fd < 0)
 		return (printf("Error: Wrong path file\n"), 0);
 	close(fd);
+	if (ft_strncmp(path, ".xpm", 4))
+		return (printf("prout %s\n", path), 0);
 	return (1);
 }
 

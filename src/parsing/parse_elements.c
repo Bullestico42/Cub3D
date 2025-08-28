@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:29:03 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/19 15:34:37 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/28 16:41:04 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

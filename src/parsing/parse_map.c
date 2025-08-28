@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 02:44:12 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/21 14:49:41 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/28 15:42:50 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fill_map(int lines, t_game *game, char **brut_map)
 	game->map[i] = NULL;
 	if (check_walls_1(game))
 	{
-		printf("Error: walls\n");
+		printf("Error: Map parsing\n");
 		return (1);
 	}
 	return (0);
