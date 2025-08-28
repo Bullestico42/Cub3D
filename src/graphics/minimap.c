@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 14:28:11 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/14 22:01:52 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:45:35 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void	plot_dir_thick(t_game *game, int x, int y)
 			{
 				offset = (y + dy) * game->data.minimap_img.line_length
 					+ (x + dx) * (game->data.minimap_img.bpp / 8);
-				*(unsigned int *)(game->data.minimap_img.addr + offset) = BLUE;
+				*(unsigned int *)(game->data.minimap_img.addr + offset) = GREEN;
 			}
 			dy++;
 		}
@@ -74,7 +74,7 @@ void	direction_line(t_game *game, int center)
 	int	dir_y;
 
 	step = 1;
-	line_length = 15;
+	line_length = 8;
 	while (step <= line_length)
 	{
 		dir_x = center + (int)(game->player.dir_x * step);
@@ -98,7 +98,8 @@ void	create_minimap(t_game *game)
 	enemy_map_x = center + (int)((game->enemy.x - game->player.pos_x) * scale);
 	enemy_map_y = center + (int)((game->enemy.y - game->player.pos_y) * scale);
 	draw_minimap_background(game, scale, center);
-	draw_person(game, center, center, BLUE);
+	draw_person(game, center, center, GREEN);
 	direction_line(game, center);
-	draw_person(game, enemy_map_x, enemy_map_y, RED);
+	if (game->enemy.x)
+		draw_person(game, enemy_map_x, enemy_map_y, RED);
 }

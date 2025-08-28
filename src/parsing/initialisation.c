@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:45:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/21 15:27:15 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:05:51 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ void	init_enemy(t_game *game)
 {
 	if (enemy_init(&game->enemy, 12.5, 6.5) < 0)
 		destroy_display(game, "enemy init fail\n", 1);
-	if (enemy_load_texture(game, &game->enemy, "textures/enemy/shrek.xpm") < 0)
+	if (enemy_load_texture(game, &game->enemy, "textures/enemy/enemy_1.xpm") < 0)
 		destroy_display(game, "enemy texture fail\n", 1);
 }

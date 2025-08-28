@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 16:33:09 by apiscopo          #+#    #+#             */
-/*   Updated: 2025/08/21 15:25:12 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/27 20:48:09 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

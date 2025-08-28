@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:58 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/21 15:21:35 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:15:29 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define BLUE 6591981
 # define LAVENDER 15792383
 # define GREEN 9419919
-# define GRAY 14474460
+# define GRAY 4605510
 # define PINK 16752762
 # define MOVE_SPEED 0.02
 # define ROT_SPEED 0.02
@@ -124,17 +124,17 @@ typedef struct s_ray
 	double	dir_y;
 	double	delta_dist_x;
 	double	delta_dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	perp_dist;
 	int		step_x;
 	int		step_y;
 	int		hit;
 	int		side;
-	double	side_dist_x;
-	double	side_dist_y;
 	int		map_x;
 	int		map_y;
 	int		draw_start;
 	int		draw_end;
-	double	perp_dist;
 	int		line_height;
 }	t_ray;
 

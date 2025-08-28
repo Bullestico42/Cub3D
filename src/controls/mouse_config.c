@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 18:33:18 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/08/21 00:44:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/27 15:40:41 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	hide_and_move_mouse(t_game *game, int cx, int cy)
 	mlx_mouse_move(game->data.win, cx, cy);
 }
 
-static void	center_mouse(t_game *game, int cx, int cy)
+void	center_mouse(t_game *game, int cx, int cy)
 {
 	mlx_mouse_move(game->data.win, cx, cy);
 }

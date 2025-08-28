@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apiscopo < apiscopo@student.42lausanne.    +#+  +:+       +#+        */
+/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/21 14:45:07 by apiscopo         ###   ########.fr       */
+/*   Updated: 2025/08/27 17:20:25 by bullestico       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int	main(int ac, char **av)
 	{
 		if ((ft_strncmp(av[2], "bonus", ft_strlen(av[2]))) == 0)
 			init_enemy(&game);
+		else
+			return (destroy_display(&game, "Error, Wrong args\n", 1));
 	}
 	create_map(&game);
-	mlx_loop(game.data.mlx);
-	return (0);
+	return (mlx_loop(game.data.mlx), 0);
 }
