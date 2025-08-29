@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bullestico <bullestico@student.42.fr>      +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 21:08:36 by bullestico        #+#    #+#             */
-/*   Updated: 2025/08/27 17:20:25 by bullestico       ###   ########.fr       */
+/*   Updated: 2025/08/29 14:32:25 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,16 @@ void	print_instructions(void)
 	printf("Usage: ./cub3D \"Map name\"\n");
 }
 
+int	free_init_values(t_game *game)
+{
+	if (game->parsing.brut_file)
+		free_double_ptr(game->parsing.brut_file);
+	if (game->map)
+		free_double_ptr(game->map);
+	clean_texture(game);
+	return (1);
+}
+
 /* Le main vérifie que les pointeur mlx et win sont bien initialisés.
 Il permet aussi de fermer la fenêtre avec la croix.*/
 int	main(int ac, char **av)
@@ -27,7 +37,7 @@ int	main(int ac, char **av)
 	if (!(ac >= 2) && !(ac > 3))
 		return (print_instructions(), 1);
 	if (init_data(&game, av[1]))
-		return (1);
+		return (free_init_values(&game));
 	init_values(&game);
 	game.data.mlx = mlx_init();
 	if (!game.data.mlx)
